@@ -1,18 +1,28 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path'); // Wajib di-require untuk membaca folder frontend
 const { Pool } = require('pg');
 
 const app = express();
 const port = 3000;
 
-// Mengizinkan frontend mengambil data dari backend
+// Middleware
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true })); // Agar bisa membaca data dari form HTML
+
+// 👉 Konfigurasi agar file Frontend (HTML, CSS, JS) bisa diakses langsung oleh server backend
+app.use(express.static(path.join(__dirname, '../frontend')));
+
+// Rute utama untuk membuka halaman index.html
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/index.html'));
+});
 
 // Konfigurasi koneksi ke database PostgreSQL
 const pool = new Pool({
     user: 'postgres',
-    password: 'bilkis21', // Pastikan ini sesuai dengan password yang kamu buat
+    password: 'bilkis21', 
     host: 'localhost',
     port: 5433,
     database: 'sipandu'
@@ -95,22 +105,15 @@ app.post('/api/wisata', async (req, res) => {
     }
 });
 
-// Menyalakan server (Pastikan ini selalu berada di bagian paling bawah)
-app.listen(port, () => {
-    console.log(`Server Si-PANDU berjalan di http://localhost:${port}`);
-});
-
 // Endpoint: Login Admin
 app.post('/api/login', async (req, res) => {
     const { username, password } = req.body;
     
     try {
-        // Mencari admin dengan username dan password yang cocok
         const query = 'SELECT * FROM admin WHERE username = $1 AND password = $2';
         const result = await pool.query(query, [username, password]);
         
         if (result.rows.length > 0) {
-            // Jika cocok, login berhasil
             res.json({ 
                 status: 'success', 
                 message: 'Login berhasil!',
@@ -120,11 +123,15 @@ app.post('/api/login', async (req, res) => {
                 }
             });
         } else {
-            // Jika tidak cocok, login gagal
             res.status(401).json({ status: 'error', message: 'Username atau password salah!' });
         }
     } catch (err) {
         console.error('Error Login:', err.message);
         res.status(500).json({ status: 'error', message: 'Server Error Login' });
     }
+});
+
+// 👉 Menyalakan server (Diletakkan di bagian PALING BAWAH setelah semua endpoint)
+app.listen(port, () => {
+    console.log(`Server Si-PANDU berjalan di http://localhost:${port}`);
 });
