@@ -35,6 +35,17 @@
     <button class="btn-nearest" onclick="cariTerdekat()" id="btn-terdekat">
       📍 Cari Destinasi Terdekat dari Lokasi Saya
     </button>
+
+    <!-- Muncul otomatis di bawah tombol jika izin GPS ditolak -->
+    <div id="manual-location-box" style="display: none; margin-top: 12px;">
+      <select id="select-pulau" onchange="pilihLokasiManual()" style="padding: 8px 12px; border-radius: 15px; border: none; font-size: 0.85rem;">
+        <option value="">-- Pilih Posisi Pulau/Kecamatan Manual --</option>
+        <option value="-1.5890,123.4930">Kec. Banggai (Pusat Kota)</option>
+        <option value="-1.6500,123.5500">Kec. Banggai Selatan</option>
+        <option value="-1.7500,123.3500">Pulau Labobo</option>
+        <option value="-1.9500,123.8000">Kepulauan Bokan</option>
+      </select>
+    </div>
   </section>
 
   <!-- 3. Filter Kategori -->

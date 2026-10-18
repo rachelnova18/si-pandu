@@ -161,3 +161,24 @@ function cariTerdekat() {
 
 // Jalankan pertama kali saat halaman dibuka
 renderWisata(dataWisata);
+
+// URL Server Backend Express.js
+const API_BASE_URL = 'http://localhost:3000/api';
+
+async function loadDataDariBackend() {
+  try {
+    const response = await fetch(`${API_BASE_URL}/wisata`);
+    if (response.ok) {
+      const dataAsli = await response.json();
+      dataWisata = dataAsli; // Mengganti data dummy dengan data dari PostgreSQL
+      renderWisata(dataWisata);
+      console.log("Berhasil memuat data dari API Backend!");
+    }
+  } catch (error) {
+    console.log("Backend belum aktif, menggunakan data dummy sementara.");
+    renderWisata(dataWisata);
+  }
+}
+
+// Panggil fungsi ini saat web dibuka
+loadDataDariBackend();
