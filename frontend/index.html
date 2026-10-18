@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Si-PANDU - Pariwisata Banggai Laut</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- 1. Navbar -->
+  <header class="navbar">
+    <div class="logo">🌊 Si-PANDU</div>
+    <nav class="nav-links">
+      <a href="index.html" data-id="Beranda" data-en="Home">Beranda</a>
+      <a href="panduan.html" data-id="Panduan & Kapal" data-en="Guide & Ferry">Panduan & Kapal</a>
+    </nav>
+    <!-- Toggle Bahasa ID / EN -->
+    <div class="lang-toggle">
+      <button id="btn-id" class="active" onclick="setLanguage('id')">ID</button>
+      <button id="btn-en" onclick="setLanguage('en')">EN</button>
+    </div>
+  </header>
+
+  <!-- 2. Hero & Pencarian -->
+  <section class="hero">
+    <h1 id="hero-title">Jelajahi Keindahan Banggai Laut</h1>
+    <p id="hero-subtitle">Temukan destinasi wisata, penginapan, dan jadwal kapal antar pulau.</p>
+    
+    <div class="search-box">
+      <input type="text" id="search-input" placeholder="Cari pantai, sejarah, hotel..." oninput="filterWisata()">
+    </div>
+
+    <!-- Tombol Geolokasi (Destinasi Terdekat) -->
+    <button class="btn-nearest" onclick="cariTerdekat()" id="btn-terdekat">
+      📍 Cari Destinasi Terdekat dari Lokasi Saya
+    </button>
+  </section>
+
+  <!-- 3. Filter Kategori -->
+  <section class="categories">
+    <button class="cat-btn active" onclick="pilihKategori('Semua')" data-id="Semua" data-en="All">Semua</button>
+    <button class="cat-btn" onclick="pilihKategori('Bahari')" data-id="Bahari" data-en="Marine">Bahari</button>
+    <button class="cat-btn" onclick="pilihKategori('Sejarah & Budaya')" data-id="Sejarah & Budaya" data-en="History & Culture">Sejarah & Budaya</button>
+    <button class="cat-btn" onclick="pilihKategori('Hotel')" data-id="Hotel" data-en="Hotel">Hotel</button>
+    <button class="cat-btn" onclick="pilihKategori('Kuliner')" data-id="Kuliner" data-en="Culinary">Kuliner</button>
+  </section>
+
+  <!-- 4. Daftar Kartu Wisata (Card Container) -->
+  <main class="container">
+    <div id="wisata-list" class="card-grid">
+      <!-- Kartu wisata akan dimunculkan otomatis oleh JavaScript di sini -->
+    </div>
+  </main>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
