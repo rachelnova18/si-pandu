@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panduan & Jadwal Kapal - Si-PANDU</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .section-title {
+      margin: 20px 0 12px;
+      color: #006699;
+      border-left: 4px solid #ff9800;
+      padding-left: 10px;
+      font-size: 1.2rem;
+    }
+    .guide-card {
+      background: white;
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 14px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+    }
+    .guide-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .moda-badge {
+      background: #fff3e0;
+      color: #e65100;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+    .tips-box {
+      background: #e8f4f8;
+      padding: 10px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      margin-top: 10px;
+      color: #005580;
+    }
+    /* Tabel Responsif untuk Jadwal Kapal di Layar HP */
+    .table-responsive {
+      overflow-x: auto;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 500px;
+    }
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+      font-size: 0.88rem;
+    }
+    th {
+      background-color: #006699;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. Navbar -->
+  <header class="navbar">
+    <div class="logo">🌊 Si-PANDU</div>
+    <nav class="nav-links">
+      <a href="index.html" id="nav-home">Beranda</a>
+      <a href="panduan.html" id="nav-guide" style="font-weight: bold; text-decoration: underline;">Panduan & Kapal</a>
+    </nav>
+    <div class="lang-toggle">
+      <button id="btn-id" class="active" onclick="ubahBahasaPanduan('id')">ID</button>
+      <button id="btn-en" onclick="ubahBahasaPanduan('en')">EN</button>
+    </div>
+  </header>
+
+  <!-- 2. Hero Singkat -->
+  <section class="hero" style="padding: 18px 16px;">
+    <h1 id="page-title">Panduan Perjalanan & Jadwal Kapal</h1>
+    <p id="page-subtitle">Informasi rute menuju Banggai Laut serta jadwal transportasi laut antar pulau.</p>
+  </section>
+
+  <main class="container">
+    <!-- Bagian A: Jadwal Kapal Antar Pulau -->
+    <h2 class="section-title" id="title-jadwal">⛴️ Jadwal Kapal Antar Pulau</h2>
+    <div class="table-responsive">
+      <table>
+        <thead>
+          <tr>
+            <th id="th-kapal">Nama Kapal</th>
+            <th id="th-rute">Rute (Asal ➔ Tujuan)</th>
+            <th id="th-jadwal">Hari & Jam Berangkat</th>
+            <th id="th-harga">Estimasi Harga</th>
+          </tr>
+        </thead>
+        <tbody id="jadwal-list">
+          <!-- Data jadwal kapal muncul di sini -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Bagian B: Panduan Perjalanan dari Luar Daerah -->
+    <h2 class="section-title" id="title-panduan">✈️ Panduan Rute dari Luar Daerah</h2>
+    <div id="panduan-list">
+      <!-- Kartu panduan perjalanan muncul di sini -->
+    </div>
+  </main>
+
+  <script>
+    let lang = 'id';
+
+    // Data Dummy Jadwal Transportasi (Sesuai rancangan tabel jadwal_transportasi)
+    const dataJadwalKapal = [
+      {
+        nama_kapal: "KM. Sabuk Nusantara",
+        rute_asal: "Pelabuhan Luwuk",
+        rute_tujuan: "Pelabuhan Banggai",
+        hari_id: "Senin, Rabu, Jumat",
+        hari_en: "Monday, Wednesday, Friday",
+        jam_berangkat: "08:00 WITA",
+        harga: 75000
+      },
+      {
+        nama_kapal: "Ferry KMP. Tanjung Api",
+        rute_asal: "Pelabuhan Banggai",
+        rute_tujuan: "Pulau Bokan / Labobo",
+        hari_id: "Setiap Hari",
+        hari_en: "Every Day",
+        jam_berangkat: "13:30 WITA",
+        harga: 45000
+      }
+    ];
+
+    // Data Dummy Panduan Perjalanan (Sesuai rancangan tabel panduan_perjalanan)
+    const dataPanduan = [
+      {
+        judul_id: "Rute dari Makassar / Jakarta via Luwuk",
+        judul_en: "Route from Makassar / Jakarta via Luwuk",
+        kota_asal: "Makassar / Jakarta",
+        moda_transportasi: "Pesawat + Kapal Laut",
+        rute_id: "1. Terbang menuju Bandara Syukuran Aminuddin Amir (LUW) di Luwuk.\n2. Lanjut naik taksi/ojek ke Pelabuhan Rakyat Luwuk (15 menit).\n3. Naik kapal cepat atau kapal feri menuju Pelabuhan Banggai Laut.",
+        rute_en: "1. Fly to Syukuran Aminuddin Amir Airport (LUW) in Luwuk.\n2. Take a taxi/motorbike to Luwuk Port (15 mins).\n3. Board a speedboat or ferry to Banggai Laut Port.",
+        estimasi_durasi: "4 - 6 Jam (termasuk transit)",
+        estimasi_biaya: "Rp 1.500.000 - Rp 2.800.000",
+        tips_id: "Disarankan mengambil penerbangan pagi agar tidak tertinggal jadwal kapal siang di Pelabuhan Luwuk.",
+        tips_en: "We recommend taking a morning flight so you don't miss the afternoon ferry at Luwuk Port."
+      }
+    ];
+
+    function renderHalaman() {
+      // 1. Render Tabel Jadwal Kapal
+      const tbody = document.getElementById('jadwal-list');
+      tbody.innerHTML = '';
+      dataJadwalKapal.forEach(item => {
+        const hari = lang === 'id' ? item.hari_id : item.hari_en;
+        tbody.innerHTML += `
+          <tr>
+            <td><strong>${item.nama_kapal}</strong></td>
+            <td>${item.rute_asal} ➔ ${item.rute_tujuan}</td>
+            <td>${hari} (${item.jam_berangkat})</td>
+            <td style="color: #2e7d32; font-weight: bold;">Rp ${item.harga.toLocaleString('id-ID')}</td>
+          </tr>
+        `;
+      });
+
+      // 2. Render Kartu Panduan Perjalanan
+      const panduanContainer = document.getElementById('panduan-list');
+      panduanContainer.innerHTML = '';
+      dataPanduan.forEach(p => {
+        const judul = lang === 'id' ? p.judul_id : p.judul_en;
+        const rute = (lang === 'id' ? p.rute_id : p.rute_en).replace(/\n/g, '<br>');
+        const tips = lang === 'id' ? p.tips_id : p.tips_en;
+        const labelDurasi = lang === 'id' ? 'Estimasi Durasi' : 'Est. Duration';
+        const labelBiaya = lang === 'id' ? 'Estimasi Biaya' : 'Est. Cost';
+
+        panduanContainer.innerHTML += `
+          <div class="guide-card">
+            <div class="guide-header">
+              <h3>${judul}</h3>
+              <span class="moda-badge">${p.moda_transportasi}</span>
+            </div>
+            <p style="font-size: 0.9rem; line-height: 1.6; margin-bottom: 10px;">${rute}</p>
+            <p style="font-size: 0.85rem;">⏱️ <strong>${labelDurasi}:</strong> ${p.estimasi_durasi} | 💰 <strong>${labelBiaya}:</strong> ${p.estimasi_biaya}</p>
+            <div class="tips-box">💡 <strong>Tips:</strong> ${tips}</div>
+          </div>
+        `;
+      });
+    }
+
+    function ubahBahasaPanduan(pilihan) {
+      lang = pilihan;
+      document.getElementById('btn-id').classList.toggle('active', lang === 'id');
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+
+      document.getElementById('nav-home').innerText = lang === 'id' ? 'Beranda' : 'Home';
+      document.getElementById('nav-guide').innerText = lang === 'id' ? 'Panduan & Kapal' : 'Guide & Ferry';
+      document.getElementById('page-title').innerText = lang === 'id' ? 'Panduan Perjalanan & Jadwal Kapal' : 'Travel Guide & Ferry Schedule';
+      document.getElementById('page-subtitle').innerText = lang === 'id' 
+        ? 'Informasi rute menuju Banggai Laut serta jadwal transportasi laut antar pulau.' 
+        : 'Route information to Banggai Laut and inter-island sea transport schedules.';
+      document.getElementById('title-jadwal').innerText = lang === 'id' ? '⛴️ Jadwal Kapal Antar Pulau' : '⛴️ Inter-Island Ferry Schedule';
+      document.getElementById('title-panduan').innerText = lang === 'id' ? '✈️ Panduan Rute dari Luar Daerah' : '✈️ Travel Routes from Outside the Region';
+
+      renderHalaman();
+    }
+
+    renderHalaman();
+  </script>
+</body>
+</html>
