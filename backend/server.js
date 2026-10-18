@@ -70,6 +70,30 @@ app.get('/api/panduan', async (req, res) => {
         res.status(500).json({ status: 'error', message: 'Server Error Panduan' });
     }
 });
+// Endpoint: Menambah data destinasi wisata baru (Khusus Admin)
+app.post('/api/wisata', async (req, res) => {
+    // Menangkap data yang dikirim dari frontend/Postman
+    const { id_kategori, nama_tempat, deskripsi_id, latitude, longitude } = req.body;
+    
+    try {
+        // Memasukkan data ke dalam tabel direktori
+        const query = `
+            INSERT INTO direktori (id_kategori, nama_tempat, deskripsi_id, latitude, longitude) 
+            VALUES ($1, $2, $3, $4, $5) RETURNING *;
+        `;
+        const values = [id_kategori, nama_tempat, deskripsi_id, latitude, longitude];
+        const result = await pool.query(query, values);
+        
+        res.status(201).json({
+            status: 'success',
+            message: 'Destinasi wisata berhasil ditambahkan!',
+            data: result.rows[0]
+        });
+    } catch (err) {
+        console.error('Error Tambah Wisata:', err.message);
+        res.status(500).json({ status: 'error', message: 'Server Error Tambah Wisata' });
+    }
+});
 
 // Menyalakan server (Pastikan ini selalu berada di bagian paling bawah)
 app.listen(port, () => {

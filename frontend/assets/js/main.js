@@ -182,3 +182,4 @@ async function loadDataDariBackend() {
 
 // Panggil fungsi ini saat web dibuka
 loadDataDariBackend();
+
