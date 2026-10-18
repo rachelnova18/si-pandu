@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Command Center - Si-PANDU</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .admin-card {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      margin-bottom: 20px;
+    }
+    .form-group {
+      margin-bottom: 12px;
+    }
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 5px;
+      font-size: 0.88rem;
+    }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 0.9rem;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .btn-submit {
+      background: #006699;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="logo">⚙️ Admin Si-PANDU</div>
+    <nav class="nav-links">
+      <a href="../index.html">Lihat Web Publik ➔</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <div class="admin-card">
+      <h2 style="margin-bottom: 14px; color: #006699;">+ Tambah Destinasi / Direktori Baru</h2>
+      <form id="form-wisata" onsubmit="simpanWisata(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Nama Tempat</label>
+            <input type="text" id="nama_tempat" required placeholder="Contoh: Pantai Bongo">
+          </div>
+          <div class="form-group">
+            <label>Kategori</label>
+            <select id="kategori">
+              <option value="Bahari">Bahari</option>
+              <option value="Sejarah & Budaya">Sejarah & Budaya</option>
+              <option value="Hotel">Hotel</option>
+              <option value="Kuliner">Kuliner</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Deskripsi (Bahasa Indonesia)</label>
+          <textarea id="deskripsi_id" rows="2" required placeholder="Tulis deskripsi bahasa Indonesia..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>Deskripsi (Bahasa Inggris / EN)</label>
+          <textarea id="deskripsi_en" rows="2" required placeholder="Write description in English..."></textarea>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Latitude</label>
+            <input type="number" step="any" id="latitude" required placeholder="-1.5833">
+          </div>
+          <div class="form-group">
+            <label>Longitude</label>
+            <input type="number" step="any" id="longitude" required placeholder="123.5000">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Harga Mulai (Rp)</label>
+            <input type="number" id="harga_mulai" required placeholder="10000">
+          </div>
+          <div class="form-group">
+            <label>Nomor WhatsApp Pengurus (Format 628xxx)</label>
+            <input type="text" id="kontak_wa" required placeholder="6281234567890">
+          </div>
+        </div>
+
+        <button type="submit" class="btn-submit">Simpan Data ke Sistem</button>
+      </form>
+    </div>
+  </main>
+
+  <script>
+    function simpanWisata(e) {
+      e.preventDefault();
+      alert("Data berhasil divalidasi! (Nantinya tombol ini akan mengirim data POST ke API Backend Express.js)");
+      e.target.reset();
+    }
+  </script>
+</body>
+</html>
