@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Jadwal Kapal & Panduan Rute - Si-PANDU</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -12,26 +12,38 @@
   <!-- Header / Navbar -->
   <header class="main-header" id="mainHeader">
     <div class="nav-container">
-      <a href="index.html" class="logo">SI-PANDU</a>
-      <nav class="nav-links">
-        <a href="index.html">Beranda</a>
-        <a href="index.html#destinasi">Destinasi Wisata</a>
-        <a href="panduan.html" class="active">Jadwal Kapal & Panduan</a>
+      <a href="index.html" class="logo">
+        SI-PANDU
+        <span data-i18n="logoSub">BANGGAI LAUT</span>
+      </a>
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html" data-i18n="navHome">Beranda</a>
+        <a href="index.html#mengenal" data-i18n="navProfile">Profil & Peta</a>
+        <a href="index.html#destinasi" data-i18n="navDestinasi">Destinasi Wisata</a>
+        <a href="panduan.html" class="active" data-i18n="navPanduan">Jadwal Kapal & Panduan</a>
       </nav>
-      <div class="nav-lang">
-        <span class="lang-badge active">ID</span>
-        <span class="lang-badge">EN</span>
+      <div class="nav-actions">
+        <div class="nav-lang" id="navLang">
+          <button type="button" class="lang-badge active" data-lang="id" aria-label="Bahasa Indonesia">ID</button>
+          <button type="button" class="lang-badge" data-lang="en" aria-label="English">EN</button>
+        </div>
+        <button class="nav-toggle" id="navToggle" aria-label="Buka navigasi menu" aria-expanded="false">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
       </div>
     </div>
   </header>
+  <div class="nav-backdrop" id="navBackdrop"></div>
 
   <!-- Banner Header Halaman Kapal -->
   <section class="subpage-hero">
     <div class="subpage-overlay"></div>
     <div class="subpage-content reveal-item">
-      <span class="section-subtitle">Navigasi Logistik Kepulauan</span>
-      <h1>Jadwal Kapal & Panduan Rute</h1>
-      <p>Informasi terpadu jadwal pelayaran antar-pulau, estimasi tiket penyeberangan, serta panduan akses menuju Kabupaten Banggai Laut.</p>
+      <span class="section-subtitle" data-i18n="panduanHeroSubtitle">Navigasi Logistik Kepulauan</span>
+      <h1 data-i18n="panduanHeroTitle">Jadwal Kapal & Panduan Rute</h1>
+      <p data-i18n="panduanHeroDesc">Informasi terpadu jadwal pelayaran antar-pulau, estimasi tiket penyeberangan, serta panduan akses menuju Kabupaten Banggai Laut.</p>
     </div>
   </section>
 
@@ -39,12 +51,12 @@
   <section class="maritime-section">
     <div class="maritime-header reveal-item">
       <div>
-        <span class="section-subtitle">Banggai Maritime Hub</span>
-        <h2>⛴️ Jadwal Pelayaran & Kapal Antar-Pulau</h2>
+        <span class="section-subtitle" data-i18n="maritimeSubtitle">Banggai Maritime Hub</span>
+        <h2 data-i18n="maritimeTitle">⛴️ Jadwal Pelayaran & Kapal Antar-Pulau</h2>
       </div>
       <!-- Filter Rute Kapal -->
       <div class="route-filter-box">
-        <input type="text" id="searchKapal" placeholder="Cari rute atau nama kapal (misal: Luwuk, Bokan, Ferry)...">
+        <input type="text" id="searchKapal" placeholder="Cari rute atau nama kapal (misal: Luwuk, Bokan, Ferry)..." data-i18n-ph="searchKapalPlaceholder" autocomplete="off">
       </div>
     </div>
 
@@ -57,9 +69,9 @@
   <!-- Bagian 2: Panduan Perjalanan dari Luar Daerah (Step-by-step) -->
   <section class="guide-section">
     <div class="section-header reveal-item">
-      <span class="section-subtitle">Rute Wisatawan Luar Daerah</span>
-      <h2>🧭 Panduan Perjalanan Menuju Banggai Laut</h2>
-      <p>Langkah demi langkah moda transportasi udara, darat, dan laut untuk mencapai surga bahari Banggai Laut.</p>
+      <span class="section-subtitle" data-i18n="guideSubtitle">Rute Wisatawan Luar Daerah</span>
+      <h2 data-i18n="guideTitle">🧭 Panduan Perjalanan Menuju Banggai Laut</h2>
+      <p data-i18n="guideDesc">Langkah demi langkah moda transportasi udara, darat, dan laut untuk mencapai surga bahari Banggai Laut.</p>
     </div>
 
     <div class="guide-timeline" id="panduanGrid">
@@ -72,26 +84,30 @@
     <div class="footer-container">
       <div class="footer-col">
         <h3>SI-PANDU</h3>
-        <p>Sistem Pariwisata dan Navigasi Terpadu Dinas Pariwisata dan Kebudayaan Kabupaten Banggai Laut, Sulawesi Tengah.</p>
+        <p data-i18n="footerAbout">Sistem Pariwisata dan Navigasi Terpadu Dinas Pariwisata dan Kebudayaan Kabupaten Banggai Laut, Sulawesi Tengah.</p>
       </div>
       <div class="footer-col">
-        <h4>Jelajahi</h4>
+        <h4 data-i18n="footerNavTitle">Jelajahi</h4>
         <ul>
-          <li><a href="index.html">Beranda Utama</a></li>
-          <li><a href="index.html#destinasi">Katalog Destinasi Wisata</a></li>
-          <li><a href="panduan.html">Jadwal Kapal & Rute Perjalanan</a></li>
+          <li><a href="index.html" data-i18n="navHome">Beranda Utama</a></li>
+          <li><a href="index.html#destinasi" data-i18n="navDestinasi">Katalog Destinasi Wisata</a></li>
+          <li><a href="panduan.html" data-i18n="navPanduan">Jadwal Kapal & Rute Perjalanan</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4>Pusat Informasi Wisatawan</h4>
+        <h4 data-i18n="footerOfficeTitle">Pusat Informasi Wisatawan</h4>
         <p>📍 Banggai Laut, Sulawesi Tengah</p>
         <p>📧 disparbud@banggailautkab.go.id</p>
       </div>
     </div>
     <div class="footer-bottom">
-      <p id="secretAdminTrigger">&copy; 2026 Si-PANDU Dinas Pariwisata dan Kebudayaan Kabupaten Banggai Laut. All Rights Reserved.</p>
+      <p id="secretAdminTrigger" style="cursor: default; user-select: none;" data-i18n="footerRights">&copy; 2026 Si-PANDU Dinas Pariwisata dan Kebudayaan Kabupaten Banggai Laut. All Rights Reserved.</p>
+      <span class="footer-pill-badge">Pesona Indonesia</span>
     </div>
   </footer>
+
+  <!-- Toast Notification Container -->
+  <div id="toastNotification" class="toast-notification" aria-live="polite"></div>
 
   <script src="assets/js/main.js"></script>
 </body>

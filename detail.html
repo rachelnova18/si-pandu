@@ -3,36 +3,190 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Detail Destinasi - Si-PANDU</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <title>Detail Destinasi - Si-PANDU Banggai Laut</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
-  <style>
-    .detail-section { max-width: 900px; margin: 140px auto 60px auto; padding: 0 30px; }
-    .detail-section h1 { font-family: 'Playfair Display', serif; font-size: 3rem; color: #fff; margin-bottom: 15px; }
-    .badge-cat { background: #c59d5f; color: #07090c; padding: 6px 14px; border-radius: 20px; font-weight: 700; font-size: 0.8rem; display: inline-block; margin-bottom: 20px; }
-    .detail-desc { font-size: 1rem; line-height: 1.8; color: #d0d5dd; margin-bottom: 30px; }
-    .back-btn { display: inline-block; color: #c59d5f; text-decoration: none; font-weight: 600; }
-  </style>
 </head>
-<body>
+<body class="detail-page-body">
 
-  <header class="main-header">
+  <!-- Header / Navbar -->
+  <header class="main-header" id="mainHeader">
     <div class="nav-container">
-      <a href="index.html" class="logo">SI-PANDU</a>
-      <nav class="nav-links">
-        <a href="index.html">Beranda</a>
-        <a href="panduan.html">Panduan & Kapal</a>
-        <a href="login.html">Admin</a>
+      <a href="index.html" class="logo">
+        SI-PANDU
+        <span data-i18n="logoSub">BANGGAI LAUT</span>
+      </a>
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html" data-i18n="navHome">Beranda</a>
+        <a href="index.html#mengenal" data-i18n="navProfile">Profil & Peta</a>
+        <a href="index.html#destinasi" class="active" data-i18n="navDestinasi">Destinasi</a>
+        <a href="panduan.html" data-i18n="navJadwalKapal">Jadwal Kapal</a>
       </nav>
+      <div class="nav-actions">
+        <div class="nav-lang" id="navLang">
+          <button type="button" class="lang-badge active" data-lang="id" aria-label="Bahasa Indonesia">ID</button>
+          <button type="button" class="lang-badge" data-lang="en" aria-label="English">EN</button>
+        </div>
+        <a href="panduan.html" class="nav-cta-btn" data-i18n="navCta">Rute & Kapal</a>
+        <button class="nav-toggle" id="navToggle" aria-label="Buka navigasi menu" aria-expanded="false">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
     </div>
   </header>
+  <div class="nav-backdrop" id="navBackdrop"></div>
 
-  <div class="detail-section">
-    <span class="badge-cat" id="destCategory">Destinasi Wisata</span>
-    <h1 id="destTitle">Kepulauan Bokan & Keindahan Bahari</h1>
-    <p class="detail-desc" id="destDesc">Kepulauan Bokan merupakan gugusan pulau karang eksotis yang menawarkan air laut sangat jernih dengan gradasi warna biru toska serta spot terumbu karang terbaik di Kabupaten Banggai Laut.</p>
-    <a href="index.html" class="back-btn">← Kembali ke Beranda</a>
-  </div>
+  <!-- Detail Page Main Container -->
+  <main class="detail-main-wrapper">
+    <!-- Breadcrumb -->
+    <div class="detail-breadcrumb">
+      <a href="index.html" data-i18n="navHome">Beranda</a> &rsaquo;
+      <a href="index.html#destinasi" data-i18n="navDestinasi">Destinasi</a> &rsaquo;
+      <span id="breadcrumbCurrent">Memuat...</span>
+    </div>
 
+    <!-- Detail Hero Card -->
+    <div class="detail-hero-banner" id="detailHeroBanner">
+      <img id="destHeroImg" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600" alt="Destinasi Banggai Laut" class="detail-hero-img">
+      <div class="detail-hero-overlay"></div>
+      <div class="detail-hero-content">
+        <span class="badge-cat" id="destCategory">Wisata Bahari</span>
+        <h1 id="destTitle">Memuat Nama Destinasi...</h1>
+        <p class="detail-hero-loc" id="destLocation">📍 Memuat lokasi...</p>
+      </div>
+    </div>
+
+    <!-- Grid Detail Layout -->
+    <div class="detail-grid-layout">
+      <!-- Main Content -->
+      <div class="detail-content-area">
+        <section class="detail-card">
+          <h2 data-i18n="detailAboutTitle">Tentang Destinasi</h2>
+          <p class="detail-desc" id="destDesc">Memuat penjelasan destinasi wisata...</p>
+          
+          <div class="detail-highlights-box" id="destHighlightsBox">
+            <h3 data-i18n="detailHighlightsTitle">✨ Daya Tarik Utama</h3>
+            <ul class="detail-highlights-list" id="destHighlightsList">
+              <li>Pemandangan bahari dan gugusan karang alami</li>
+              <li>Kejernihan air laut sebening kristal</li>
+              <li>Kearifan lokal dan suasana damai khas kepulauan</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="detail-card">
+          <h2 data-i18n="detailTipsTitle">💡 Tips & Saran Berkunjung</h2>
+          <ul class="detail-tips-list">
+            <li><strong>Waktu Terbaik:</strong> Pagi hari pukul 07:00 - 10:00 WITA atau saat senja menjelang matahari terbenam.</li>
+            <li><strong>Perlengkapan:</strong> Bawa kacamata renang/snorkel, tabir surya ramah terumbu karang (reef-safe), dan uang tunai secukupnya.</li>
+            <li><strong>Etika Lingkungan:</strong> Dilarang membuang sampah ke laut atau merusak terumbu karang dan cagar budaya.</li>
+          </ul>
+        </section>
+
+        <!-- Peta Interaktif & Arah Lokasi -->
+        <section class="detail-card">
+          <h2 data-i18n="detailMapTitle">🗺️ Peta Navigasi</h2>
+          <div class="detail-map-container" id="destMapContainer">
+            <iframe 
+              id="destMapIframe"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d510342.4278349558!2d123.25055285!3d-1.68526345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2d843c190159d511%3A0x3030bfbcaf770c0!2sKabupaten%20Banggai%20Laut%2C%20Sulawesi%20Tengah!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid" 
+              width="100%" 
+              height="280" 
+              style="border:0; border-radius: 14px;" 
+              allowfullscreen="" 
+              loading="lazy"
+              title="Peta Lokasi Destinasi">
+            </iframe>
+          </div>
+        </section>
+      </div>
+
+      <!-- Sidebar Info & Rute -->
+      <aside class="detail-sidebar-area">
+        <div class="detail-sidebar-card">
+          <h3 data-i18n="detailInfoTitle">📌 Informasi Kunjungan</h3>
+          <div class="detail-info-row">
+            <span class="info-label" data-i18n="infoCategory">Kategori</span>
+            <span class="info-val" id="destInfoCat">Wisata Bahari</span>
+          </div>
+          <div class="detail-info-row">
+            <span class="info-label" data-i18n="infoHours">Jam Operasional</span>
+            <span class="info-val" id="destInfoHours">Setiap Hari (06:00 - 18:00 WITA)</span>
+          </div>
+          <div class="detail-info-row">
+            <span class="info-label" data-i18n="infoTicket">Tiket Masuk</span>
+            <span class="info-val" id="destInfoTicket">Gratis / Retribusi Sukarela</span>
+          </div>
+          <div class="detail-info-row">
+            <span class="info-label" data-i18n="infoGuide">Pemandu Lokal</span>
+            <span class="info-val" id="destInfoGuide">Tersedia di Dermaga</span>
+          </div>
+
+          <div class="detail-route-snippet">
+            <h4 data-i18n="routeBoatTitle">⛴️ Rekomendasi Akses Kapal</h4>
+            <p id="destBoatRoute">Dari Pelabuhan Banggai, gunakan kapal kayu reguler atau speedboat charter menuju lokasi dengan waktu tempuh sekitar 30 - 90 menit.</p>
+            <a href="panduan.html" class="sidebar-guide-link" data-i18n="viewFullSchedule">Lihat Jadwal Lengkap Kapal ➔</a>
+          </div>
+
+          <div class="detail-action-buttons">
+            <a id="btnGmapsExternal" href="https://maps.google.com/?q=Banggai+Laut" target="_blank" rel="noopener noreferrer" class="btn-gmaps" data-i18n="btnGmaps">
+              Buka di Google Maps ↗
+            </a>
+            <button type="button" id="btnShareDest" class="btn-share" data-i18n="btnShare">
+              🔗 Bagikan Halaman Ini
+            </button>
+            <a href="index.html#destinasi" class="btn-back-home" data-i18n="btnBackHome">
+              ← Kembali ke Destinasi
+            </a>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <!-- Rekomendasi Terkait -->
+    <section class="detail-related-section">
+      <h2 data-i18n="relatedTitle">Destinasi Menarik Lainnya</h2>
+      <div class="destinasi-grid" id="relatedGrid">
+        <!-- Di-render oleh main.js -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="main-footer-section">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h3>SI-PANDU BANGGAI LAUT</h3>
+        <p data-i18n="footerAbout">Sistem Pariwisata dan Navigasi Terpadu resmi milik Dinas Pariwisata dan Kebudayaan Kabupaten Banggai Laut, Provinsi Sulawesi Tengah.</p>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footerNavTitle">Navigasi Cepat</h4>
+        <ul>
+          <li><a href="index.html" data-i18n="navHome">Beranda Utama</a></li>
+          <li><a href="index.html#mengenal" data-i18n="navProfile">Peta Kepulauan & Profil</a></li>
+          <li><a href="index.html#destinasi" data-i18n="navDestinasi">Rekomendasi Wisata</a></li>
+          <li><a href="panduan.html" data-i18n="navJadwalKapal">Jadwal Kapal Antar-Pulau</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footerOfficeTitle">Kantor Disparbud Balut</h4>
+        <p>📍 Banggai, Kabupaten Banggai Laut, Sulawesi Tengah</p>
+        <p>📧 disparbud@banggailautkab.go.id</p>
+        <p data-i18n="footerOfficeInfo">⛴️ Pusat Informasi Navigasi & Wisata Kepulauan</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p id="secretAdminTrigger" style="cursor: default; user-select: none;" data-i18n="footerRights">&copy; 2026 Dinas Pariwisata dan Kebudayaan Kabupaten Banggai Laut. All Rights Reserved.</p>
+      <span class="footer-pill-badge">Pesona Indonesia</span>
+    </div>
+  </footer>
+
+  <!-- Toast Notification Container -->
+  <div id="toastNotification" class="toast-notification" aria-live="polite"></div>
+
+  <!-- JavaScript -->
+  <script src="assets/js/main.js"></script>
 </body>
 </html>
