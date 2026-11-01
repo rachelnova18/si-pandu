@@ -3,175 +3,188 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Si-PANDU - Portal Resmi Pariwisata Banggai Laut</title>
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <title>Si-PANDU - Pesona Alam & Bahari Banggai Laut</title>
+  <meta name="description" content="Portal Resmi Sistem Pariwisata & Navigasi Terpadu Dinas Pariwisata dan Kebudayaan Kabupaten Banggai Laut, Sulawesi Tengah. Jelajahi surga bahari, gugusan pulau karang, danau ubur-ubur, dan warisan Kerajaan Banggai.">
+  
+  <!-- Google Fonts: Italiana, Playfair Display, Cinzel, Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Italiana&family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Leaflet Map Stylesheet -->
+  <link rel="stylesheet" href="assets/css/leaflet.css">
+  
+  <!-- Main Stylesheet -->
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body>
+<body class="dark-editorial-theme">
 
   <!-- =====================================================
-       1. NAVBAR TERANG & BERSIH (Sesuai Referensi)
+       1. TOP NAVBAR MINIMALIS EDITORIAL (PERSIS GAMBAR REFERENSI)
        ===================================================== -->
   <header class="main-header" id="mainHeader">
     <div class="nav-container">
-      <a href="index.html" class="logo">
-        SI-PANDU
-        <span data-i18n="logoSub">BANGGAI LAUT</span>
-      </a>
-      <nav class="nav-links" id="navLinks">
-        <a href="index.html" class="active" data-i18n="navHome">Beranda</a>
-        <a href="#mengenal" data-i18n="navProfile">Profil & Peta</a>
-        <a href="#destinasi" data-i18n="navDestinasi">Destinasi</a>
-        <a href="#sambutan" data-i18n="navSambutan">Sambutan</a>
-        <a href="panduan.html" data-i18n="navJadwalKapal">Jadwal Kapal</a>
-      </nav>
-      <div class="nav-actions">
-        <div class="nav-lang" id="navLang">
-          <button type="button" class="lang-badge active" data-lang="id" aria-label="Bahasa Indonesia">ID</button>
-          <button type="button" class="lang-badge" data-lang="en" aria-label="English">EN</button>
-        </div>
-        <a href="panduan.html" class="nav-cta-btn" data-i18n="navCta">Rute & Kapal</a>
+      
+      <!-- Sisi Kiri: Hamburger Menu Icon -->
+      <div class="nav-left">
         <button class="nav-toggle" id="navToggle" aria-label="Buka navigasi menu" aria-expanded="false">
           <span class="bar"></span>
           <span class="bar"></span>
           <span class="bar"></span>
         </button>
+        <span class="topbar-edition" data-i18n="heroBadge">Edisi Wisata Bahari</span>
       </div>
+
+      <!-- Bagian Tengah: Pill Badge Cokelat/Perunggu ala Typolight Canva -->
+      <div class="nav-center">
+        <div class="ref-pill-badge" data-i18n="agencyBadge">
+          Dinas Pariwisata & Kebudayaan
+        </div>
+      </div>
+
+      <!-- Sisi Kanan: By Disparbud, Web Design / Language & CTA -->
+      <div class="nav-right">
+        <span class="topbar-meta meta-author" data-i18n="portalBy">Disparbud Balut</span>
+        <span class="topbar-meta meta-portal" data-i18n="webType">Si-PANDU Portal</span>
+        
+        <!-- Language Switcher ID / EN -->
+        <div class="nav-lang" id="navLang">
+          <button type="button" class="lang-badge active" data-lang="id" aria-label="Bahasa Indonesia">ID</button>
+          <button type="button" class="lang-badge" data-lang="en" aria-label="English">EN</button>
+        </div>
+
+        <a href="panduan.html" class="nav-cta-pill" data-i18n="navCta">Rute & Kapal</a>
+      </div>
+
     </div>
   </header>
+
+  <!-- Slide-out Navigation Drawer (Mobile & Desktop Luxury Drawer) -->
+  <aside class="nav-drawer" id="navDrawer" aria-hidden="true">
+    <div class="drawer-header">
+      <div class="drawer-logo">
+        <span class="logo-title">SI-PANDU</span>
+        <span class="logo-sub" data-i18n="logoSub">BANGGAI LAUT</span>
+      </div>
+      <button class="drawer-close-btn" id="drawerCloseBtn" aria-label="Tutup Menu">✕</button>
+    </div>
+
+    <nav class="drawer-nav" id="navLinks">
+      <a href="index.html" class="drawer-link active" data-i18n="navHome">
+        <span class="link-idx">01</span> Beranda Utama
+      </a>
+      <a href="#mengenal" class="drawer-link" data-i18n="navProfile">
+        <span class="link-idx">02</span> Profil & Peta Kepulauan
+      </a>
+      <a href="destinasi.html" class="drawer-link" data-i18n="navDestinasi">
+        <span class="link-idx">03</span> Katalog Destinasi Wisata
+      </a>
+      <a href="#sambutan" class="drawer-link" data-i18n="navSambutan">
+        <span class="link-idx">04</span> Sambutan Kepala Dinas
+      </a>
+      <a href="panduan.html" class="drawer-link" data-i18n="navJadwalKapal">
+        <span class="link-idx">05</span> Jadwal Kapal & Panduan Rute
+      </a>
+      <a href="#aiPlanner" class="drawer-link drawer-ai-trigger" id="drawerAiTrigger">
+        <span class="link-idx">✨</span> Asisten Rute AI
+      </a>
+    </nav>
+
+    <div class="drawer-footer">
+      <p class="drawer-office">📍 Banggai, Kab. Banggai Laut, Sulawesi Tengah</p>
+      <p class="drawer-contact">📧 disparbud@banggailautkab.go.id</p>
+      <a href="admin/login.html" class="drawer-admin-link">🔒 Akses Administrator</a>
+    </div>
+  </aside>
   <div class="nav-backdrop" id="navBackdrop"></div>
 
   <!-- =====================================================
-       2. HERO SECTION DENGAN SLIDER ALA INSTAGRAM (EVENT / HITS BULANAN)
+       2. HERO SECTION EDITORIAL & CAROUSEL SLIDER EVENT & DESTINASI HITS
        ===================================================== -->
-  <section class="hero-section" id="heroSection">
-    <!-- Instagram Story/Feed Style Progress Bars -->
-    <div class="ig-progress-container" id="igProgress">
-      <div class="ig-bar active" data-index="0"><div class="ig-fill"></div></div>
-      <div class="ig-bar" data-index="1"><div class="ig-fill"></div></div>
-      <div class="ig-bar" data-index="2"><div class="ig-fill"></div></div>
-      <div class="ig-bar" data-index="3"><div class="ig-fill"></div></div>
-    </div>
-
-    <!-- Container Slide Poster / Destinasi Hits Bulanan (Diupdate Admin) -->
-    <div class="ig-slider-wrapper" id="heroSlider">
-      
-      <!-- Slide 1: Event Bulanan -->
-      <div class="ig-slide active" data-slide-index="0" style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600');">
-        <div class="ig-slide-badge" data-i18n="slide1Badge">🔥 HITS BULAN INI • EVENT BUDAYA</div>
-        <div class="ig-slide-caption" data-i18n="slide1Caption">
-          <strong>Festival Pesona Banggai Laut 2026</strong> — Saksikan parade ratusan perahu hias dan pameran kuliner bahari terbesar bulan ini!
+  <!-- =====================================================
+       2. HERO SECTION: FULL-WIDTH SLIDER BANNER (CLEAN & ELEGANT)
+       ===================================================== -->
+  <section class="hero-banner-slider-section" id="heroSection" aria-label="Carousel Poster Acara dan Event Banggai Laut">
+    
+    <!-- Slides Viewport Container: Menampung 5 Poster Slide Event & Destinasi -->
+    <div class="hero-slides-viewport" id="heroSlidesViewport">
+      <!-- 5 Slide Event di-render dinamis dan bersih oleh JavaScript dari HERO_SLIDES_DATA -->
+      <div class="hero-slide-item active" data-slide-index="0">
+        <div class="hero-slide-bg" style="background-image: url('assets/img/hero-bg.jpg');"></div>
+        <div class="hero-slide-overlay"></div>
+        <div class="hero-slide-inner">
+          <div class="hero-slide-content">
+            <div class="hero-clean-tag">
+              <span class="badge-pulse-dot"></span>
+              <span>EVENT RESMI • 18 - 22 AGUSTUS 2026</span>
+            </div>
+            <h1 class="hero-clean-title">Festival Pesona Banggai Laut 2026</h1>
+            <p class="hero-clean-sub">Karnaval Budaya Bahari & Parade Ratusan Perahu Hias Nelayan Tradisional</p>
+            <div class="hero-clean-action">
+              <a href="panduan.html" class="hero-clean-btn">
+                <span>Lihat Informasi Acara ➔</span>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
-
-      <!-- Slide 2: Wisata Ramai Pengunjung -->
-      <div class="ig-slide" data-slide-index="1" style="background-image: url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1600');">
-        <div class="ig-slide-badge" data-i18n="slide2Badge">🌟 TRENDING #1 • WISATA BAHARI</div>
-        <div class="ig-slide-caption" data-i18n="slide2Caption">
-          <strong>Ekowisata Mbuang-Mbuang & Danau Ubur-Ubur</strong> — Destinasi paling ramai dikunjungi wisatawan bulan ini di Kepulauan Bokan.
-        </div>
-      </div>
-
-      <!-- Slide 3: Tradisi Adat -->
-      <div class="ig-slide" data-slide-index="2" style="background-image: url('https://images.unsplash.com/photo-1519046904884-53103b34b206?w=1600');">
-        <div class="ig-slide-badge" data-i18n="slide3Badge">🏛️ AGENDA ADAT • SEJARAH</div>
-        <div class="ig-slide-caption" data-i18n="slide3Caption">
-          <strong>Upacara Adat Malabot Tumbe</strong> — Tradisi sakral warisan leluhur Kerajaan Banggai yang memikat wisatawan mancanegara.
-        </div>
-      </div>
-
-      <!-- Slide 4: Sunset & Pantai -->
-      <div class="ig-slide" data-slide-index="3" style="background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=1600');">
-        <div class="ig-slide-badge" data-i18n="slide4Badge">📸 SPOT FOTO POPULER • ALAM</div>
-        <div class="ig-slide-caption" data-i18n="slide4Caption">
-          <strong>Senja Eksotis di Tanjung Gundul & Pasir Putih</strong> — Rekomendasi utama akhir pekan bersama keluarga di Banggai Laut.
-        </div>
-      </div>
-
     </div>
 
-    <div class="hero-overlay"></div>
+    <!-- Tombol Navigasi Panah Kiri dan Kanan Minimalis -->
+    <button type="button" class="hero-slider-arrow hero-arrow-left" id="heroPrevBtn" aria-label="Poster Acara Sebelumnya">
+      ‹
+    </button>
+    <button type="button" class="hero-slider-arrow hero-arrow-right" id="heroNextBtn" aria-label="Poster Acara Berikutnya">
+      ›
+    </button>
 
-    <!-- Tombol Navigasi Geser Kiri / Kanan ala Instagram Carousel -->
-    <button class="ig-nav-btn prev" id="prevSlide" aria-label="Slide Sebelumnya">‹</button>
-    <button class="ig-nav-btn next" id="nextSlide" aria-label="Slide Berikutnya">›</button>
+    <!-- Kontrol Bawah: Indikator Titik (Dots) & Counter Slide Bersih -->
+    <div class="hero-slider-bottom-controls">
+      <div class="hero-slider-dots" id="heroSliderDots" role="tablist" aria-label="Pilihan Poster Acara">
+        <button type="button" class="hero-dot active" data-index="0" aria-label="Slide 1"></button>
+        <button type="button" class="hero-dot" data-index="1" aria-label="Slide 2"></button>
+        <button type="button" class="hero-dot" data-index="2" aria-label="Slide 3"></button>
+        <button type="button" class="hero-dot" data-index="3" aria-label="Slide 4"></button>
+        <button type="button" class="hero-dot" data-index="4" aria-label="Slide 5"></button>
+      </div>
 
-    <!-- Konten Tengah Hero (Persis Referensi Gambar) -->
-    <div class="hero-center-content reveal-item">
-      <span class="hero-pill-tag" data-i18n="heroPill">✨ Portal Resmi Dinas Pariwisata & Kebudayaan</span>
-      <h1 data-i18n="heroTitle">Discover Your Perfect<br>Island Getaway in Banggai Laut</h1>
-      <p data-i18n="heroDesc">Jelajahi gugusan pulau karang eksotis, laguna sebening kristal, serta warisan sejarah Kerajaan Banggai melalui sistem navigasi pariwisata terpadu.</p>
-
-      <!-- Search Pill Putih Lonjong + Tombol Hijau Tua -->
-      <form class="hero-search-pill" id="heroSearchForm" onsubmit="event.preventDefault();">
-        <input type="text" id="searchInput" placeholder="Cari destinasi pantai, pulau, sejarah, hotel, kuliner..." data-i18n-ph="searchPlaceholder" autocomplete="off">
-        <button type="submit" id="searchBtn" data-i18n="searchBtn">Cari Destinasi</button>
-      </form>
+      <div class="hero-slide-counter-pill" id="heroSlideCounter">
+        <span class="counter-curr">01</span> <span class="counter-sep">/</span> <span class="counter-total">05</span>
+      </div>
     </div>
 
-    <!-- Titik Indikator Slide (Instagram Dots) -->
-    <div class="ig-dots-container" id="igDots">
-      <span class="ig-dot active" data-index="0" aria-label="Slide 1"></span>
-      <span class="ig-dot" data-index="1" aria-label="Slide 2"></span>
-      <span class="ig-dot" data-index="2" aria-label="Slide 3"></span>
-      <span class="ig-dot" data-index="3" aria-label="Slide 4"></span>
-    </div>
   </section>
 
-  <!-- =====================================================
-       3. FLOATING CATEGORY BAR (Melayang di Bawah Hero Sesuai Referensi)
-       ===================================================== -->
-  <div class="floating-Quickbar-wrapper reveal-item">
-    <div class="floating-quickbar" id="kategori">
-      
-      <div class="qb-item active" data-filter="all">
-        <div class="qb-icon">🏝️</div>
-        <div class="qb-text">
-          <strong data-i18n="qbAllTitle">Semua Destinasi</strong>
-          <span data-i18n="qbAllSub">12+ Lokasi Pilihan</span>
-        </div>
-      </div>
 
-      <div class="qb-item" data-filter="Bahari">
-        <div class="qb-icon">🌊</div>
-        <div class="qb-text">
-          <strong data-i18n="qbBahariTitle">Wisata Bahari</strong>
-          <span data-i18n="qbBahariSub">Pantai & Pulau</span>
-        </div>
-      </div>
-
-      <div class="qb-item" data-filter="Sejarah">
-        <div class="qb-icon">🏛️</div>
-        <div class="qb-text">
-          <strong data-i18n="qbSejarahTitle">Sejarah & Budaya</strong>
-          <span data-i18n="qbSejarahSub">Kerajaan Banggai</span>
-        </div>
-      </div>
-
-      <div class="qb-item" data-filter="Kuliner">
-        <div class="qb-icon">🍽️</div>
-        <div class="qb-text">
-          <strong data-i18n="qbKulinerTitle">Hotel & Kuliner</strong>
-          <span data-i18n="qbKulinerSub">Akomodasi Lokal</span>
-        </div>
-      </div>
-
-      <button type="button" class="qb-cta-btn" id="btnNearby" data-i18n="qbNearby">
-        📍 Terdekat
-      </button>
-
-    </div>
-  </div>
 
   <!-- =====================================================
-       4. SECTION PERKENALAN BANGGAI LAUT, PETA KEPULAUAN & DISPARBUD
+       4. SECTION PROFIL DAERAH, PETA & GEOGRAFIS (BERSIH & TERTATA)
        ===================================================== -->
   <section class="intro-island-section" id="mengenal">
     <div class="intro-container">
       
-      <!-- Baris Atas: Peta Interaktif Kepulauan (Kiri) + Penjelasan Daerah & Disparbud (Kanan) -->
+      <!-- Header Bagian Peta Bersih & Ringkas (Mengintegrasikan Kutipan & Akreditasi) -->
+      <div class="intro-header-clean reveal-item">
+        <div class="intro-header-badge">
+          <span class="badge-pulse-dot"></span>
+          <span data-i18n="introTag">Titik Lokasi & Letak Strategis</span>
+        </div>
+        <h2 class="intro-clean-heading" data-i18n="introTitle">Titik Temu Maritim Segitiga Karang Dunia & Garis Wallacea</h2>
+        <p class="intro-clean-lead">
+          <strong class="quote-lead">"Indonesia is not just wonderland, Indonesia is wonderful."</strong> 
+          Gugusan 200+ pulau eksotis di Banggai Laut dengan 94% wilayah perairan biru kristal yang menyambut Anda dalam kehangatan budaya maritim dan cagar sejarah Keraton Banggai.
+        </p>
+        <div class="intro-partner-badges">
+          <span class="partner-tag"><span class="badge-dot-gold"></span> Disparbud Balut</span>
+          <span class="partner-tag"><span class="badge-dot-teal"></span> Pemkab Banggai Laut</span>
+          <span class="partner-tag"><span class="badge-dot-green"></span> Pesona Indonesia</span>
+        </div>
+      </div>
+
+      <!-- Baris Utama: Peta Interaktif (Kiri) + Live Clock & Fakta Geografis Ringkas (Kanan) -->
       <div class="intro-top-row reveal-item">
+        
+        <!-- Sisi Kiri: Peta Google Maps Interaktif Rapi -->
         <div class="intro-map-box">
           <iframe 
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d510342.4278349558!2d123.25055285!3d-1.68526345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2d843c190159d511%3A0x3030bfbcaf770c0!2sKabupaten%20Banggai%20Laut%2C%20Sulawesi%20Tengah!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid" 
@@ -181,117 +194,139 @@
             allowfullscreen="" 
             loading="lazy" 
             referrerpolicy="no-referrer-when-downgrade"
-            title="Peta Kabupaten Banggai Laut">
+            title="Peta Titik Lokasi Kabupaten Banggai Laut">
           </iframe>
-          <span class="map-floating-label" data-i18n="mapFloatingLabel">🗺️ Peta Gugusan Kepulauan Banggai Laut</span>
+          <div class="map-floating-capsule">
+            <span>🗺️ Koordinat: 1°14' – 2°15' LS • 123°10' – 123°45' BT</span>
+          </div>
         </div>
 
+        <!-- Sisi Kanan: Jam Real-Time WITA + Fakta Strategis + Statistik Ringkas -->
         <div class="intro-text-box">
-          <span class="section-tag" data-i18n="introTag">Mengenal Daerah & Instansi</span>
-          <h2 data-i18n="introTitle">Pesona Maritim Kepulauan Banggai Laut & Peran Disparbud</h2>
-          <p data-i18n="introP1">
-            <strong>Kabupaten Banggai Laut (Balut)</strong> adalah wilayah kepulauan eksotis di Provinsi Sulawesi Tengah yang beribu kota di Banggai. Wilayah ini terdiri dari gugusan pulau indah—mulai dari Pulau Banggai, Pulau Labobo, Pulau Bangkurung, hingga Kepulauan Bokan—yang menyimpan kekayaan terumbu karang dunia dan warisan sejarah Kerajaan Banggai.
-          </p>
-          <p data-i18n="introP2">
-            <strong>Dinas Pariwisata dan Kebudayaan (Disparbud) Kabupaten Banggai Laut</strong> hadir melalui inovasi <em>Si-PANDU</em> sebagai pusat informasi terpadu untuk memudahkan wisatawan merencanakan rute pelayaran antar-pulau, menemukan destinasi terbaik, sekaligus melestarikan cagar budaya leluhur.
-          </p>
+          
+          <!-- LIVE CLOCK WIDGET WAKTU DI BANGGAI LAUT -->
+          <div class="balut-time-card">
+            <div class="time-card-top">
+              <span class="time-icon">🕒</span>
+              <span class="time-badge-label">WAKTU LOKAL BANGGAI LAUT</span>
+              <span class="live-indicator"><span class="live-dot"></span> LIVE WITA</span>
+            </div>
+            <div class="time-clock-display" id="balutLiveClock">12:00:00 WITA</div>
+            <div class="time-date-display" id="balutLiveDate">Memuat tanggal...</div>
+            <div class="time-status-banner" id="balutStatusText">
+              Zona WITA (UTC+8) • +1 Jam Lebih Cepat dari Jakarta (WIB)
+            </div>
+          </div>
+
+          <!-- Ringkasan Fakta Letak Strategis -->
+          <div class="intro-fact-list">
+            <div class="fact-item">
+              <span class="fact-icon">🧭</span>
+              <div class="fact-content">
+                <strong>Simpul Maritim Antar-Pulau</strong>
+                <p>Menghubungkan Sulawesi Tengah, Maluku Utara (Kep. Sula & Taliabu), dan Sulawesi Tenggara.</p>
+              </div>
+            </div>
+            <div class="fact-item">
+              <span class="fact-icon">🪸</span>
+              <div class="fact-content">
+                <strong>Zona Segitiga Terumbu Karang Dunia</strong>
+                <p>Perairan kaya biota unik dan habitat satwa langka endemik <em>Banggai Cardinalfish</em>.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3 Statistik Ringkas -->
           <div class="intro-stats">
-            <div><strong data-i18n="stat1Num">4+</strong><span data-i18n="stat1Label">Gugusan Pulau Utama</span></div>
-            <div><strong data-i18n="stat2Num">94%</strong><span data-i18n="stat2Label">Wilayah Perairan & Bahari</span></div>
-            <div><strong data-i18n="stat3Num">2 Bahasa</strong><span data-i18n="stat3Label">Layanan Informasi Wisata</span></div>
+            <div class="stat-item"><strong data-i18n="stat1Num">200+</strong><span data-i18n="stat1Label">Gugusan Pulau</span></div>
+            <div class="stat-item"><strong data-i18n="stat2Num">94%</strong><span data-i18n="stat2Label">Perairan Bahari</span></div>
+            <div class="stat-item"><strong data-i18n="stat3Num">WITA</strong><span data-i18n="stat3Label">Zona Waktu (UTC+8)</span></div>
           </div>
+
         </div>
       </div>
 
-      <!-- Baris Bawah: 3 Kartu Gugusan Kepulauan -->
-      <div class="intro-three-cards reveal-item">
-        <div class="island-mini-card">
-          <img src="https://images.unsplash.com/photo-1596402184320-417e7178b2cd?w=600" alt="Pulau Banggai" loading="lazy">
-          <div class="island-mini-overlay">
-            <h4 data-i18n="island1Title">Pulau Banggai (Pusat Kota & Sejarah)</h4>
-            <p data-i18n="island1Desc">Pusat Keraton Banggai, Pantai Bontolan & Lambangan Pauno</p>
-          </div>
-        </div>
 
-        <div class="island-mini-card">
-          <img src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=600" alt="Kepulauan Bokan" loading="lazy">
-          <div class="island-mini-overlay">
-            <h4 data-i18n="island2Title">Gugusan Kepulauan Bokan</h4>
-            <p data-i18n="island2Desc">Surga bawah laut Mbuang-Mbuang & Danau Ubur-Ubur</p>
-          </div>
-        </div>
-
-        <div class="island-mini-card">
-          <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600" alt="Pulau Bandang & Labobo" loading="lazy">
-          <div class="island-mini-overlay">
-            <h4 data-i18n="island3Title">Pulau Bandang & Labobo</h4>
-            <p data-i18n="island3Desc">Spot snorkeling air sebening kristal & laguna pasir putih</p>
-          </div>
-        </div>
-      </div>
 
     </div>
   </section>
 
   <!-- =====================================================
-       5. SECTION REKOMENDASI WISATA PILIHAN (KATALOG INTERAKTIF)
+       4. 4 KARTU VERTIKAL TINGGI & KATALOG DESTINASI LENGKAP
        ===================================================== -->
-  <section class="destinasi-section" id="destinasi">
-    <div class="section-header reveal-item">
-      <span class="section-tag" data-i18n="destTag">Rekomendasi Terbaik</span>
-      <h2 data-i18n="destTitle">Destinasi Wisata Pilihan Banggai Laut</h2>
-      <p data-i18n="destSubtitle">Pilih kategori atau ketik di kolom pencarian untuk menjelajahi keindahan alam, pantai, dan budaya kami.</p>
+  <section class="four-cards-section" id="destinasi">
+    <div class="four-cards-header reveal-item">
+      <div class="header-left">
+        <span class="section-tag-gold" data-i18n="destTag">Rekomendasi Terbaik</span>
+        <h2 class="section-title-white" data-i18n="destTitle">Destinasi Wisata Pilihan Banggai Laut</h2>
+        <p class="dest-section-desc">Klik pada kartu destinasi untuk melihat galeri foto, rentang harga HTM, fasilitas, jam buka, dan WhatsApp pengurus.</p>
+      </div>
+      <div class="carousel-nav-arrows">
+        <button type="button" class="carousel-arrow-btn" id="cardPrevBtn" aria-label="Geser Kartu Sebelumnya">‹</button>
+        <button type="button" class="carousel-arrow-btn" id="cardNextBtn" aria-label="Geser Kartu Berikutnya">›</button>
+      </div>
     </div>
 
-    <!-- Feedback Terdekat / Pencarian Status -->
-    <div id="searchStatusAlert" class="search-status-alert" style="display: none;"></div>
+    <!-- Grid Kartu Destinasi (1 Baris Saja / Paging dengan Tombol Panah ‹ ›) -->
+    <div class="ref-four-grid" id="homeDestinasiGrid">
+      <!-- Di-render oleh main.js (tepat 1 baris = 4 kartu) -->
+    </div>
 
-    <!-- Grid Kartu Wisata -->
-    <div class="destinasi-grid" id="destinasiGrid">
-      <!-- Di-render otomatis oleh main.js -->
+    <!-- Tombol VIEW MORE (Membawa ke Halaman Katalog Destinasi Terpisah) -->
+    <div class="view-more-container reveal-item">
+      <a href="destinasi.html" class="view-more-btn" id="btnViewMoreDest">
+        <span id="viewMoreText" data-i18n="destViewMore">Jelajahi Seluruh Destinasi (12 Lokasi) ➔</span>
+      </a>
     </div>
   </section>
 
+
+
+
+
   <!-- =====================================================
-       6. SECTION SAMBUTAN KEPALA DINAS (Latar Krem Hangat)
+       7. SECTION SAMBUTAN KEPALA DINAS (TEMA GELAP MEWAH)
        ===================================================== -->
   <section class="kadis-section" id="sambutan">
     <div class="kadis-container reveal-item">
       
-      <!-- Sisi Kiri: Foto Transparan Tanpa Kotak -->
+      <!-- Sisi Kiri: Foto Cutout Kepala Dinas dengan Glow Melingkar Halus -->
       <div class="kadis-transparent-wrapper">
         <div class="kadis-glow-circle"></div>
         <img src="assets/img/kadin.png" alt="Rachel Nova Sari - Kepala Dinas" class="kadis-cutout-img" onerror="this.onerror=null; this.src='assets/img/kadis.png';">
         <div class="kadis-floating-card">
-          <h4>Rachel Nova Sari</h4>
-          <span data-i18n="kadisRole">Kepala Dinas Pariwisata dan Kebudayaan Banggai Laut</span>
+          <span data-i18n="kadisRole">Kepala Dinas Pariwisata & Kebudayaan</span>
         </div>
       </div>
 
-      <!-- Sisi Kanan: Teks Sambutan & Tombol Hijau Tua -->
+      <!-- Sisi Kanan: Teks Sambutan & Profil Resmi -->
       <div class="kadis-text-content">
-        <span class="section-tag" data-i18n="kadisTag">Sambutan Kepala Dinas</span>
-        <h2 data-i18n="kadisTitle">Menyambut Wisatawan di Permata Bahari Sulawesi Tengah</h2>
+        <div class="kadis-official-badge">
+          <span>🏛️ DINAS PARIWISATA DAN KEBUDAYAAN</span>
+        </div>
+        <span class="section-tag-gold" data-i18n="kadisTag">Sambutan Resmi Selamat Datang</span>
+        <h2 class="section-title-white" data-i18n="kadisTitle">Menyambut Wisatawan di Surga Bahari Tersembunyi Sulawesi Tengah</h2>
         <p class="kadis-quote" data-i18n="kadisQuote">
-          "Selamat datang di portal resmi Si-PANDU. Kabupaten Banggai Laut menyimpan potensi pariwisata bahari, keindahan bawah laut, serta warisan sejarah Kerajaan Banggai yang luar biasa. Melalui platform digital Dinas Pariwisata dan Kebudayaan ini, kami berkomitmen menghadirkan informasi destinasi dan jadwal transportasi laut yang akurat, ramah, dan mudah diakses oleh seluruh wisatawan."
+          "Tabea! Selamat datang di portal resmi Si-PANDU. Kabupaten Banggai Laut dianugerahi potensi pariwisata bahari kelas dunia, keindahan danau ubur-ubur langka, serta keluhuran cagar budaya Kerajaan Banggai yang berusia lima abad. Melalui platform digital Dinas Pariwisata dan Kebudayaan ini, kami berkomitmen menghadirkan panduan destinasi yang ramah, akurat, dan terintegrasi demi kenyamanan kunjungan Anda."
         </p>
         <div class="kadis-signature">
-          <h4>Rachel Nova Sari</h4>
+          <h4>Rachel Nova Sari, S.STP., M.Si</h4>
           <p data-i18n="kadisRole">Kepala Dinas Pariwisata dan Kebudayaan Kabupaten Banggai Laut</p>
         </div>
-        <a href="panduan.html" class="kadis-cta-btn" data-i18n="kadisCta">Lihat Panduan & Jadwal Kapal ➔</a>
       </div>
 
     </div>
   </section>
 
+
+
   <!-- =====================================================
-       7. FOOTER HIJAU TUA (DEEP TEAL)
+       8. FOOTER HITAM PEKAT ELEGAN DENGAN AKSEN EMAS & LINK RAHASIA ADMIN
        ===================================================== -->
   <footer class="main-footer-section">
     <div class="footer-container reveal-item">
       <div class="footer-col">
-        <h3>SI-PANDU BANGGAI LAUT</h3>
+        <h3 class="footer-brand-title">SI-PANDU BANGGAI LAUT</h3>
         <p data-i18n="footerAbout">Sistem Pariwisata dan Navigasi Terpadu resmi milik Dinas Pariwisata dan Kebudayaan Kabupaten Banggai Laut, Provinsi Sulawesi Tengah.</p>
       </div>
       <div class="footer-col">
@@ -299,7 +334,7 @@
         <ul>
           <li><a href="index.html" data-i18n="navHome">Beranda Utama</a></li>
           <li><a href="#mengenal" data-i18n="navProfile">Peta Kepulauan & Profil</a></li>
-          <li><a href="#destinasi" data-i18n="navDestinasi">Rekomendasi Wisata</a></li>
+          <li><a href="destinasi.html" data-i18n="navDestinasi">Katalog Destinasi Wisata</a></li>
           <li><a href="panduan.html" data-i18n="navJadwalKapal">Jadwal Kapal Antar-Pulau</a></li>
         </ul>
       </div>
@@ -318,10 +353,237 @@
     </div>
   </footer>
 
+  <!-- =====================================================
+       9. AI TRIP PLANNER MODAL (UPGRADE LENGKAP DENGAN PETA RUTE & SWAP REKOMENDASI)
+       ===================================================== -->
+  <!-- Floating AI Trigger Button -->
+  <button class="ai-floating-trigger" id="aiTriggerBtn" aria-label="Buka AI Asisten Rute & Itinerary" title="Tanya AI Rekomendasi Rute & Jadwal Kapal">
+    <span class="ai-spark-icon">✨</span>
+    <span class="ai-trigger-text">Rekomendasi Rute AI</span>
+    <span class="ai-pulse-ring"></span>
+  </button>
+
+  <!-- AI Modal Backdrop & Dialog -->
+  <div class="ai-modal-backdrop" id="aiModalBackdrop" aria-hidden="true">
+    <div class="ai-modal-dialog" role="dialog" aria-labelledby="aiModalTitle">
+      
+      <!-- Header Modal -->
+      <div class="ai-modal-header">
+        <div class="ai-header-info">
+          <div class="ai-avatar-badge">✨</div>
+          <div>
+            <h3 id="aiModalTitle">Si-PANDU AI Trip Planner</h3>
+            <p>Rancang Itinerary & Visual Rute Peta Interaktif Kepulauan Banggai Laut</p>
+          </div>
+        </div>
+        <button type="button" class="ai-modal-close" id="aiModalClose" aria-label="Tutup Asisten AI">✕</button>
+      </div>
+
+      <!-- Mode Tabs: Generator vs Chat Bebas -->
+      <div class="ai-mode-tabs">
+        <button type="button" class="ai-tab-btn active" data-tab="generator" id="tabBtnGenerator">
+          🧭 Form Rancang Rute (AI Smart Planner)
+        </button>
+        <button type="button" class="ai-tab-btn" data-tab="chat" id="tabBtnChat">
+          💬 Tanya AI Bebas
+        </button>
+      </div>
+
+      <!-- Content Tab 1: Smart Itinerary Generator Form -->
+      <div class="ai-tab-content active" id="tabGenerator">
+        <form class="ai-planner-form" id="aiPlannerForm">
+          
+          <div class="ai-form-grid-advanced">
+            
+            <!-- 1. Lama Menginap / Durasi -->
+            <div class="ai-field-group">
+              <label for="aiDuration">⏳ Lama Menginap di Balut</label>
+              <select id="aiDuration">
+                <option value="1">1 Hari (Day Trip Cepat)</option>
+                <option value="2" selected>2 Hari 1 Malam (Weekend Escapade)</option>
+                <option value="3">3 Hari 2 Malam (Island Hopping Lengkap)</option>
+                <option value="4">4 Hari 3 Malam (Eksplorasi Budaya & Alam)</option>
+                <option value="5">5 Hari 4 Malam+ (Jelajah Menyeluruh Kepulauan)</option>
+              </select>
+            </div>
+
+            <!-- 2. Titik Awal Keberangkatan -->
+            <div class="ai-field-group">
+              <label for="aiStartPoint">📍 Titik Awal Keberangkatan</label>
+              <select id="aiStartPoint">
+                <option value="banggai" selected>Pelabuhan Banggai (Pusat Kota Balut)</option>
+                <option value="luwuk">Pelabuhan Luwuk (Wisatawan Luar Daerah)</option>
+                <option value="bandara">Bandara Luwuk (Penerbangan Transit)</option>
+                <option value="bokan">Desa Mbuang-Mbuang (Kepulauan Bokan)</option>
+                <option value="bobong">Pelabuhan Bobong (Maluku Utara)</option>
+              </select>
+            </div>
+
+            <!-- 3. Teman Perjalanan -->
+            <div class="ai-field-group">
+              <label for="aiTraveler">👥 Teman Perjalanan</label>
+              <select id="aiTraveler">
+                <option value="solo">Solo Traveler / Backpacker (Mandiri)</option>
+                <option value="couple" selected>Pasangan / Honeymoon (Romantis & Privat)</option>
+                <option value="family">Keluarga & Anak-anak (Santai & Aman)</option>
+                <option value="group">Rombongan Teman / Komunitas (Sewa Speedboat)</option>
+              </select>
+            </div>
+
+            <!-- 4. Pilihan Hotel / Akomodasi -->
+            <div class="ai-field-group">
+              <label for="aiHotel">🏨 Pilihan Akomodasi / Penginapan</label>
+              <select id="aiHotel">
+                <option value="hotel_kota" selected>Hotel Pusat Kota Banggai (Dekat Pelabuhan & Kuliner)</option>
+                <option value="homestay_pantai">Homestay Tepi Pantai Pasir Putih (Desa Wisata)</option>
+                <option value="resort_apung">Overwater Resort Mbuang-Mbuang (Di Atas Laut Toska)</option>
+                <option value="camping_pantai">Glamping & Camping Ground Tanjung Gundul (Sunset)</option>
+              </select>
+            </div>
+
+          </div>
+
+          <!-- 5. Gaya / Minat Wisata (PILIHAN BISA LEBIH DARI SATU / MULTI-SELECT) -->
+          <div class="ai-multi-interest-group">
+            <label class="ai-section-label">🏝️ Gaya / Minat Wisata <span class="badge-multi">(Pilih satu atau lebih):</span></label>
+            <div class="ai-checkbox-pills" id="aiInterestPills">
+              <label class="checkbox-pill active">
+                <input type="checkbox" name="interest" value="bahari" checked>
+                <span>🤿 Snorkeling & Danau Ubur-Ubur</span>
+              </label>
+              <label class="checkbox-pill active">
+                <input type="checkbox" name="interest" value="sunset" checked>
+                <span>🏖️ Pantai Pasir Putih & Sunset</span>
+              </label>
+              <label class="checkbox-pill">
+                <input type="checkbox" name="interest" value="sejarah">
+                <span>🏛️ Sejarah Keraton & Cagar Budaya</span>
+              </label>
+              <label class="checkbox-pill">
+                <input type="checkbox" name="interest" value="kuliner">
+                <span>🐟 Kuliner Ikan Bakar & Sinole</span>
+              </label>
+              <label class="checkbox-pill">
+                <input type="checkbox" name="interest" value="fotografi">
+                <span>📸 Fotografi Tebing Karst & Drone</span>
+              </label>
+              <label class="checkbox-pill">
+                <input type="checkbox" name="interest" value="hopping">
+                <span>🚣 Island Hopping & Goa Air Asin</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- 6. Pilihan Budget (Per Hari ATAU Total Selama di Balut) -->
+          <div class="ai-budget-section">
+            <label class="ai-section-label">💰 Pilihan Budget Perjalanan:</label>
+            
+            <div class="budget-mode-toggle">
+              <label class="budget-radio-label">
+                <input type="radio" name="budgetMode" value="per_day" checked id="budgetModePerDay">
+                <span>Budget Per Hari</span>
+              </label>
+              <label class="budget-radio-label">
+                <input type="radio" name="budgetMode" value="total" id="budgetModeTotal">
+                <span>Total Selama Perjalanan</span>
+              </label>
+            </div>
+
+            <div class="budget-presets-row">
+              <button type="button" class="budget-preset-btn active" data-amount="350000" data-preset="hemat">
+                <span class="preset-name">💸 Hemat / Backpacker</span>
+                <span class="preset-val" id="presetValHemat">Rp 350.000 / hari</span>
+              </button>
+              <button type="button" class="budget-preset-btn" data-amount="750000" data-preset="nyaman">
+                <span class="preset-name">💳 Standar Nyaman</span>
+                <span class="preset-val" id="presetValNyaman">Rp 750.000 / hari</span>
+              </button>
+              <button type="button" class="budget-preset-btn" data-amount="1750000" data-preset="sultan">
+                <span class="preset-name">👑 Eksklusif / Sultan</span>
+                <span class="preset-val" id="presetValSultan">Rp 1.750.000 / hari</span>
+              </button>
+            </div>
+            
+            <input type="hidden" id="aiSelectedBudget" value="750000">
+          </div>
+
+          <button type="submit" class="ai-submit-btn" id="btnGenerateRoute">
+            <span>✨ Rancang Rute Itinerary & Tampilkan Peta Interaktif</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- Content Tab 2: Conversational Chat -->
+      <div class="ai-tab-content" id="tabChat" style="display: none;">
+        <div class="ai-chat-quick-tags">
+          <span class="quick-tag" data-query="Bagaimana rute ke Danau Ubur-Ubur Mbuang-Mbuang dari Luwuk?">🏖️ Rute ke Danau Ubur-Ubur</span>
+          <span class="quick-tag" data-query="Jadwal kapal KM Fungka Permata dan harga tiketnya">⛴️ Jadwal KM Fungka</span>
+          <span class="quick-tag" data-query="Rekomendasi liburan 2 hari dengan budget hemat">💰 Trip 2 Hari Hemat</span>
+          <span class="quick-tag" data-query="Kuliner khas dan oleh-oleh wajib di Banggai Laut">🍽️ Kuliner & Oleh-oleh</span>
+        </div>
+
+        <div class="ai-chat-history" id="aiChatHistory">
+          <div class="ai-message ai-bot">
+            <div class="ai-bubble">
+              Halo! Saya <strong>Si-PANDU AI</strong>. Tanyakan apa saja seputar rute pelayaran kapal, estimasi waktu tempuh antar-pulau, rekomendasi pantai, atau biaya perjalanan di Kepulauan Banggai Laut.
+            </div>
+          </div>
+        </div>
+
+        <form class="ai-chat-input-row" id="aiChatForm">
+          <input type="text" id="aiChatInput" placeholder="Tanyakan rute kapal atau destinasi ke AI..." autocomplete="off">
+          <button type="submit" id="btnSendChat" aria-label="Kirim Pesan">➔</button>
+        </form>
+      </div>
+
+      <!-- AI Response Container (Hasil Rekomendasi Rute & Peta Interaktif) -->
+      <div class="ai-result-container" id="aiResultContainer" style="display: none;">
+        <div class="ai-loading-state" id="aiLoadingState" style="display: none;">
+          <div class="ai-spinner"></div>
+          <p>AI sedang menyusun rute terbaik, menghitung jarak antar titik lokasi, dan menyiapkan visual peta interaktif...</p>
+        </div>
+
+        <div class="ai-output-card" id="aiOutputCard"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- =====================================================
+       10. MODAL GANTI REKOMENDASI ALTERNATIF (PILIHAN FLEKSIBEL USER)
+       ===================================================== -->
+  <div class="ai-swap-modal-backdrop" id="aiSwapModal" aria-hidden="true">
+    <div class="ai-swap-dialog">
+      <div class="ai-swap-header">
+        <div>
+          <h4 id="swapModalTitle">Pilih Rekomendasi Alternatif</h4>
+          <p id="swapModalSubtitle">Ganti destinasi atau tempat makan untuk menyesuaikan rute liburan Anda</p>
+        </div>
+        <button type="button" class="ai-swap-close" id="aiSwapClose">✕</button>
+      </div>
+      <div class="ai-swap-list" id="aiSwapList">
+        <!-- Di-render oleh main.js dengan gambar & deskripsi singkat -->
+      </div>
+    </div>
+  </div>
+
+  <!-- =====================================================
+       11. QUICK DETAIL WISATA MODAL (GALERI, HTM, FASILITAS, WA API)
+       ===================================================== -->
+  <div class="quick-detail-backdrop" id="quickDetailModal" aria-hidden="true">
+    <div class="quick-detail-dialog">
+      <button type="button" class="quick-detail-close" id="quickDetailClose">✕</button>
+      
+      <!-- Konten Cepat yang Di-render oleh main.js -->
+      <div class="quick-detail-body" id="quickDetailBody"></div>
+    </div>
+  </div>
+
   <!-- Toast Notification Container -->
   <div id="toastNotification" class="toast-notification" aria-live="polite"></div>
 
-  <!-- JavaScript -->
+  <!-- Leaflet Map Library & Main JavaScript -->
+  <script src="assets/js/leaflet.js"></script>
   <script src="assets/js/main.js"></script>
 </body>
 </html>

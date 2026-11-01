@@ -16,12 +16,22 @@ const TRANSLATIONS = {
     navJadwalKapal: "Jadwal Kapal",
     navPanduan: "Jadwal Kapal & Panduan",
     navCta: "Rute & Kapal",
+
+    // Editorial Theme Keys
+    heroBadge: "Edisi Wisata Bahari",
+    agencyBadge: "Dinas Pariwisata & Kebudayaan",
+    portalBy: "Disparbud Balut",
+    webType: "Si-PANDU Portal",
+    heroSub: "Pesona Alam",
+    featureNav: "Pesona Maritim Balut",
+    featureQuote: "Indonesia is not just wonderland,<br>Indonesia is a wonderful",
+    featureDesc: "Di antara gugusan ratusan pulau karang eksotis dan biota laut langka, Banggai Laut menghadirkan ketenangan surgawi yang memikat pelancong dari seluruh penjuru dunia. Dinas Pariwisata dan Kebudayaan menyambut Anda dalam kehangatan budaya, cagar sejarah, serta pesona bahari tak terlupakan. Semoga kita semua senantiasa menikmati dan menjaga anugerah kelestarian alam ini.",
     
     // Hero Section
     heroPill: "✨ Portal Resmi Dinas Pariwisata & Kebudayaan",
     heroTitle: "Discover Your Perfect<br>Island Getaway in Banggai Laut",
-    heroDesc: "Jelajahi gugusan pulau karang eksotis, laguna sebening kristal, serta warisan sejarah Kerajaan Banggai melalui sistem navigasi pariwisata terpadu.",
-    searchPlaceholder: "Cari destinasi pantai, pulau, sejarah, hotel, kuliner...",
+    heroDesc: "Indonesia merupakan negara kepulauan terbesar di dunia dengan keindahan bahari tak tertandingi. Di Sulawesi Tengah, Kabupaten Banggai Laut membentang dengan gugusan pulau karang eksotis, laguna ubur-ubur tanpa sengat, pantai pasir putih jernih, serta warisan luhur Kerajaan Banggai.",
+    searchPlaceholder: "Search...",
     searchBtn: "Cari Destinasi",
 
     // Hero Slides
@@ -72,11 +82,22 @@ const TRANSLATIONS = {
     destNotFound: "Destinasi yang Anda cari belum ditemukan.",
     destBtnDetail: "Lihat Detail & Rute ➔",
     nearbyAlert: "📍 Menampilkan destinasi terurut dari jarak terdekat.",
+    katalogHeroSubtitle: "Katalog Lengkap Kepulauan",
+    katalogHeroTitle: "Seluruh Destinasi Wisata Banggai Laut",
+    katalogHeroDesc: "Temukan keindahan bahari tropis, pantai berpasir putih, keajaiban danau ubur-ubur, peninggalan Kerajaan Banggai, serta air terjun tersembunyi dengan filter kategori dan pencarian cerdas.",
+    filterAll: "Semua Destinasi",
+    filterBahari: "🌊 Bahari",
+    filterSejarah: "🏛️ Sejarah",
+    filterAlam: "🌿 Alam",
+    filterBudaya: "🎭 Budaya",
+    filterNearby: "Terdekat dari Lokasi Saya",
+    searchPlaceholder: "Cari pantai, pulau, air terjun, keraton bersejarah...",
+    destViewMore: "Jelajahi Seluruh Destinasi (12 Lokasi) ➔",
 
     // Kadis Section
     kadisTag: "Sambutan Kepala Dinas",
     kadisTitle: "Menyambut Wisatawan di Permata Bahari Sulawesi Tengah",
-    kadisQuote: "\"Selamat datang di portal resmi Si-PANDU. Kabupaten Banggai Laut menyimpan potensi pariwisata bahari, keindahan bawah laut, serta warisan sejarah Kerajaan Banggai yang luar biasa. Melalui platform digital Dinas Pariwisata dan Kebudayaan ini, kami berkomitmen menghadirkan informasi destinasi dan jadwal transportasi laut yang akurat, ramah, dan mudah diakses oleh seluruh wisatawan.\"",
+    kadisQuote: "\"Tabea! Selamat datang di portal resmi Si-PANDU. Kabupaten Banggai Laut dianugerahi potensi pariwisata bahari kelas dunia, keindahan danau ubur-ubur langka, serta keluhuran cagar budaya Kerajaan Banggai yang berusia lima abad. Melalui platform digital Dinas Pariwisata dan Kebudayaan ini, kami berkomitmen menghadirkan panduan destinasi yang ramah, akurat, dan terintegrasi demi kenyamanan kunjungan Anda.\"",
     kadisRole: "Kepala Dinas Pariwisata dan Kebudayaan Kabupaten Banggai Laut",
     kadisCta: "Lihat Panduan & Jadwal Kapal ➔",
 
@@ -130,11 +151,21 @@ const TRANSLATIONS = {
     navPanduan: "Ferry Schedule & Guide",
     navCta: "Routes & Ferries",
 
+    // Editorial Theme Keys
+    heroBadge: "Maritime Tourism Edition",
+    agencyBadge: "Tourism & Culture Agency",
+    portalBy: "Disparbud Balut",
+    webType: "Si-PANDU Portal",
+    heroSub: "Natural & Marine Charm",
+    featureNav: "Maritime Splendor",
+    featureQuote: "Indonesia is not just wonderland,<br>Indonesia is a wonderful",
+    featureDesc: "Among the clusters of exotic coral islands and rare marine wildlife, Banggai Laut offers heavenly serenity that captivates travelers from around the globe. The Tourism and Culture Office welcomes you with genuine hospitality, rich heritage, and unforgettable maritime splendor. May we all continuously appreciate and protect this precious natural sanctuary.",
+
     // Hero Section
     heroPill: "✨ Official Tourism & Culture Agency Portal",
     heroTitle: "Discover Your Perfect<br>Island Getaway in Banggai Laut",
-    heroDesc: "Explore exotic coral archipelagos, crystal-clear lagoons, and historical heritage of the Banggai Kingdom through an integrated tourism navigation system.",
-    searchPlaceholder: "Search beaches, islands, history, hotels, culinary...",
+    heroDesc: "Indonesia is the world's largest archipelago with unmatched marine splendor. In Central Sulawesi, Banggai Laut Regency unfolds with exotic coral island chains, stingless jellyfish lagoons, powdery white sands, and royal heritage.",
+    searchPlaceholder: "Search...",
     searchBtn: "Search Destination",
 
     // Hero Slides
@@ -185,11 +216,22 @@ const TRANSLATIONS = {
     destNotFound: "No destinations found matching your criteria.",
     destBtnDetail: "View Details & Route ➔",
     nearbyAlert: "📍 Showing destinations sorted by nearest distance.",
+    katalogHeroSubtitle: "Complete Archipelago Directory",
+    katalogHeroTitle: "All Banggai Laut Travel Destinations",
+    katalogHeroDesc: "Discover tropical marine wonders, pristine beaches, stingless jellyfish lakes, royal Banggai heritage, and hidden waterfalls with smart filtering and live search.",
+    filterAll: "All Destinations",
+    filterBahari: "🌊 Marine",
+    filterSejarah: "🏛️ History",
+    filterAlam: "🌿 Nature",
+    filterBudaya: "🎭 Culture",
+    filterNearby: "Nearest from My Location",
+    searchPlaceholder: "Search beaches, islands, waterfalls, royal palace...",
+    destViewMore: "Explore All Destinations (12 Locations) ➔",
 
     // Kadis Section
     kadisTag: "Head of Agency's Welcome",
     kadisTitle: "Welcoming Travelers to Central Sulawesi's Maritime Jewel",
-    kadisQuote: "\"Welcome to the official Si-PANDU portal. Banggai Laut Regency preserves extraordinary marine tourism potentials, underwater wonders, and the historical legacy of the Banggai Kingdom. Through this digital platform, we are committed to delivering accurate, hospitable, and accessible destination information and sea transportation schedules for all travelers.\"",
+    kadisQuote: "\"Welcome to the official Si-PANDU portal. Banggai Laut Regency is blessed with world-class marine tourism potential, rare stingless jellyfish lakes, and the five-century heritage of the Banggai Kingdom. Through this digital platform, we are committed to delivering hospitable, accurate, and integrated destination guidance for your travel convenience.\"",
     kadisRole: "Head of Tourism & Culture Office of Banggai Laut Regency",
     kadisCta: "View Travel Guide & Ferry Schedule ➔",
 
@@ -272,6 +314,9 @@ function setLanguage(lang) {
   });
 
   // Re-render dynamic components if present
+  if (document.getElementById('homeDestinasiGrid')) {
+    renderHomeDestinasiCards();
+  }
   if (document.getElementById('destinasiGrid')) {
     filterWisata();
   }
@@ -324,20 +369,26 @@ function showToast(message, duration = 3000) {
 function initMobileNav() {
   const toggleBtn = document.getElementById('navToggle');
   const navLinks = document.getElementById('navLinks');
+  const navDrawer = document.getElementById('navDrawer');
   const backdrop = document.getElementById('navBackdrop');
+  const closeBtn = document.getElementById('drawerCloseBtn');
 
-  if (!toggleBtn || !navLinks) return;
+  if (!toggleBtn) return;
 
   function toggleMenu(show) {
-    const isOpen = show !== undefined ? show : !navLinks.classList.contains('open');
+    const target = navDrawer || navLinks;
+    if (!target) return;
+    const isOpen = show !== undefined ? show : !target.classList.contains('open');
     if (isOpen) {
-      navLinks.classList.add('open');
+      target.classList.add('open');
+      if (navDrawer) navDrawer.setAttribute('aria-hidden', 'false');
       toggleBtn.classList.add('active');
       toggleBtn.setAttribute('aria-expanded', 'true');
       if (backdrop) backdrop.classList.add('visible');
-      document.body.style.overflow = 'hidden'; // cegah scroll background di HP
+      document.body.style.overflow = 'hidden';
     } else {
-      navLinks.classList.remove('open');
+      target.classList.remove('open');
+      if (navDrawer) navDrawer.setAttribute('aria-hidden', 'true');
       toggleBtn.classList.remove('active');
       toggleBtn.setAttribute('aria-expanded', 'false');
       if (backdrop) backdrop.classList.remove('visible');
@@ -346,11 +397,14 @@ function initMobileNav() {
   }
 
   toggleBtn.addEventListener('click', () => toggleMenu());
+  if (closeBtn) closeBtn.addEventListener('click', () => toggleMenu(false));
   if (backdrop) backdrop.addEventListener('click', () => toggleMenu(false));
 
-  // Tutup menu saat salah satu link diklik di HP
-  navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => toggleMenu(false));
+  const linkContainers = [navDrawer, navLinks].filter(Boolean);
+  linkContainers.forEach(container => {
+    container.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => toggleMenu(false));
+    });
   });
 }
 
@@ -384,124 +438,84 @@ function initScrollEffects() {
 // =========================================================
 // 5. INSTAGRAM STORY / CAROUSEL SLIDER (HERO SECTION)
 // =========================================================
-let currentSlideIndex = 0;
-let slideInterval = null;
-const SLIDE_DURATION = 5000;
-
-function initHeroSlider() {
-  const slides = document.querySelectorAll('.ig-slide');
-  const bars = document.querySelectorAll('.ig-bar');
-  const dots = document.querySelectorAll('.ig-dot');
-  const prevBtn = document.getElementById('prevSlide');
-  const nextBtn = document.getElementById('nextSlide');
-  const heroSection = document.getElementById('heroSection');
-
-  if (slides.length === 0) return;
-
-  function showSlide(index) {
-    if (index >= slides.length) index = 0;
-    if (index < 0) index = slides.length - 1;
-    currentSlideIndex = index;
-
-    // Active slide
-    slides.forEach((slide, i) => {
-      slide.classList.toggle('active', i === index);
-    });
-
-    // Active story progress bar
-    bars.forEach((bar, i) => {
-      bar.classList.toggle('active', i === index);
-      const fill = bar.querySelector('.ig-fill');
-      if (fill) {
-        if (i < index) {
-          fill.style.width = '100%';
-        } else if (i === index) {
-          fill.style.width = '0%';
-          // Trigger CSS transition animation
-          setTimeout(() => { fill.style.width = '100%'; }, 20);
-        } else {
-          fill.style.width = '0%';
-        }
-      }
-    });
-
-    // Active dots
-    dots.forEach((dot, i) => {
-      dot.classList.toggle('active', i === index);
-    });
+// 5. DATA MASTER POSTER CAROUSEL HERO (5 SLIDES ACARA & HIGHLIGHTS)
+// Admin dapat mengupdate array ini atau memanggil window.updateHeroSlides(data)
+// =========================================================
+window.HERO_SLIDES_DATA = [
+  {
+    id: 1,
+    badge: "EVENT RESMI • 18 - 22 AGUSTUS 2026",
+    tag: "EVENT RESMI • 18 - 22 AGUSTUS 2026",
+    category: "Festival Budaya Bahari",
+    title: "Festival Pesona Banggai Laut 2026",
+    subtitle: "Karnaval budaya maritim & parade perahu hias nelayan tradisional di Teluk Banggai.",
+    date: "18 - 22 Agustus 2026",
+    location: "Teluk & Pelabuhan Banggai, Kab. Banggai Laut",
+    htm: "Terbuka untuk Umum (Gratis)",
+    bgImage: "assets/img/hero-bg.jpg",
+    ctaPrimaryText: "Lihat Informasi Acara ➔",
+    ctaPrimaryLink: "panduan.html"
+  },
+  {
+    id: 2,
+    badge: "DESTINASI UNGGULAN • BOKAN KEPULAUAN",
+    tag: "DESTINASI UNGGULAN • BOKAN KEPULAUAN",
+    category: "Ekowisata Bahari Langka",
+    title: "Danau Ubur-Ubur Mbuang-Mbuang",
+    subtitle: "Berenang bersama jutaan ubur-ubur emas jinak tanpa sengat di laguna karst alami.",
+    date: "Buka Setiap Hari (07:00 - 17:00 WITA)",
+    location: "Desa Mbuang-Mbuang, Kec. Bokan Kepulauan",
+    htm: "Rp 25.000 / Orang",
+    bgImage: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=1920&q=80",
+    ctaPrimaryText: "Jelajahi Danau Ubur-Ubur ➔",
+    ctaPrimaryLink: "detail.html?id=4"
+  },
+  {
+    id: 3,
+    badge: "CAGAR BUDAYA 5 ABAD • KERATON BANGGAI",
+    tag: "CAGAR BUDAYA 5 ABAD • KERATON BANGGAI",
+    category: "Upacara Adat Sakral",
+    title: "Upacara Adat Sakral Malabot Tumbe",
+    subtitle: "Tradisi sakral pelayaran penghantaran telur burung maleo menuju Keraton Banggai.",
+    date: "Awal Desember 2026",
+    location: "Keraton Kesultanan Banggai & Pelabuhan",
+    htm: "Cagar Budaya Adat (Gratis)",
+    bgImage: "https://images.unsplash.com/photo-1596402184320-417e7178b2cd?w=1920&q=80",
+    ctaPrimaryText: "Telusuri Keraton Banggai ➔",
+    ctaPrimaryLink: "detail.html?id=1"
+  },
+  {
+    id: 4,
+    badge: "PANORAMA SENJA • PANTAI PASIR PUTIH",
+    tag: "PANORAMA SENJA • PANTAI PASIR PUTIH",
+    category: "Panorama Senja Bahari",
+    title: "Pesona Senja Tebing Tanjung Gundul",
+    subtitle: "Gradasi langit jingga keemasan berpadu dengan tebing karang dan birunya laut kepulauan.",
+    date: "Waktu Terbaik: 16:30 - 18:30 WITA",
+    location: "Desa Pasir Putih, Kec. Banggai",
+    htm: "Rp 5.000 / Retribusi",
+    bgImage: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=1920&q=80",
+    ctaPrimaryText: "Lihat Spot Sunset ➔",
+    ctaPrimaryLink: "detail.html?id=8"
+  },
+  {
+    id: 5,
+    badge: "KULINER OTENTIK • TRADISI PESISIR",
+    tag: "KULINER OTENTIK • TRADISI PESISIR",
+    category: "Pesta Kuliner Bahari",
+    title: "Kuliner Ikan Bakar & Sinole Tradisional",
+    subtitle: "Cita rasa otentik sagu sangrai gurih, ikan cakalang bumbu rempah, dan kue perahu Tetu.",
+    date: "Setiap Hari & Akhir Pekan",
+    location: "Sentra Wisata Kuliner Pesisir Banggai",
+    htm: "Mulai Rp 15.000 / Porsi",
+    bgImage: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1920&q=80",
+    ctaPrimaryText: "Cek Rekomendasi Kuliner ➔",
+    ctaPrimaryLink: "detail.html?id=10"
   }
-
-  function next() {
-    showSlide(currentSlideIndex + 1);
-  }
-
-  function prev() {
-    showSlide(currentSlideIndex - 1);
-  }
-
-  function resetTimer() {
-    clearInterval(slideInterval);
-    slideInterval = setInterval(next, SLIDE_DURATION);
-  }
-
-  if (nextBtn) {
-    nextBtn.addEventListener('click', () => {
-      next();
-      resetTimer();
-    });
-  }
-
-  if (prevBtn) {
-    prevBtn.addEventListener('click', () => {
-      prev();
-      resetTimer();
-    });
-  }
-
-  dots.forEach(dot => {
-    dot.addEventListener('click', () => {
-      const idx = parseInt(dot.getAttribute('data-index'), 10);
-      if (!isNaN(idx)) {
-        showSlide(idx);
-        resetTimer();
-      }
-    });
-  });
-
-  // Touch Swipe ala Instagram Stories untuk HP
-  let touchStartX = 0;
-  let touchEndX = 0;
-
-  if (heroSection) {
-    heroSection.addEventListener('touchstart', (e) => {
-      touchStartX = e.changedTouches[0].screenX;
-    }, { passive: true });
-
-    heroSection.addEventListener('touchend', (e) => {
-      touchEndX = e.changedTouches[0].screenX;
-      handleSwipe();
-    }, { passive: true });
-  }
-
-  function handleSwipe() {
-    const swipeThreshold = 45;
-    if (touchEndX < touchStartX - swipeThreshold) {
-      // Geser ke kiri (Next)
-      next();
-      resetTimer();
-    } else if (touchEndX > touchStartX + swipeThreshold) {
-      // Geser ke kanan (Prev)
-      prev();
-      resetTimer();
-    }
-  }
-
-  showSlide(0);
-  resetTimer();
-}
+];
 
 // =========================================================
-// 6. DATA LENGKAP KATALOG WISATA (BILINGUAL & KULINER)
+// 6. DATA LENGKAP KATALOG WISATA (DENGAN GALERI, HTM, FASILITAS, WA API)
 // =========================================================
 const defaultWisataData = [
   {
@@ -511,14 +525,26 @@ const defaultWisataData = [
     nama_kategori: "Sejarah",
     lokasi: "Kelurahan Lompio, Kec. Banggai",
     lokasi_en: "Lompio Village, Banggai Sub-district",
-    deskripsi_id: "Bangunan kayu bersejarah peninggalan Kerajaan Banggai lengkap dengan ruang singgasana raja, cagar pusaka, dan meriam kuno bernilai sejarah tinggi.",
+    deskripsi_id: "Bangunan kayu bersejarah peninggalan Kerajaan Banggai lengkap dengan ruang singgasana raja asli, cagar pusaka, dan meriam kuno bernilai sejarah tinggi.",
     deskripsi_en: "Historic wooden palace of the Banggai Kingdom featuring royal throne chambers, heirloom artifacts, and centuries-old defensive cannons.",
     gambar: "https://images.unsplash.com/photo-1596402184320-417e7178b2cd?w=600",
+    galeri: [
+      "https://images.unsplash.com/photo-1596402184320-417e7178b2cd?w=1200",
+      "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=1200",
+      "https://images.unsplash.com/photo-1548013146-72479768bada?w=1200",
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200"
+    ],
     lat: -1.594,
     lng: 123.501,
     jam: "08:00 - 17:00 WITA",
+    htm: "Gratis / Donasi Sukarela",
+    htm_en: "Free / Voluntary Donation",
     tiket: "Gratis / Donasi Sukarela",
     tiket_en: "Free / Voluntary Donation",
+    fasilitas: ["Ruang Pamer Pusaka", "Pemandu Adat Lokal", "Area Parkir Luas", "Spot Foto Bersejarah", "Toilet Bersih"],
+    fasilitas_en: ["Royal Relics Gallery", "Local Cultural Guide", "Spacious Parking", "Historical Photo Spots", "Restrooms"],
+    kontak_wa: "6282299887766",
+    kontak_nama: "Lembaga Adat Keraton Banggai",
     highlights: ["Singgasana Raja Banggai Asli", "Koleksi Meriam Kuno Kolonial", "Pusat Kebudayaan & Sejarah"],
     highlights_en: ["Original Banggai Royal Throne", "Colonial Cannon Collection", "Cultural & Historical Heritage"]
   },
@@ -532,11 +558,23 @@ const defaultWisataData = [
     deskripsi_id: "Pesisir pantai tenang dengan ombak jernih teduh, deretan pohon kelapa menjulang, dan hamparan pasir halus yang sangat aman untuk rekreasi keluarga.",
     deskripsi_en: "A serene coast with calm, crystalline waters, swaying palm trees, and soft sands, ideal for family leisure and water dipping.",
     gambar: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600",
+    galeri: [
+      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200",
+      "https://images.unsplash.com/photo-1519046904884-53103b34b206?w=1200",
+      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=1200",
+      "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1200"
+    ],
     lat: -1.542,
     lng: 123.518,
     jam: "Setiap Hari (24 Jam)",
+    htm: "Rp 5.000 / Orang",
+    htm_en: "IDR 5,000 / Person",
     tiket: "Rp 5.000 / Org",
     tiket_en: "IDR 5,000 / Person",
+    fasilitas: ["Gazebo Peneduh Tepi Laut", "Warung Kelapa Muda", "Kamar Bilas Air Tawar", "Ayunan Tepi Pantai", "Musholla"],
+    fasilitas_en: ["Seafront Shaded Gazebos", "Fresh Coconut Stalls", "Freshwater Shower Rooms", "Beach Swings", "Prayer Room"],
+    kontak_wa: "6282299887766",
+    kontak_nama: "Pokdarwis Bone Baru",
     highlights: ["Air Laut Tenang & Dangkal", "Teduh & Asri Bawah Pohon Kelapa", "Spot Rekreasi Ramah Anak"],
     highlights_en: ["Calm & Shallow Water", "Shaded Palm Grove", "Child-Friendly Leisure Spot"]
   },
@@ -550,11 +588,22 @@ const defaultWisataData = [
     deskripsi_id: "Bentang pasir timbul putih memanjang dengan gradasi air laut hijau toska sebening kaca, memikat untuk berenang dan berfoto ria.",
     deskripsi_en: "An expansive pristine white sandbar emerging in turquoise waters, offering an ethereal lagoon for swimming and photography.",
     gambar: "https://images.unsplash.com/photo-1519046904884-53103b34b206?w=600",
+    galeri: [
+      "https://images.unsplash.com/photo-1519046904884-53103b34b206?w=1200",
+      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200",
+      "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1200"
+    ],
     lat: -1.612,
     lng: 123.489,
     jam: "07:00 - 18:00 WITA",
+    htm: "Rp 10.000 / Orang",
+    htm_en: "IDR 10,000 / Person",
     tiket: "Rp 10.000 / Org",
     tiket_en: "IDR 10,000 / Person",
+    fasilitas: ["Perahu Akses Sandar", "Sewa Lifejacket & Pelampung", "Spot Foto Air Jernih"],
+    fasilitas_en: ["Shuttle Boat Access", "Lifejacket Rental", "Crystal Clear Photo Spots"],
+    kontak_wa: "6282299887766",
+    kontak_nama: "Pengelola Wisata Lambangan",
     highlights: ["Gusung Pasir Putih Alami", "Gradasi Warna Laut Spektakuler", "Spot Foto Instagramable"],
     highlights_en: ["Natural White Sandbar", "Spectacular Marine Gradients", "Instagrammable Photo Hotspot"]
   },
@@ -568,11 +617,22 @@ const defaultWisataData = [
     deskripsi_id: "Pulau eksotis tak berpenghuni dengan air laut sangat jernih dan terumbu karang hidup yang terjaga, spot utama snorkeling dan diving di Balut.",
     deskripsi_en: "An uninhabited tropical islet bordered by vibrant coral gardens and dazzling waters, rated among the finest snorkeling spots in Banggai Laut.",
     gambar: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600",
+    galeri: [
+      "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1200",
+      "https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=1200",
+      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200"
+    ],
     lat: -1.645,
     lng: 123.465,
     jam: "06:30 - 17:30 WITA",
+    htm: "Rp 150.000 - Rp 300.000 / Sewa Perahu PP",
+    htm_en: "IDR 150,000 - 300,000 / Boat Charter",
     tiket: "Sewa Perahu / Trip",
     tiket_en: "Boat Charter / Trip",
+    fasilitas: ["Spot Snorkeling Terumbu Karang", "Dermaga Kayu Alami", "Pemandu Perahu Lokal", "Alat Snorkel"],
+    fasilitas_en: ["Coral Reef Snorkel Spot", "Wooden Jetty", "Local Boat Skipper", "Snorkel Gear"],
+    kontak_wa: "6282299887766",
+    kontak_nama: "Pemandu Bahari Monsongan",
     highlights: ["Terumbu Karang Kipas & Ikan Badut", "Laguna Snorkeling Sebening Kaca", "Pantai Karang Eksotis"],
     highlights_en: ["Sea Fan Corals & Clownfish", "Glass-Clear Snorkeling Lagoon", "Exotic Coral Beaches"]
   },
@@ -583,14 +643,26 @@ const defaultWisataData = [
     nama_kategori: "Bahari",
     lokasi: "Kecamatan Bokan Kepulauan",
     lokasi_en: "Bokan Islands Sub-district",
-    deskripsi_id: "Keajaiban dunia danau air asin alami yang dihuni jutaan ubur-ubur tanpa sengat (stingless jellyfish) di tengah labirin tebing karang karst.",
+    deskripsi_id: "Keajaiban dunia danau air asin alami yang dihuni jutaan ubur-ubur tanpa sengat (stingless jellyfish) di tengah labirin tebing karang karst megah.",
     deskripsi_en: "A global wonder: a secluded marine lake harboring millions of stingless jellyfish enclosed by dramatic limestone karst formations.",
     gambar: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=600",
+    galeri: [
+      "https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=1200",
+      "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1200",
+      "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1200",
+      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200"
+    ],
     lat: -1.782,
     lng: 123.612,
     jam: "07:00 - 17:00 WITA",
+    htm: "Rp 25.000 / Orang (Retribusi Konservasi)",
+    htm_en: "IDR 25,000 / Person (Conservation Fee)",
     tiket: "Rp 25.000 / Org",
     tiket_en: "IDR 25,000 / Person",
+    fasilitas: ["Pemandu Konservasi Lokal", "Penyewaan Kacamata Renang", "Dermaga Apung Kayu", "Homestay Terapung Warga", "Pondok Santai"],
+    fasilitas_en: ["Conservation Guides", "Goggles Rental", "Floating Wooden Jetty", "Overwater Community Homestays", "Rest Huts"],
+    kontak_wa: "6282299887766",
+    kontak_nama: "Pokdarwis Desa Ekowisata Mbuang-Mbuang",
     highlights: ["Berenang Bersama Ubur-Ubur Jinak", "Gugusan Karst Mirip Raja Ampat", "Desa Wisata Ramah Bahari"],
     highlights_en: ["Swim with Harmless Jellyfish", "Karst Maze Resembling Raja Ampat", "Hospitable Marine Eco-Village"]
   },
@@ -604,11 +676,22 @@ const defaultWisataData = [
     deskripsi_id: "Situs cagar budaya sakral yang merekam jejak awal mula berdirinya peradaban dan pusat pemerintahan Kerajaan Banggai di masa silam.",
     deskripsi_en: "A sacred cultural sanctuary holding original architectural stones and early administrative roots of the ancient Banggai Kingdom.",
     gambar: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=600",
+    galeri: [
+      "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=1200",
+      "https://images.unsplash.com/photo-1596402184320-417e7178b2cd?w=1200",
+      "https://images.unsplash.com/photo-1548013146-72479768bada?w=1200"
+    ],
     lat: -1.587,
     lng: 123.512,
     jam: "08:00 - 17:00 WITA",
+    htm: "Gratis / Donasi Sukarela",
+    htm_en: "Free / Voluntary Donation",
     tiket: "Gratis / Donasi",
     tiket_en: "Free / Donation",
+    fasilitas: ["Papan Informasi Sejarah", "Jalur Jalan Setapak", "Pohon Rindang Teduh", "Pemandu Adat"],
+    fasilitas_en: ["Historical Info Boards", "Paved Walking Trail", "Shaded Ancient Trees", "Cultural Guides"],
+    kontak_wa: "6282299887766",
+    kontak_nama: "Juru Pelihara Cagar Budaya Balut",
     highlights: ["Situs Cagar Budaya Bersejarah", "Mata Air Keramat Tradisional", "Pohon Rindang Ratusan Tahun"],
     highlights_en: ["Protected Heritage Sanctuary", "Traditional Sacred Spring", "Centuries-Old Banyan Trees"]
   },
@@ -622,11 +705,21 @@ const defaultWisataData = [
     deskripsi_id: "Kompleks pemakaman leluhur raja-raja Banggai yang sarat nilai spiritual dan tradisi adat, rutin diziarahi tokoh adat saat upacara Malabot Tumbe.",
     deskripsi_en: "The solemn burial complex of Banggai royal dynasties, honored through sacred rituals and spiritual Malabot Tumbe ceremonies.",
     gambar: "https://images.unsplash.com/photo-1548013146-72479768bada?w=600",
+    galeri: [
+      "https://images.unsplash.com/photo-1548013146-72479768bada?w=1200",
+      "https://images.unsplash.com/photo-1596402184320-417e7178b2cd?w=1200"
+    ],
     lat: -1.598,
     lng: 123.504,
     jam: "08:00 - 17:00 WITA",
+    htm: "Gratis / Donasi Sukarela",
+    htm_en: "Free / Voluntary Donation",
     tiket: "Gratis / Donasi",
     tiket_en: "Free / Donation",
+    fasilitas: ["Pagar Cagar Budaya", "Area Ziarah Khidmat", "Pemandu Sejarah"],
+    fasilitas_en: ["Heritage Fencing", "Solemn Pilgrimage Area", "Heritage Guide"],
+    kontak_wa: "6282299887766",
+    kontak_nama: "Pengelola Makam Kerajaan Banggai",
     highlights: ["Makam Kuno Batu Pahat Tradisional", "Pusat Ziarah Upacara Tumbe", "Suasana Hening Penuh Khidmat"],
     highlights_en: ["Traditional Carved Stone Tombs", "Pilgrimage Core for Tumbe Rites", "Peaceful & Reverent Atmosphere"]
   },
@@ -640,11 +733,22 @@ const defaultWisataData = [
     deskripsi_id: "Perpaduan tebing bukit karang tanjung dengan bentang pantai berpasir putih luas, spot terfavorit menyaksikan matahari terbenam (sunset) di Balut.",
     deskripsi_en: "A scenic fusion of coastal cliff headlands and powdery white shoreline, celebrated as the best vantage point for breathtaking sunsets.",
     gambar: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600",
+    galeri: [
+      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=1200",
+      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200",
+      "https://images.unsplash.com/photo-1519046904884-53103b34b206?w=1200"
+    ],
     lat: -1.621,
     lng: 123.535,
     jam: "Setiap Hari (24 Jam)",
+    htm: "Rp 5.000 / Kendaraan",
+    htm_en: "IDR 5,000 / Vehicle",
     tiket: "Rp 5.000 / Kendaraan",
     tiket_en: "IDR 5,000 / Vehicle",
+    fasilitas: ["Gardu Pandang Sunset", "Gazebo Tepi Pantai", "Warung Makanan Ringan & Kopi", "Area Parkir Motor & Mobil"],
+    fasilitas_en: ["Sunset Viewpoint Deck", "Beachside Gazebos", "Snack & Coffee Stalls", "Vehicle Parking Area"],
+    kontak_wa: "6282299887766",
+    kontak_nama: "Pokdarwis Pasir Putih",
     highlights: ["Sunset Jingga Terindah di Balut", "Bukit Pandang Tanjung Karang", "Pantai Luas Bersih"],
     highlights_en: ["Finest Golden Sunset Panorama", "Scenic Cape Lookout Hill", "Expansive Clean Beach"]
   },
@@ -658,11 +762,21 @@ const defaultWisataData = [
     deskripsi_id: "Aliran air terjun alami nan sejuk di tengah hutan tropis lebat dengan kolam batu alami yang menyegarkan tubuh sehabis menjelajah pulau.",
     deskripsi_en: "A refreshing forest waterfall nestled within lush tropical greenery, featuring natural freshwater rock pools for a relaxing dip.",
     gambar: "https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?w=600",
+    galeri: [
+      "https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?w=1200",
+      "https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=1200"
+    ],
     lat: -1.572,
     lng: 123.491,
     jam: "07:30 - 17:00 WITA",
+    htm: "Rp 5.000 / Orang",
+    htm_en: "IDR 5,000 / Person",
     tiket: "Rp 5.000 / Org",
     tiket_en: "IDR 5,000 / Person",
+    fasilitas: ["Kolam Alami Air Tawar", "Tempat Duduk Alami", "Jalur Tracking Sejuk"],
+    fasilitas_en: ["Natural Freshwater Pool", "Rest Seating", "Scenic Shaded Trail"],
+    kontak_wa: "6282299887766",
+    kontak_nama: "Pengelola Desa Lampa",
     highlights: ["Kolam Alami Air Tawar Sejuk", "Suasana Hutan Teduh & Damai", "Akses Jalan Mudah Dijangkau"],
     highlights_en: ["Cool Natural Freshwater Pool", "Peaceful Tropical Canopy", "Easily Accessible Trail"]
   },
@@ -673,14 +787,24 @@ const defaultWisataData = [
     nama_kategori: "Kuliner",
     lokasi: "Kawasan Pesisir Pelabuhan Banggai",
     lokasi_en: "Banggai Harbor Waterfront",
-    deskripsi_id: "Pusat kuliner khas Banggai Laut yang menyajikan Sinole (olahan sagu kelapa gurih), Ikan Bakar cakalang segar berbumbu dabu-dabu, dan kopi rempah.",
-    deskripsi_en: "Waterfront gastronomic hub serving traditional Sinole (savory toasted sago & coconut), ultra-fresh grilled fish with zesty dabu-dabu sambal, and spiced coffee.",
+    deskripsi_id: "Pusat kuliner khas Banggai Laut yang menyajikan Sinole (olahan sagu kelapa gurih), Ikan Bakar cakalang segar berbumbu dabu-dabu, dan sup kuah asam.",
+    deskripsi_en: "Waterfront gastronomic hub serving traditional Sinole (savory toasted sago & coconut), ultra-fresh grilled fish with zesty dabu-dabu sambal, and sour fish soup.",
     gambar: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600",
+    galeri: [
+      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1200",
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200"
+    ],
     lat: -1.592,
     lng: 123.503,
     jam: "16:00 - 23:00 WITA",
+    htm: "Mulai Rp 20.000 / Porsi",
+    htm_en: "From IDR 20,000 / Portion",
     tiket: "Mulai Rp 15.000 / Porsi",
     tiket_en: "From IDR 15,000 / Portion",
+    fasilitas: ["Pondok Kuliner Tepi Laut", "Tempat Duduk Lesehan & Meja", "Toilet & Cuci Tangan", "Live Akustik Malam"],
+    fasilitas_en: ["Waterfront Dining Sheds", "Floor & Table Seating", "Hand Wash & Restroom", "Night Acoustic Music"],
+    kontak_wa: "6282299887766",
+    kontak_nama: "Pusat UMKM Kuliner Pesisir Banggai",
     highlights: ["Menu Otentik Sinole & Kuah Asam", "Ikan Segar Hasil Tangkapan Nelayan", "Pemandangan Malam Laut Banggai"],
     highlights_en: ["Authentic Sinole & Sour Fish Soup", "Fresh Daily Catch from Fishermen", "Banggai Night Sea Breeze"]
   },
@@ -694,11 +818,21 @@ const defaultWisataData = [
     deskripsi_id: "Akomodasi penginapan terapung tradisional di atas laguna jernih yang menyajikan sarapan kuliner lokal bahari dengan pemandangan sunrise kepulauan.",
     deskripsi_en: "Traditional overwater cottages perched directly above a crystalline lagoon, serving authentic island breakfast with panoramic sunrise vistas.",
     gambar: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=600",
+    galeri: [
+      "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1200",
+      "https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=1200"
+    ],
     lat: -1.785,
     lng: 123.615,
     jam: "Check-in 14:00 | Check-out 12:00",
+    htm: "Rp 250.000 - Rp 500.000 / Malam",
+    htm_en: "IDR 250,000 - 500,000 / Night",
     tiket: "Mulai Rp 250.000 / Malam",
     tiket_en: "From IDR 250,000 / Night",
+    fasilitas: ["Kamar Panggung Terapung", "Sarapan Seafood Termasuk", "Dermaga Pribadi", "Sewa Kano & Snorkel"],
+    fasilitas_en: ["Overwater Stilt Chalets", "Island Breakfast Included", "Private Jetty", "Kayak & Snorkel Rental"],
+    kontak_wa: "6282299887766",
+    kontak_nama: "Pengelola Homestay Mbuang-Mbuang",
     highlights: ["Kamar Panggung di Atas Air Jernih", "Paket Kuliner Laut Nelayan", "Sewa Alat Snorkeling Lengkap"],
     highlights_en: ["Overwater Stilt Chalets", "Fresh Seafood Dining Packages", "Complete Snorkeling Gear Rental"]
   },
@@ -712,19 +846,155 @@ const defaultWisataData = [
     deskripsi_id: "Tempat bersantai menikmati kue tradisional Banggai seperti lalampa, tetu (kue perahu pandan), serta kopi susu khas Sulawesi Tengah.",
     deskripsi_en: "Cozy local café to savor authentic Banggai pastries including warm lalampa, fragrant tetu pandan cakes, and rich Central Sulawesi coffee.",
     gambar: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600",
+    galeri: [
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200",
+      "https://images.unsplash.com/photo-1596402184320-417e7178b2cd?w=1200"
+    ],
     lat: -1.595,
     lng: 123.502,
     jam: "06:00 - 22:00 WITA",
+    htm: "Mulai Rp 10.000",
+    htm_en: "From IDR 10,000",
     tiket: "Mulai Rp 10.000",
     tiket_en: "From IDR 10,000",
+    fasilitas: ["Wi-Fi Gratis", "Meja Santai Outdoor", "Kopi Rempah Khas", "Kue Tradisional Fresh"],
+    fasilitas_en: ["Free Wi-Fi", "Outdoor Seating", "Traditional Spiced Coffee", "Fresh Local Pastries"],
+    kontak_wa: "6282299887766",
+    kontak_nama: "Pengelola Kedai Lompio",
     highlights: ["Kue Tetu Daun Pandan Asli", "Kopi Hitam Tradisional Banggai", "Suasana Santai Dekat Keraton"],
     highlights_en: ["Authentic Tetu Pandan Cakes", "Traditional Banggai Black Coffee", "Cozy Ambience Near the Palace"]
   }
 ];
 
+// Data Akomodasi Khusus untuk AI Trip Planner
+const HOTELS_DATA = [
+  {
+    id: "hotel_kota",
+    nama: "Hotel Pusat Kota Banggai",
+    nama_en: "Banggai City Center Hotel",
+    lokasi: "Pelabuhan & Pusat Kota Banggai",
+    tipe: "Hotel Kota Nyaman",
+    harga: "Rp 350.000 - Rp 600.000 / malam",
+    lat: -1.5935,
+    lng: 123.5012,
+    gambar: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600",
+    deskripsi: "Akomodasi berfasilitas AC, WiFi kencang, kamar mandi dalam, dan hanya 5 menit jalan kaki ke Pelabuhan Banggai & pusat kuliner malam."
+  },
+  {
+    id: "homestay_pantai",
+    nama: "Homestay Tepi Pantai Pasir Putih",
+    nama_en: "Pasir Putih Coastal Homestay",
+    lokasi: "Desa Pasir Putih, Banggai",
+    tipe: "Homestay Tepi Laut",
+    harga: "Rp 200.000 - Rp 350.000 / malam",
+    lat: -1.6210,
+    lng: 123.5350,
+    gambar: "https://images.unsplash.com/photo-1510798831971-661eb04b3739?w=600",
+    deskripsi: "Penginapan asri di bibir pantai pasir putih dengan keramahan keluarga nelayan lokal dan suara deburan ombak tenang."
+  },
+  {
+    id: "resort_apung",
+    nama: "Mbuang-Mbuang Overwater Resort",
+    nama_en: "Mbuang-Mbuang Eco Overwater Resort",
+    lokasi: "Desa Ekowisata Mbuang-Mbuang, Bokan",
+    tipe: "Bungalow Apung di Atas Laut",
+    harga: "Rp 450.000 - Rp 850.000 / malam",
+    lat: -1.7850,
+    lng: 123.6150,
+    gambar: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=600",
+    deskripsi: "Pondok panggung kayu di atas laguna air laut toska jernih. Bangun tidur langsung melihat ikan karang dan sunrise kepulauan."
+  },
+  {
+    id: "camping_pantai",
+    nama: "Glamping & Camp Ground Tanjung Gundul",
+    nama_en: "Tanjung Gundul Sunset Glamping",
+    lokasi: "Tanjung Gundul, Banggai",
+    tipe: "Glamping Sunset Tepi Tebing",
+    harga: "Rp 150.000 - Rp 300.000 / tenda",
+    lat: -1.6250,
+    lng: 123.5380,
+    gambar: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600",
+    deskripsi: "Sensasi berkemah eksklusif di tebing tanjung karang dengan pemandangan sunset terindah dan hamparan bintang malam."
+  }
+];
+
 let allWisata = [...defaultWisataData];
 let activeCategory = 'all';
+let isDestinasiExpanded = false;
 
+// Template Generator untuk Kartu Destinasi (Dipakai di Beranda & Katalog)
+function createWisataCardHtml(item) {
+  const title = (currentLang === 'en' && item.nama_tempat_en) ? item.nama_tempat_en : item.nama_tempat;
+  const desc = (currentLang === 'en' && item.deskripsi_en) ? item.deskripsi_en : (item.deskripsi_id || item.deskripsi || '');
+  const loc = (currentLang === 'en' && item.lokasi_en) ? item.lokasi_en : (item.lokasi || 'Banggai Laut');
+  const distanceBadge = item._distanceKm !== undefined ? `<span class="distance-badge">📍 ${(item._distanceKm).toFixed(1)} km</span>` : '';
+  const htmDisplay = (currentLang === 'en' && item.htm_en) ? item.htm_en : (item.htm || 'Gratis');
+  const btnLabel = currentLang === 'en' ? 'View Details & WhatsApp ➔' : 'Lihat Detail & WhatsApp ➔';
+
+  return `
+    <article class="wisata-card reveal-item revealed" data-id="${item.id}" onclick="showQuickDetail(${item.id})" role="link" tabindex="0" title="Klik untuk melihat galeri foto, fasilitas & HTM">
+      <div class="wisata-img-wrapper">
+        <img src="${item.gambar || 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600'}" alt="${title}" loading="lazy">
+        <span class="wisata-cat-badge">${item.nama_kategori || 'Wisata'}</span>
+        ${distanceBadge}
+      </div>
+      <div class="wisata-body">
+        <h3 class="ref-card-title">${title}</h3>
+        <span class="ref-card-loc">(${loc})</span>
+        <p>${desc}</p>
+        <div class="card-meta-row">
+          <span class="card-htm-pill">🎟️ ${htmDisplay}</span>
+          <span class="card-hours-pill">🕒 ${item.jam || '06:00 - 18:00'}</span>
+        </div>
+        <div class="wisata-footer">
+          <button type="button" class="wisata-btn" onclick="event.stopPropagation(); showQuickDetail(${item.id})">${btnLabel}</button>
+        </div>
+      </div>
+    </article>
+  `;
+}
+
+// 6B. RENDER KARTU WISATA DI BERANDA (TEPAT 1 BARIS = 4 KARTU DENGAN PAGING ‹ ›)
+let homeDestinasiPage = 0;
+function renderHomeDestinasiCards() {
+  const grid = document.getElementById('homeDestinasiGrid');
+  if (!grid) return;
+
+  const pageSize = 4;
+  const total = allWisata.length;
+  const totalPages = Math.ceil(total / pageSize);
+  if (homeDestinasiPage >= totalPages) homeDestinasiPage = 0;
+
+  const start = homeDestinasiPage * pageSize;
+  const displayItems = allWisata.slice(start, start + pageSize);
+
+  grid.innerHTML = displayItems.map(item => createWisataCardHtml(item)).join('');
+}
+
+function initHomeDestinasiNav() {
+  const prevBtn = document.getElementById('cardPrevBtn');
+  const nextBtn = document.getElementById('cardNextBtn');
+
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+      const pageSize = 4;
+      const totalPages = Math.ceil(allWisata.length / pageSize);
+      homeDestinasiPage = (homeDestinasiPage - 1 + totalPages) % totalPages;
+      renderHomeDestinasiCards();
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      const pageSize = 4;
+      const totalPages = Math.ceil(allWisata.length / pageSize);
+      homeDestinasiPage = (homeDestinasiPage + 1) % totalPages;
+      renderHomeDestinasiCards();
+    });
+  }
+}
+
+// 6C. RENDER KATALOG DESTINASI LENGKAP (destinasi.html)
 function renderWisataCards(dataArray) {
   const grid = document.getElementById('destinasiGrid');
   if (!grid) return;
@@ -732,34 +1002,18 @@ function renderWisataCards(dataArray) {
   const t = TRANSLATIONS[currentLang] || TRANSLATIONS.id;
 
   if (dataArray.length === 0) {
-    grid.innerHTML = `<div class="empty-state-box"><p>${t.destNotFound}</p></div>`;
-    return;
+    grid.innerHTML = `<div class="empty-state-box" style="grid-column: 1 / -1; text-align: center; padding: 60px 20px;"><p style="font-size: 1.1rem; color: var(--text-muted);">${t.destNotFound}</p></div>`;
+  } else {
+    grid.innerHTML = dataArray.map(item => createWisataCardHtml(item)).join('');
   }
 
-  grid.innerHTML = dataArray.map(item => {
-    const title = (currentLang === 'en' && item.nama_tempat_en) ? item.nama_tempat_en : item.nama_tempat;
-    const desc = (currentLang === 'en' && item.deskripsi_en) ? item.deskripsi_en : (item.deskripsi_id || item.deskripsi || '');
-    const loc = (currentLang === 'en' && item.lokasi_en) ? item.lokasi_en : (item.lokasi || 'Banggai Laut');
-    const distanceBadge = item._distanceKm !== undefined ? `<span class="distance-badge">📍 ${(item._distanceKm).toFixed(1)} km</span>` : '';
-
-    return `
-      <article class="wisata-card reveal-item revealed" data-id="${item.id}">
-        <div class="wisata-img-wrapper">
-          <img src="${item.gambar || 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600'}" alt="${title}" loading="lazy">
-          <span class="wisata-cat-badge">${item.nama_kategori || 'Wisata'}</span>
-          ${distanceBadge}
-        </div>
-        <div class="wisata-body">
-          <span class="wisata-loc">📍 ${loc}</span>
-          <h3>${title}</h3>
-          <p>${desc}</p>
-          <div class="wisata-footer">
-            <a href="detail.html?id=${item.id}" class="wisata-btn">${t.destBtnDetail}</a>
-          </div>
-        </div>
-      </article>
-    `;
-  }).join('');
+  // Update badge total lokasi yang tersedia
+  const countBadge = document.getElementById('destCountBadge');
+  if (countBadge) {
+    countBadge.textContent = currentLang === 'en' 
+      ? `${dataArray.length} Destinations Available` 
+      : `${dataArray.length} Destinasi Tersedia`;
+  }
 }
 
 function filterWisata() {
@@ -1000,6 +1254,29 @@ function renderPanduan(dataArray) {
   }).join('');
 }
 
+// Inisialisasi Papan Jadwal Kapal di Beranda
+function initHomeShipsBoard() {
+  const grid = document.getElementById('homeShipsGrid');
+  if (!grid) return;
+
+  const shipsToDisplay = defaultKapalData.slice(0, 4);
+  grid.innerHTML = shipsToDisplay.map(item => `
+    <div class="home-ship-card">
+      <div class="home-ship-badge">${item.jenis}</div>
+      <h4 class="home-ship-title">${item.nama_kapal}</h4>
+      <div class="home-ship-route">
+        <span>📍 ${item.rute_asal}</span>
+        <span class="route-dash">➔</span>
+        <span>🏁 ${item.rute_tujuan}</span>
+      </div>
+      <div class="home-ship-meta">
+        <span class="home-ship-time">🕒 ${item.jadwal}</span>
+        <span class="home-ship-price">${item.harga}</span>
+      </div>
+    </div>
+  `).join('');
+}
+
 // =========================================================
 // 9. DETAIL DESTINASI DINAMIS (detail.html)
 // =========================================================
@@ -1042,6 +1319,23 @@ function renderDetailPage() {
     heroImg.alt = title;
   }
 
+  // Galeri Foto Thumbnails
+  const galleryContainer = document.getElementById('destGalleryContainer');
+  if (galleryContainer) {
+    const photos = item.galeri && item.galeri.length > 0 ? item.galeri : [item.gambar];
+    galleryContainer.innerHTML = photos.map((p, idx) => `
+      <div class="gallery-thumb-item ${idx === 0 ? 'active' : ''}" onclick="changeDetailHeroImg('${p}', this)">
+        <img src="${p}" alt="${title} photo ${idx + 1}" loading="lazy">
+      </div>
+    `).join('');
+  }
+
+  // Fasilitas
+  const fasilitasList = document.getElementById('destFasilitasList');
+  if (fasilitasList && item.fasilitas) {
+    fasilitasList.innerHTML = item.fasilitas.map(f => `<span class="detail-facility-badge">✓ ${f}</span>`).join('');
+  }
+
   // Highlights list
   const highlightsList = document.getElementById('destHighlightsList');
   if (highlightsList) {
@@ -1061,7 +1355,15 @@ function renderDetailPage() {
   if (infoHours) infoHours.textContent = item.jam || '07:00 - 18:00 WITA';
 
   const infoTicket = document.getElementById('destInfoTicket');
-  if (infoTicket) infoTicket.textContent = (currentLang === 'en' && item.tiket_en) ? item.tiket_en : (item.tiket || 'Gratis');
+  if (infoTicket) infoTicket.textContent = item.htm || ((currentLang === 'en' && item.tiket_en) ? item.tiket_en : (item.tiket || 'Gratis'));
+
+  // WhatsApp Hubungi Pengurus
+  const btnWa = document.getElementById('btnWhatsappPengurus');
+  if (btnWa) {
+    const waPhone = item.kontak_wa || '6282291234567';
+    const waText = encodeURIComponent(`Halo Pengelola ${item.nama_tempat} (${item.kontak_nama || 'Pengurus Setempat'}), saya berencana berkunjung melalui Portal Si-PANDU Banggai Laut. Mohon informasi tiket dan panduan reservasi.`);
+    btnWa.href = `https://api.whatsapp.com/send?phone=${waPhone}&text=${waText}`;
+  }
 
   // External Maps Link
   const btnGmaps = document.getElementById('btnGmapsExternal');
@@ -1112,6 +1414,346 @@ function renderDetailPage() {
   }
 }
 
+// Thumbnail switcher di detail.html
+window.changeDetailHeroImg = function(url, el) {
+  const heroImg = document.getElementById('destHeroImg');
+  if (heroImg) heroImg.src = url;
+  document.querySelectorAll('.gallery-thumb-item').forEach(t => t.classList.remove('active'));
+  if (el) el.classList.add('active');
+};
+
+// =========================================================
+// 9B. QUICK DETAIL MODAL (DENGAN GALERI, HTM, FASILITAS, WA)
+// =========================================================
+window.showQuickDetail = function(destId) {
+  const item = allWisata.find(d => d.id === destId);
+  if (!item) return;
+
+  const modal = document.getElementById('quickDetailModal');
+  if (!modal) {
+    window.location.href = `detail.html?id=${destId}`;
+    return;
+  }
+
+  const title = (currentLang === 'en' && item.nama_tempat_en) ? item.nama_tempat_en : item.nama_tempat;
+  const desc = (currentLang === 'en' && item.deskripsi_en) ? item.deskripsi_en : (item.deskripsi_id || '');
+  const loc = (currentLang === 'en' && item.lokasi_en) ? item.lokasi_en : (item.lokasi || 'Banggai Laut');
+
+  document.getElementById('quickDetailTitle').textContent = title;
+  document.getElementById('quickDetailCategory').textContent = item.nama_kategori || 'Destinasi Wisata';
+  document.getElementById('quickDetailLocation').textContent = `📍 ${loc}`;
+  document.getElementById('quickDetailDesc').textContent = desc;
+  document.getElementById('quickDetailHtm').textContent = item.htm || item.tiket || 'Gratis';
+  document.getElementById('quickDetailHours').textContent = item.jam || '07:00 - 18:00 WITA';
+
+  const mainImg = document.getElementById('quickDetailImg');
+  if (mainImg) {
+    mainImg.src = item.gambar;
+    mainImg.alt = title;
+  }
+
+  // Galeri foto thumbnails
+  const galleryContainer = document.getElementById('quickDetailGallery');
+  if (galleryContainer) {
+    const photos = item.galeri && item.galeri.length > 0 ? item.galeri : [item.gambar];
+    galleryContainer.innerHTML = photos.map((p, idx) => `
+      <img src="${p}" alt="${title}" class="quick-gal-thumb ${idx === 0 ? 'active' : ''}" onclick="changeQuickModalPhoto('${p}', this)">
+    `).join('');
+  }
+
+  // Fasilitas
+  const facilitiesContainer = document.getElementById('quickDetailFacilities');
+  if (facilitiesContainer) {
+    const facs = item.fasilitas || ['Pemandu Lokal', 'Spot Foto Estetik', 'Area Parkir/Dermaga'];
+    facilitiesContainer.innerHTML = facs.map(f => `<span class="quick-fac-pill">✓ ${f}</span>`).join('');
+  }
+
+  // WhatsApp Pengurus API
+  const btnWa = document.getElementById('quickDetailWhatsapp');
+  if (btnWa) {
+    const waPhone = item.kontak_wa || '6282291234567';
+    const waText = encodeURIComponent(`Halo Pengelola ${item.nama_tempat} (${item.kontak_nama || 'Pengurus Setempat'}), saya ingin info operasional dan tiket kunjungan via Portal Si-PANDU.`);
+    btnWa.href = `https://api.whatsapp.com/send?phone=${waPhone}&text=${waText}`;
+  }
+
+  // Link Detail Lengkap
+  const fullLink = document.getElementById('quickDetailFullLink');
+  if (fullLink) {
+    fullLink.href = `detail.html?id=${item.id}`;
+  }
+
+  // Google Maps link
+  const btnGmaps = document.getElementById('quickDetailGmaps');
+  if (btnGmaps) {
+    btnGmaps.href = `https://maps.google.com/?q=${encodeURIComponent(item.nama_tempat + ' Banggai Laut')}`;
+  }
+
+  modal.classList.add('open');
+  modal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+};
+
+window.changeQuickModalPhoto = function(url, el) {
+  const mainImg = document.getElementById('quickDetailImg');
+  if (mainImg) mainImg.src = url;
+  document.querySelectorAll('.quick-gal-thumb').forEach(t => t.classList.remove('active'));
+  if (el) el.classList.add('active');
+};
+
+function initQuickDetailModal() {
+  const modal = document.getElementById('quickDetailModal');
+  const closeBtn = document.getElementById('quickDetailClose');
+  if (!modal) return;
+
+  function closeModal() {
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+  });
+}
+
+// =========================================================
+// 9C. WIDGET JAM REAL-TIME WITA (UTC+8) BANGGAI LAUT
+// =========================================================
+function initBalutLiveClock() {
+  const clockEl = document.getElementById('balutLiveClock');
+  if (!clockEl) return;
+
+  function updateClock() {
+    const now = new Date();
+    // Konversi ke zona waktu WITA (Asia/Makassar, UTC+8)
+    const optionsTime = {
+      timeZone: 'Asia/Makassar',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false
+    };
+    const optionsDate = {
+      timeZone: 'Asia/Makassar',
+      weekday: 'long',
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric'
+    };
+
+    const timeString = new Intl.DateTimeFormat('id-ID', optionsTime).format(now);
+    const dateString = new Intl.DateTimeFormat('id-ID', optionsDate).format(now);
+
+    clockEl.innerHTML = `
+      <div class="clock-time-val">${timeString} <span class="clock-tz">WITA</span></div>
+      <div class="clock-date-val">${dateString}</div>
+    `;
+  }
+
+  updateClock();
+  setInterval(updateClock, 1000);
+}
+
+// =========================================================
+// =========================================================
+// 9D. HERO BANNER SLIDER EVENT & POSTER TERBARU (5 SLIDES)
+// Mendukung auto-slide, pause saat hover, tombol panah & titik,
+// serta mudah diupdate oleh admin via window.updateHeroSlides()
+// =========================================================
+let heroBannerTimer = null;
+let currentHeroBannerIndex = 0;
+const HERO_AUTO_SLIDE_DELAY = 5000;
+
+function initHeroBannerSlider() {
+  const heroSection = document.getElementById('heroSection');
+  const viewport = document.getElementById('heroSlidesViewport');
+  const dotsContainer = document.getElementById('heroSliderDots');
+  const counterEl = document.getElementById('heroSlideCounter');
+  const prevBtn = document.getElementById('heroPrevBtn');
+  const nextBtn = document.getElementById('heroNextBtn');
+  const stripNotice = document.getElementById('heroStripSlideNotice');
+
+  if (!viewport || !window.HERO_SLIDES_DATA || window.HERO_SLIDES_DATA.length === 0) return;
+
+  const slidesData = window.HERO_SLIDES_DATA;
+
+  // 1. Render 5 Slides ke DOM (Bersih & Elegan, Tanpa Teks Padat Berlebihan)
+  viewport.innerHTML = slidesData.map((slide, idx) => `
+    <div class="hero-slide-item ${idx === 0 ? 'active' : ''}" data-slide-index="${idx}">
+      <div class="hero-slide-bg" style="background-image: url('${slide.bgImage}');"></div>
+      <div class="hero-slide-overlay"></div>
+      <div class="hero-slide-inner">
+        <div class="hero-slide-content">
+          <div class="hero-clean-tag">
+            <span class="badge-pulse-dot"></span>
+            <span>${slide.tag || slide.badge}</span>
+          </div>
+          <h1 class="hero-clean-title">${slide.title}</h1>
+          <p class="hero-clean-sub">${slide.subtitle}</p>
+          <div class="hero-clean-action">
+            <a href="${slide.ctaPrimaryLink || 'panduan.html'}" class="hero-clean-btn">
+              <span>${slide.ctaPrimaryText || 'Lihat Informasi ➔'}</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  // 2. Render Dots Indikator
+  if (dotsContainer) {
+    dotsContainer.innerHTML = slidesData.map((slide, idx) => `
+      <button type="button" class="hero-dot ${idx === 0 ? 'active' : ''}" data-index="${idx}" aria-label="Slide ${idx + 1}: ${slide.title}"></button>
+    `).join('');
+
+    dotsContainer.querySelectorAll('.hero-dot').forEach(dot => {
+      dot.addEventListener('click', () => {
+        const idx = parseInt(dot.getAttribute('data-index'), 10);
+        if (!isNaN(idx)) {
+          goToSlide(idx);
+          resetTimer();
+        }
+      });
+    });
+  }
+
+  function goToSlide(index) {
+    const total = slidesData.length;
+    if (index >= total) index = 0;
+    if (index < 0) index = total - 1;
+    currentHeroBannerIndex = index;
+
+    // Update active slide item
+    const slideItems = viewport.querySelectorAll('.hero-slide-item');
+    slideItems.forEach((item, i) => {
+      item.classList.toggle('active', i === index);
+    });
+
+    // Update active dot
+    if (dotsContainer) {
+      const dots = dotsContainer.querySelectorAll('.hero-dot');
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+      });
+    }
+
+    // Update counter (e.g. 01 / 05)
+    if (counterEl) {
+      const currStr = String(index + 1).padStart(2, '0');
+      const totalStr = String(total).padStart(2, '0');
+      counterEl.innerHTML = `<span class="counter-curr">${currStr}</span> <span class="counter-sep">/</span> <span class="counter-total">${totalStr}</span>`;
+    }
+
+    // Update strip announcement text
+    if (stripNotice && slidesData[index]) {
+      stripNotice.textContent = `${slidesData[index].category} • ${slidesData[index].title}`;
+    }
+  }
+
+  function nextSlide() {
+    goToSlide(currentHeroBannerIndex + 1);
+  }
+
+  function prevSlide() {
+    goToSlide(currentHeroBannerIndex - 1);
+  }
+
+  function resetTimer() {
+    clearInterval(heroBannerTimer);
+    heroBannerTimer = setInterval(nextSlide, HERO_AUTO_SLIDE_DELAY);
+  }
+
+  // Tombol panah
+  if (nextBtn) {
+    nextBtn.onclick = () => {
+      nextSlide();
+      resetTimer();
+    };
+  }
+
+  if (prevBtn) {
+    prevBtn.onclick = () => {
+      prevSlide();
+      resetTimer();
+    };
+  }
+
+  // Jeda saat kursor diarahkan ke slider (Pause on Hover)
+  if (heroSection) {
+    heroSection.onmouseenter = () => clearInterval(heroBannerTimer);
+    heroSection.onmouseleave = () => resetTimer();
+
+    // Dukungan Touch Swipe untuk layar HP
+    let touchStartX = 0;
+    let touchEndX = 0;
+    heroSection.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    heroSection.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      const diff = touchEndX - touchStartX;
+      if (diff < -45) {
+        nextSlide();
+        resetTimer();
+      } else if (diff > 45) {
+        prevSlide();
+        resetTimer();
+      }
+    }, { passive: true });
+  }
+
+  // Mulai slide pertama & autoplay
+  goToSlide(0);
+  resetTimer();
+}
+
+// Fungsi helper agar Admin dapat mengupdate slide secara dinamis
+window.updateHeroSlides = function(newSlidesArray) {
+  if (Array.isArray(newSlidesArray) && newSlidesArray.length > 0) {
+    window.HERO_SLIDES_DATA = newSlidesArray;
+    initHeroBannerSlider();
+  }
+};
+
+// =========================================================
+// 9E. KARTU MENU KATEGORI & FITUR "VIEW MORE" SELURUH DESTINASI
+// =========================================================
+function initCategoryMenuCards() {
+  // Filter pills di search bar (destinasi.html)
+  document.querySelectorAll('.category-pill[data-filter], .filter-pill-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.category-pill[data-filter], .filter-pill-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeCategory = btn.getAttribute('data-filter') || 'all';
+      filterWisata();
+    });
+  });
+}
+
+function initViewMoreFeature() {
+  const btnMore = document.getElementById('btnViewMoreDest');
+  if (!btnMore) return;
+  // Jika berupa tag link <a>, biarkan berpindah halaman ke destinasi.html
+  if (btnMore.tagName.toLowerCase() === 'a') return;
+
+  btnMore.addEventListener('click', () => {
+    isDestinasiExpanded = !isDestinasiExpanded;
+    if (isDestinasiExpanded) {
+      btnMore.innerHTML = `Tampilkan Lebih Sedikit ▴ <span class="view-more-count">(${allWisata.length} Destinasi)</span>`;
+    } else {
+      btnMore.innerHTML = `Tampilkan Seluruh Destinasi (${allWisata.length} Lokasi) ▾`;
+      const destSection = document.getElementById('destinasi');
+      if (destSection) destSection.scrollIntoView({ behavior: 'smooth' });
+    }
+    filterWisata();
+  });
+}
+
 // =========================================================
 // 10. PINTASAN RAHASIA ADMIN (KLIK 3X COPYRIGHT)
 // =========================================================
@@ -1140,6 +1782,1043 @@ function initSecretAdminAccess() {
 }
 
 // =========================================================
+// 10C. SI-PANDU AI ROUTE & TRAVEL ASSISTANT ENGINE (100% FRONTEND)
+// =========================================================
+let currentActiveItinerary = null;
+let currentSwapContext = null;
+
+function initAiRouteAssistant() {
+  const triggerBtn = document.getElementById('aiTriggerBtn');
+  const openPlannerBtn = document.getElementById('btnOpenAiPlanner');
+  const drawerTrigger = document.getElementById('drawerAiTrigger');
+  const modalBackdrop = document.getElementById('aiModalBackdrop');
+  const closeBtn = document.getElementById('aiModalClose');
+  const tabBtnGen = document.getElementById('tabBtnGenerator');
+  const tabBtnChat = document.getElementById('tabBtnChat');
+  const tabGen = document.getElementById('tabGenerator');
+  const tabChat = document.getElementById('tabChat');
+  const plannerForm = document.getElementById('aiPlannerForm');
+  const chatForm = document.getElementById('aiChatForm');
+  const chatInput = document.getElementById('aiChatInput');
+  const chatHistory = document.getElementById('aiChatHistory');
+  const resultContainer = document.getElementById('aiResultContainer');
+  const loadingState = document.getElementById('aiLoadingState');
+  const outputCard = document.getElementById('aiOutputCard');
+
+  if (!modalBackdrop) return;
+
+  function openModal(tab = 'generator') {
+    modalBackdrop.classList.add('open');
+    modalBackdrop.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    switchTab(tab);
+  }
+
+  function closeModal() {
+    modalBackdrop.classList.remove('open');
+    modalBackdrop.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  if (triggerBtn) triggerBtn.addEventListener('click', () => openModal('generator'));
+  if (openPlannerBtn) openPlannerBtn.addEventListener('click', () => openModal('generator'));
+  if (drawerTrigger) drawerTrigger.addEventListener('click', (e) => {
+    e.preventDefault();
+    openModal('generator');
+    const drawer = document.getElementById('navDrawer');
+    if (drawer) drawer.classList.remove('open');
+    const backdrop = document.getElementById('navBackdrop');
+    if (backdrop) backdrop.classList.remove('visible');
+  });
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+
+  // General trigger delegation
+  document.querySelectorAll('[data-ai-trigger]').forEach(btn => {
+    btn.addEventListener('click', () => openModal('generator'));
+  });
+
+  modalBackdrop.addEventListener('click', (e) => {
+    if (e.target === modalBackdrop) closeModal();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modalBackdrop.classList.contains('open')) {
+      closeModal();
+    }
+  });
+
+  // Tab switching
+  function switchTab(mode) {
+    if (mode === 'generator') {
+      if (tabBtnGen) tabBtnGen.classList.add('active');
+      if (tabBtnChat) tabBtnChat.classList.remove('active');
+      if (tabGen) tabGen.style.display = 'block';
+      if (tabChat) tabChat.style.display = 'none';
+    } else {
+      if (tabBtnChat) tabBtnChat.classList.add('active');
+      if (tabBtnGen) tabBtnGen.classList.remove('active');
+      if (tabChat) tabChat.style.display = 'block';
+      if (tabGen) tabGen.style.display = 'none';
+      if (chatInput) chatInput.focus();
+    }
+  }
+
+  if (tabBtnGen) tabBtnGen.addEventListener('click', () => switchTab('generator'));
+  if (tabBtnChat) tabBtnChat.addEventListener('click', () => switchTab('chat'));
+
+  // Budget mode toggles (Per Hari vs Total Trip)
+  let budgetMode = 'per_day';
+  const btnBudgetPerDay = document.getElementById('btnBudgetPerDay');
+  const btnBudgetTotal = document.getElementById('btnBudgetTotal');
+  const budgetUnitLabel = document.getElementById('aiBudgetUnitLabel');
+  const budgetInput = document.getElementById('aiBudgetInput') || document.getElementById('aiSelectedBudget');
+
+  if (btnBudgetPerDay && btnBudgetTotal) {
+    btnBudgetPerDay.addEventListener('click', () => {
+      budgetMode = 'per_day';
+      btnBudgetPerDay.classList.add('active');
+      btnBudgetTotal.classList.remove('active');
+      if (budgetUnitLabel) budgetUnitLabel.textContent = '/ Hari / Orang';
+      if (budgetInput && !budgetInput.value) budgetInput.value = '500000';
+    });
+
+    btnBudgetTotal.addEventListener('click', () => {
+      budgetMode = 'total';
+      btnBudgetTotal.classList.add('active');
+      btnBudgetPerDay.classList.remove('active');
+      if (budgetUnitLabel) budgetUnitLabel.textContent = 'Total Selama di Balut';
+      if (budgetInput && (!budgetInput.value || budgetInput.value === '500000')) budgetInput.value = '1500000';
+    });
+  }
+
+  // Radio button budget mode support
+  document.querySelectorAll('input[name="budgetMode"]').forEach(radio => {
+    radio.addEventListener('change', () => {
+      budgetMode = radio.value;
+      const isPerDay = budgetMode === 'per_day';
+      const valHemat = document.getElementById('presetValHemat') || document.getElementById('presetValBackpacker');
+      const valNyaman = document.getElementById('presetValNyaman');
+      const valSultan = document.getElementById('presetValSultan');
+      if (valHemat) valHemat.textContent = isPerDay ? 'Rp 350.000 / hari' : 'Rp 1.050.000 total';
+      if (valNyaman) valNyaman.textContent = isPerDay ? 'Rp 750.000 / hari' : 'Rp 2.250.000 total';
+      if (valSultan) valSultan.textContent = isPerDay ? 'Rp 1.750.000 / hari' : 'Rp 5.250.000 total';
+    });
+  });
+
+  // Mode toggle buttons support (total vs per person)
+  document.querySelectorAll('.mode-toggle-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      document.querySelectorAll('.mode-toggle-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      budgetMode = btn.getAttribute('data-mode') || 'total';
+    });
+  });
+
+  // Checkbox pills active styling
+  document.querySelectorAll('.checkbox-pill input[type="checkbox"], .interest-chip input[type="checkbox"]').forEach(cb => {
+    cb.addEventListener('change', () => {
+      const parent = cb.closest('.checkbox-pill') || cb.closest('.interest-chip');
+      if (cb.checked) {
+        parent?.classList.add('active');
+        parent?.classList.add('selected');
+      } else {
+        parent?.classList.remove('active');
+        parent?.classList.remove('selected');
+      }
+    });
+  });
+
+  // Budget Presets
+  document.querySelectorAll('.budget-preset-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      document.querySelectorAll('.budget-preset-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const val = btn.getAttribute('data-amount') || btn.getAttribute('data-budget');
+      const targetInput = document.getElementById('aiSelectedBudget') || document.getElementById('aiBudgetInput');
+      if (val && targetInput) {
+        targetInput.value = val;
+      }
+    });
+  });
+
+  // Quick Chat Tags
+  document.querySelectorAll('.quick-tag').forEach(tag => {
+    tag.addEventListener('click', () => {
+      const q = tag.getAttribute('data-query');
+      if (q && chatInput) {
+        chatInput.value = q;
+        submitChatQuery(q);
+      }
+    });
+  });
+
+  // Generator submit
+  if (plannerForm) {
+    plannerForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const start = document.getElementById('aiStartPoint')?.value || 'banggai';
+      const duration = parseInt(document.getElementById('aiDuration')?.value || '2', 10);
+      const traveler = document.getElementById('aiTraveler')?.value || document.getElementById('aiTravelerType')?.value || 'couple';
+      const hotelKey = document.getElementById('aiHotel')?.value || document.getElementById('aiHotelPreference')?.value || 'hotel_kota';
+      
+      let rawBudget = 750000;
+      const bInput = document.getElementById('aiSelectedBudget') || document.getElementById('aiBudgetInput');
+      if (bInput && bInput.value) {
+        rawBudget = parseInt(bInput.value, 10) || 750000;
+      }
+
+      // Multi-select interests with single-select fallback
+      const selectedInterests = [];
+      const selectInterest = document.getElementById('aiInterest')?.value;
+      if (selectInterest) {
+        selectedInterests.push(selectInterest);
+      }
+      document.querySelectorAll('#aiPlannerForm input[name="interest"]:checked, .ai-interest-checkbox:checked').forEach(cb => {
+        if (!selectedInterests.includes(cb.value)) {
+          selectedInterests.push(cb.value);
+        }
+      });
+      if (selectedInterests.length === 0) {
+        selectedInterests.push('bahari');
+      }
+
+      runAiPlanner(start, duration, selectedInterests, traveler, hotelKey, rawBudget, budgetMode);
+    });
+  }
+
+  // Chat submit
+  if (chatForm) {
+    chatForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const query = (chatInput?.value || '').trim();
+      if (!query) return;
+      chatInput.value = '';
+      submitChatQuery(query);
+    });
+  }
+
+  function submitChatQuery(query) {
+    if (!chatHistory) return;
+
+    const userMsg = document.createElement('div');
+    userMsg.className = 'ai-message ai-user';
+    userMsg.innerHTML = `<div class="ai-bubble">${escapeHtml(query)}</div>`;
+    chatHistory.appendChild(userMsg);
+    chatHistory.scrollTop = chatHistory.scrollHeight;
+
+    const botMsg = document.createElement('div');
+    botMsg.className = 'ai-message ai-bot';
+    botMsg.innerHTML = `<div class="ai-bubble"><em>AI sedang menganalisis database kepulauan...</em></div>`;
+    chatHistory.appendChild(botMsg);
+    chatHistory.scrollTop = chatHistory.scrollHeight;
+
+    setTimeout(() => {
+      const answer = generateAiChatAnswer(query);
+      botMsg.innerHTML = `<div class="ai-bubble">${answer}</div>`;
+      chatHistory.scrollTop = chatHistory.scrollHeight;
+    }, 600);
+  }
+
+  function escapeHtml(str) {
+    return String(str).replace(/[&<>"']/g, m => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    })[m]);
+  }
+
+  // ==========================================
+  // SMART ITINERARY GENERATOR KNOWLEDGE LOGIC
+  // ==========================================
+  function runAiPlanner(start, duration, interests, traveler, hotelKey, rawBudget, bMode) {
+    if (!resultContainer || !loadingState || !outputCard) return;
+
+    resultContainer.style.display = 'block';
+    loadingState.style.display = 'flex';
+    outputCard.style.display = 'none';
+
+    // Smooth scroll inside modal dialog to show processing
+    const modalDialog = document.querySelector('.ai-modal-dialog');
+    if (modalDialog) {
+      modalDialog.scrollTo({ top: modalDialog.scrollHeight, behavior: 'smooth' });
+    }
+
+    setTimeout(() => {
+      loadingState.style.display = 'none';
+      outputCard.style.display = 'block';
+
+      currentActiveItinerary = generateItineraryModel(start, duration, interests, traveler, hotelKey, rawBudget, bMode);
+      renderItineraryView();
+
+      if (modalDialog) {
+        modalDialog.scrollTo({ top: resultContainer.offsetTop - 20, behavior: 'smooth' });
+      }
+    }, 600);
+  }
+
+  function generateItineraryModel(start, duration, interests, traveler, hotelKey, rawBudget, bMode) {
+    let hotel = HOTELS_DATA.find(h => h.id === hotelKey) || HOTELS_DATA[0] || {
+      id: "hotel_kota",
+      nama: "Hotel Pusat Kota Banggai",
+      lokasi: "Pelabuhan & Pusat Kota Banggai",
+      lat: -1.5935,
+      lng: 123.5012
+    };
+
+    hotel = {
+      ...hotel,
+      name: hotel.nama || hotel.name || 'Hotel Pusat Kota Banggai',
+      loc: hotel.lokasi || hotel.loc || 'Pusat Kota Banggai'
+    };
+
+    const startName = start === 'luwuk' ? 'Pelabuhan Luwuk' : 
+                      (start === 'bandara' ? 'Bandara Luwuk (Pesawat Transit)' : 
+                      (start === 'bokan' ? 'Desa Mbuang-Mbuang (Kep. Bokan)' : 
+                      (start === 'bobong' ? 'Pelabuhan Bobong (Maluku Utara)' : 'Pelabuhan Banggai (Pusat Kota)')));
+
+    const travelerName = traveler === 'couple' ? 'Pasangan / Honeymoon' : 
+                         (traveler === 'family' ? 'Keluarga & Anak-anak' : 
+                         (traveler === 'solo' ? 'Solo Traveler / Backpacker' : 'Rombongan Teman / Komunitas'));
+
+    const budgetFormatted = bMode === 'per_day'
+      ? `Rp ${rawBudget.toLocaleString('id-ID')} / Hari / Orang (Total: Rp ${(rawBudget * duration).toLocaleString('id-ID')})`
+      : `Rp ${rawBudget.toLocaleString('id-ID')} Total Estimasi Selama di Balut`;
+
+    // Map each day with slot items
+    const days = [];
+    for (let d = 1; d <= duration; d++) {
+      let slots = [];
+
+      if (d === 1) {
+        slots.push({
+          time: '08:00 - 11:30 WITA',
+          type: 'wisata',
+          destId: 1, // Keraton Banggai
+          title: 'Keraton Banggai & Situs Pusaka',
+          category: 'Sejarah & Budaya',
+          desc: 'Mengagumi peninggalan kembar meriam kuno dan singgasana raja Kerajaan Banggai.',
+          img: allWisata.find(w => w.id === 1)?.gambar || 'assets/img/hero-card.jpg',
+          lat: -1.5932,
+          lng: 123.5015
+        });
+
+        slots.push({
+          time: '12:00 - 13:30 WITA',
+          type: 'kuliner',
+          destId: 10, // Sentra Kuliner Pesisir
+          title: 'Santap Siang Sinole & Ikan Bakar Cakalang',
+          category: 'Kuliner Tradisional',
+          desc: 'Olahan sagu sangrai parut kelapa Sinole gurih disantap hangat bersama ikan segar.',
+          img: allWisata.find(w => w.id === 10)?.gambar || 'assets/img/hero-card.jpg',
+          lat: -1.5945,
+          lng: 123.5040
+        });
+
+        slots.push({
+          time: '15:30 - 18:00 WITA',
+          type: 'wisata',
+          destId: 8, // Tanjung Gundul
+          title: 'Pesona Sunset Eksotis Tebing Tanjung Gundul',
+          category: 'Wisata Bahari & Sunset',
+          desc: 'Menyaksikan langit senja keemasan dari atas tanjung batu karang menghadap Laut Maluku.',
+          img: allWisata.find(w => w.id === 8)?.gambar || 'assets/img/hero-card.jpg',
+          lat: -1.6350,
+          lng: 123.4750
+        });
+      } else if (d === 2) {
+        slots.push({
+          time: '08:00 - 12:30 WITA',
+          type: 'wisata',
+          destId: 4, // Danau Ubur-ubur
+          title: 'Berenang Bersama Ribuan Ubur-Ubur Jinak Bokan',
+          category: 'Danau & Geowisata',
+          desc: 'Keajaiban dunia di danau air payau Desa Mbuang-Mbuang bersama ubur-ubur tanpa sengat.',
+          img: allWisata.find(w => w.id === 4)?.gambar || 'assets/img/hero-card.jpg',
+          lat: -1.7850,
+          lng: 123.5950
+        });
+
+        slots.push({
+          time: '13:00 - 14:00 WITA',
+          type: 'kuliner',
+          destId: 11, // Homestay Terapung / Cafe
+          title: 'Santap Seafood Segar Nelayan Mbuang-Mbuang',
+          category: 'Kuliner Laut',
+          desc: 'Cumi bakar madu dan kepiting saus rica segar tangkapan nelayan perahu tradisional.',
+          img: allWisata.find(w => w.id === 11)?.gambar || 'assets/img/hero-card.jpg',
+          lat: -1.7820,
+          lng: 123.5930
+        });
+
+        slots.push({
+          time: '14:30 - 17:00 WITA',
+          type: 'wisata',
+          destId: 5, // Laguna Paisubatu
+          title: 'Snorkeling Karang Alami Laguna Paisubatu',
+          category: 'Wisata Bahari',
+          desc: 'Gradasi toska kristal dan terumbu karang warna-warni yang masih murni terlindungi teluk.',
+          img: allWisata.find(w => w.id === 5)?.gambar || 'assets/img/hero-card.jpg',
+          lat: -1.7650,
+          lng: 123.5850
+        });
+      } else if (d === 3) {
+        slots.push({
+          time: '08:30 - 11:30 WITA',
+          type: 'wisata',
+          destId: 3, // Pasir Timbul Lambangan Pauno
+          title: 'Island Hopping Pasir Timbul Lambangan Pauno',
+          category: 'Wisata Bahari',
+          desc: 'Hamparan pasir putih berkilau di tengah laut dengan perairan dangkal jernih.',
+          img: allWisata.find(w => w.id === 3)?.gambar || 'assets/img/hero-card.jpg',
+          lat: -1.6150,
+          lng: 123.5350
+        });
+
+        slots.push({
+          time: '13:30 - 16:00 WITA',
+          type: 'wisata',
+          destId: 9, // Air Terjun Matube
+          title: 'Segarnya Kolam Hutan Alami Air Terjun Matube',
+          category: 'Geowisata Alam',
+          desc: 'Membasuh tubuh dengan air sejuk pegunungan di bawah rindangnya kanopi hutan tropis.',
+          img: allWisata.find(w => w.id === 9)?.gambar || 'assets/img/hero-card.jpg',
+          lat: -1.6620,
+          lng: 123.5150
+        });
+      } else {
+        slots.push({
+          time: '09:00 - 12:00 WITA',
+          type: 'wisata',
+          destId: 7, // Cagar Makam Raja Banggai
+          title: 'Napak Tilas Cagar Makam Raja & Tradisi Adat',
+          category: 'Sejarah & Budaya',
+          desc: 'Menelusuri sejarah sakral penghormatan leluhur dan ritual adat Malabot Tumbe.',
+          img: allWisata.find(w => w.id === 7)?.gambar || 'assets/img/hero-card.jpg',
+          lat: -1.5970,
+          lng: 123.5040
+        });
+
+        slots.push({
+          time: '13:00 - 16:00 WITA',
+          type: 'kuliner',
+          destId: 10,
+          title: 'Belanja Oleh-Oleh Ikan Asin Kering Balut & Kue Tetu',
+          category: 'Belanja & Kuliner',
+          desc: 'Membawa cenderamata kuliner otentik sebelum jadwal pelayaran kapal kembali ke Luwuk.',
+          img: allWisata.find(w => w.id === 10)?.gambar || 'assets/img/hero-card.jpg',
+          lat: -1.5945,
+          lng: 123.5040
+        });
+      }
+
+      // Calculate distance for each slot from selected hotel
+      slots.forEach(slot => {
+        const distKm = calculateDistance(hotel.lat, hotel.lng, slot.lat, slot.lng);
+        slot.distanceFromHotelKm = parseFloat(distKm.toFixed(1));
+        // Estimasi waktu: 30 km/h untuk perahu / mobil
+        const estMin = Math.max(8, Math.round((distKm / 30) * 60));
+        slot.estTimeMin = estMin;
+      });
+
+      days.push({ dayNumber: d, slots });
+    }
+
+    return {
+      startName,
+      duration,
+      interests,
+      travelerName,
+      hotel,
+      budgetFormatted,
+      days
+    };
+  }
+
+  function renderItineraryView() {
+    if (!currentActiveItinerary || !outputCard) return;
+
+    const data = currentActiveItinerary;
+    const hotel = data.hotel;
+
+    // Build Days HTML
+    const daysHtml = data.days.map((dayObj, dayIdx) => {
+      const slotsHtml = dayObj.slots.map((slot, slotIdx) => `
+        <div class="ai-timeline-node">
+          <div class="ai-node-time">${slot.time}</div>
+          <div class="ai-node-card">
+            <div class="ai-node-img-wrap">
+              <img src="${slot.img}" alt="${slot.title}" loading="lazy">
+              <span class="ai-node-cat">${slot.category}</span>
+            </div>
+            <div class="ai-node-content">
+              <div class="ai-node-header">
+                <h4 class="ai-node-title">${slot.title}</h4>
+                <div class="ai-dist-badge" title="Jarak dihitung dari penginapan Anda: ${hotel.name}">
+                  📏 Jarak dari Hotel: <strong>${slot.distanceFromHotelKm} km</strong> (~${slot.estTimeMin} mnt)
+                </div>
+              </div>
+              <p class="ai-node-desc">${slot.desc}</p>
+              
+              <div class="ai-node-actions">
+                <button type="button" class="btn-swap-recom" onclick="openSwapAlternativeModal(${dayIdx}, ${slotIdx})">
+                  🔄 Ganti Rekomendasi
+                </button>
+                <button type="button" class="btn-quick-view-link" onclick="showQuickDetail(${slot.destId})">
+                  🔍 Lihat Foto & HTM
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      `).join('');
+
+      return `
+        <div class="ai-day-group">
+          <div class="ai-day-header">
+            <span class="ai-day-num">HARI ${dayObj.dayNumber}</span>
+            <span class="ai-day-subtitle">Eksplorasi Rute Terpadu Kepulauan Banggai</span>
+          </div>
+          <div class="ai-day-nodes-list">
+            ${slotsHtml}
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    outputCard.innerHTML = `
+      <div class="ai-itinerary-header">
+        <div class="ai-header-top">
+          <span class="ai-plan-badge">✨ REKOMENDASI TERVERIFIKASI DISPARBUD</span>
+          <span class="ai-plan-id">ID: BALUT-${Date.now().toString().slice(-4)}</span>
+        </div>
+        <h3 class="ai-plan-main-title">Rute Wisata Terpadu Banggai Laut (${data.duration} Hari)</h3>
+        
+        <div class="ai-summary-grid">
+          <div class="ai-sum-box">
+            <span class="sum-label">🏨 Penginapan Basis</span>
+            <span class="sum-val">${hotel.name}</span>
+            <span class="sum-sub">${hotel.loc}</span>
+          </div>
+          <div class="ai-sum-box">
+            <span class="sum-label">📍 Titik Awal Keberangkatan</span>
+            <span class="sum-val">${data.startName}</span>
+          </div>
+          <div class="ai-sum-box">
+            <span class="sum-label">👥 Teman Perjalanan</span>
+            <span class="sum-val">${data.travelerName}</span>
+          </div>
+          <div class="ai-sum-box">
+            <span class="sum-label">💰 Rencana Budget</span>
+            <span class="sum-val">${data.budgetFormatted}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- VISUAL INTERACTIVE REALISTIC ROUTE MAP -->
+      <div class="ai-map-wrapper">
+        <div class="ai-map-header">
+          <div>
+            <h4 class="ai-map-title">🗺️ Visualisasi Peta Satelit Realistis & Jalur Rute</h4>
+            <p class="ai-map-sub">Citra satelit asli kepulauan Banggai Laut menampilkan koordinat nyata hotel basis, rute pelayaran maritim, dan destinasi wisata terpadu.</p>
+          </div>
+          <div class="ai-map-layer-controls">
+            <button type="button" class="map-layer-btn active" id="btnLayerSat">🛰️ Satelit Asli</button>
+            <button type="button" class="map-layer-btn" id="btnLayerDark">🌑 Navigasi Gelap</button>
+            <button type="button" class="map-layer-btn" id="btnLayerReset">🎯 Pusatkan Rute</button>
+          </div>
+        </div>
+        <div class="ai-map-viewport" id="aiLeafletMap"></div>
+        <div class="ai-map-legend">
+          <span class="legend-item"><span class="legend-color hotel-dot"></span> 🏨 Hotel Basis Anda</span>
+          <span class="legend-item"><span class="legend-color dest-dot"></span> 📍 Titik Destinasi & Kuliner</span>
+          <span class="legend-item"><span class="legend-color route-dash"></span> 〰️ Jalur Pelayaran / Darat</span>
+          <span class="legend-item tip-zoom">💡 Klik pin untuk detail lengkap atau scroll untuk zoom in/out</span>
+        </div>
+      </div>
+
+      <!-- TIMELINE REKOMENDASI -->
+      <div class="ai-timeline-stream">
+        ${daysHtml}
+      </div>
+
+      <!-- TIPS LOGISTIK & AKSI -->
+      <div class="ai-itinerary-footer">
+        <div class="ai-logistics-box">
+          <h5>💡 Panduan Logistik Si-PANDU:</h5>
+          <ul>
+            <li><strong>Transportasi Laut:</strong> Untuk kunjungan ke Danau Ubur-Ubur (Bokan), gunakan perahu kayu pagi pukul 08:00 dari Pelabuhan Banggai atau sewa perahu charter di Dermaga Monsongan.</li>
+            <li><strong>Uang Tunai:</strong> Wajib membawa uang tunai secukupnya, mesin ATM hanya tersedia di pusat kota Pulau Banggai.</li>
+            <li><strong>Konservasi:</strong> Jangan memakai tabir surya kimia beracun saat berenang di Danau Ubur-Ubur. Gunakan tabir surya ramah terumbu (reef-safe).</li>
+          </ul>
+        </div>
+
+        <div class="ai-footer-buttons">
+          <button type="button" class="ai-btn-wa-share" id="btnShareWaItinerary">
+            📲 Bagikan Rute ke WhatsApp
+          </button>
+          <button type="button" class="ai-btn-copy" id="btnCopyRawItinerary">
+            📋 Salin Teks Rute
+          </button>
+          <button type="button" class="ai-btn-replan" id="btnReplanAi">
+            🔄 Atur Ulang Pilihan
+          </button>
+        </div>
+      </div>
+    `;
+
+    // Inisialisasi peta Leaflet satelit realistis
+    setTimeout(() => {
+      initLeafletRouteMap(hotel, data.days);
+    }, 60);
+
+    // Pasang listener tombol aksi
+    const btnWa = document.getElementById('btnShareWaItinerary');
+    if (btnWa) {
+      btnWa.addEventListener('click', () => {
+        const text = buildWhatsAppItineraryText(data);
+        window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank');
+      });
+    }
+
+    const btnCopy = document.getElementById('btnCopyRawItinerary');
+    if (btnCopy) {
+      btnCopy.addEventListener('click', () => {
+        const text = buildWhatsAppItineraryText(data);
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(text).then(() => {
+            showToast('Seluruh jadwal rute berhasil disalin!');
+          });
+        }
+      });
+    }
+
+    const btnReplan = document.getElementById('btnReplanAi');
+    if (btnReplan) {
+      btnReplan.addEventListener('click', () => {
+        resultContainer.style.display = 'none';
+        plannerForm.scrollIntoView({ behavior: 'smooth' });
+      });
+    }
+  }
+
+  // Interactive Realistic Satellite Leaflet Map Engine
+  let activeLeafletMapInstance = null;
+
+  function initLeafletRouteMap(hotel, days) {
+    const mapEl = document.getElementById('aiLeafletMap');
+    if (!mapEl) return;
+
+    if (typeof window.L === 'undefined') {
+      console.warn('Leaflet library is not loaded');
+      mapEl.innerHTML = '<div style="padding: 40px; text-align: center; color: #94a3b8;">Memuat modul peta satelit...</div>';
+      return;
+    }
+
+    // Bersihkan instance map lama jika ada agar tidak double init
+    if (activeLeafletMapInstance) {
+      try {
+        activeLeafletMapInstance.remove();
+      } catch (e) {
+        console.error(e);
+      }
+      activeLeafletMapInstance = null;
+    }
+
+    const hotelLat = hotel.lat || -1.5935;
+    const hotelLng = hotel.lng || 123.5012;
+
+    // Inisialisasi Map
+    const map = L.map(mapEl, {
+      center: [hotelLat, hotelLng],
+      zoom: 11,
+      minZoom: 8,
+      maxZoom: 18,
+      zoomControl: true,
+      scrollWheelZoom: true
+    });
+    activeLeafletMapInstance = map;
+
+    // Tile Layers:
+    // 1. Esri World Imagery (High-Res Realistic Satellite Banggai Laut)
+    const satLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+      attribution: '&copy; Esri &mdash; Citra Satelit Banggai Laut',
+      maxZoom: 18
+    });
+
+    // 2. CartoDB Dark (Sleek Dark Mode Navigation)
+    const darkLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; OpenStreetMap &copy; CartoDB',
+      subdomains: 'abcd',
+      maxZoom: 19
+    });
+
+    // Pasang satelit sebagai default
+    satLayer.addTo(map);
+
+    // Kumpulkan seluruh titik koordinat rute
+    const routeCoords = [];
+    const allBounds = L.latLngBounds();
+
+    // 1. Hotel Marker
+    const hotelLatLng = [hotelLat, hotelLng];
+    routeCoords.push(hotelLatLng);
+    allBounds.extend(hotelLatLng);
+
+    const hotelIcon = L.divIcon({
+      className: 'leaflet-custom-div-icon',
+      html: `
+        <div class="leaflet-hotel-pin" title="${escapeHtml(hotel.name)}">
+          <div class="pin-hotel-pulse"></div>
+          <div class="pin-hotel-body">
+            <span class="hotel-icon">🏨</span>
+            <span class="hotel-label">${escapeHtml(hotel.name)}</span>
+          </div>
+        </div>
+      `,
+      iconSize: [180, 36],
+      iconAnchor: [90, 18]
+    });
+
+    const hotelPopupHtml = `
+      <div class="leaflet-map-popup">
+        <div class="popup-img-wrap">
+          <img src="${hotel.gambar || 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600'}" alt="${escapeHtml(hotel.name)}">
+          <span class="popup-cat-badge">🏨 BASIS PENGINAPAN</span>
+        </div>
+        <div class="popup-body">
+          <span class="popup-badge gold">HOTEL PILIHAN ANDA</span>
+          <h4 class="popup-title">${escapeHtml(hotel.name)}</h4>
+          <p class="popup-loc">📍 ${escapeHtml(hotel.lokasi || hotel.loc || 'Banggai Laut')}</p>
+          <p class="popup-desc">${escapeHtml(hotel.deskripsi || 'Titik awal dan akhir keberangkatan harian Anda.')}</p>
+          <div style="font-size:0.75rem; color:#fde68a; font-weight:700; margin-top:4px;">💰 ${escapeHtml(hotel.harga || '')}</div>
+        </div>
+      </div>
+    `;
+
+    L.marker(hotelLatLng, { icon: hotelIcon, zIndexOffset: 1000 })
+      .addTo(map)
+      .bindPopup(hotelPopupHtml, { maxWidth: 280, className: 'leaflet-custom-popup' });
+
+    // 2. Destinasi Stops Pins
+    let stopCounter = 1;
+    days.forEach(day => {
+      day.slots.forEach(slot => {
+        const slotLat = slot.lat || -1.594;
+        const slotLng = slot.lng || 123.501;
+        const slotLatLng = [slotLat, slotLng];
+        routeCoords.push(slotLatLng);
+        allBounds.extend(slotLatLng);
+
+        const isCulinary = slot.type === 'kuliner' || (slot.category && slot.category.toLowerCase().includes('kuliner'));
+        const shortTitle = slot.title.length > 20 ? slot.title.substring(0, 18) + '...' : slot.title;
+
+        const stopIcon = L.divIcon({
+          className: 'leaflet-custom-div-icon',
+          html: `
+            <div class="leaflet-stop-pin ${isCulinary ? 'culinary' : ''}" title="${escapeHtml(slot.title)}">
+              <span class="stop-num">${stopCounter}</span>
+              <span class="stop-label">${escapeHtml(shortTitle)}</span>
+            </div>
+          `,
+          iconSize: [160, 32],
+          iconAnchor: [16, 16]
+        });
+
+        const stopPopupHtml = `
+          <div class="leaflet-map-popup">
+            <div class="popup-img-wrap">
+              <img src="${slot.img}" alt="${escapeHtml(slot.title)}">
+              <span class="popup-cat-badge">${escapeHtml(slot.category || 'Wisata')}</span>
+            </div>
+            <div class="popup-body">
+              <span class="popup-time">⏰ ${slot.time} • Stop #${stopCounter}</span>
+              <h4 class="popup-title">${escapeHtml(slot.title)}</h4>
+              <p class="popup-dist">📏 <strong>${slot.distanceFromHotelKm} km</strong> dari hotel (~${slot.estTimeMin} menit perjalanan)</p>
+              <p class="popup-desc">${escapeHtml(slot.desc)}</p>
+              <button type="button" class="btn-popup-quick" onclick="showQuickDetail(${slot.destId})" style="width:100%; margin-top:8px; padding:7px; background:linear-gradient(135deg, #0284c7 0%, #0369a1 100%); border:none; border-radius:8px; color:#fff; font-size:0.75rem; font-weight:800; cursor:pointer;">
+                🔍 Lihat Foto & HTM Lengkap
+              </button>
+            </div>
+          </div>
+        `;
+
+        L.marker(slotLatLng, { icon: stopIcon, zIndexOffset: 500 + stopCounter })
+          .addTo(map)
+          .bindPopup(stopPopupHtml, { maxWidth: 280, className: 'leaflet-custom-popup' });
+
+        stopCounter++;
+      });
+    });
+
+    // 3. Garis Rute Pelayaran & Transportasi Terhubung (Glowing Maritime Route)
+    if (routeCoords.length > 1) {
+      // Outer glow
+      L.polyline(routeCoords, {
+        color: '#0284c7',
+        weight: 6,
+        opacity: 0.45,
+        lineCap: 'round',
+        lineJoin: 'round'
+      }).addTo(map);
+
+      // Core animated dashed line
+      L.polyline(routeCoords, {
+        color: '#38bdf8',
+        weight: 2.8,
+        opacity: 0.95,
+        dashArray: '8, 8',
+        lineCap: 'round',
+        lineJoin: 'round'
+      }).addTo(map);
+    }
+
+    // 4. Auto-Fit Bounds
+    if (allBounds.isValid()) {
+      map.fitBounds(allBounds, {
+        padding: [50, 50],
+        maxZoom: 13
+      });
+    }
+
+    // Layer Switcher Buttons
+    const btnSat = document.getElementById('btnLayerSat');
+    const btnDark = document.getElementById('btnLayerDark');
+    const btnReset = document.getElementById('btnLayerReset');
+
+    if (btnSat && btnDark) {
+      btnSat.onclick = () => {
+        if (!map.hasLayer(satLayer)) {
+          map.removeLayer(darkLayer);
+          map.addLayer(satLayer);
+          btnSat.classList.add('active');
+          btnDark.classList.remove('active');
+        }
+      };
+
+      btnDark.onclick = () => {
+        if (!map.hasLayer(darkLayer)) {
+          map.removeLayer(satLayer);
+          map.addLayer(darkLayer);
+          btnDark.classList.add('active');
+          btnSat.classList.remove('active');
+        }
+      };
+    }
+
+    if (btnReset && allBounds.isValid()) {
+      btnReset.onclick = () => {
+        map.fitBounds(allBounds, {
+          padding: [50, 50],
+          maxZoom: 13
+        });
+      };
+    }
+
+    // Invalidate size agar responsif dan tidak terpotong dalam modal
+    setTimeout(() => { map.invalidateSize(); }, 200);
+    setTimeout(() => { map.invalidateSize(); }, 500);
+  }
+
+  // Format Pesan WhatsApp Terstruktur
+  function buildWhatsAppItineraryText(data) {
+    let msg = `✨ *RENCANA PERJALANAN BANGGAI LAUT* ✨\n`;
+    msg += `_Disusun oleh Si-PANDU AI Trip Planner_\n`;
+    msg += `--------------------------------------\n`;
+    msg += `⏳ *Durasi:* ${data.duration} Hari\n`;
+    msg += `🏨 *Hotel Basis:* ${data.hotel.name} (${data.hotel.loc})\n`;
+    msg += `📍 *Titik Berangkat:* ${data.startName}\n`;
+    msg += `👥 *Teman Perjalanan:* ${data.travelerName}\n`;
+    msg += `💰 *Budget:* ${data.budgetFormatted}\n\n`;
+
+    data.days.forEach(d => {
+      msg += `📅 *HARI ${d.dayNumber}*\n`;
+      d.slots.forEach(s => {
+        msg += `• [${s.time}] *${s.title}*\n  📍 Jarak dari hotel: ${s.distanceFromHotelKm} km (~${s.estTimeMin} menit)\n`;
+      });
+      msg += `\n`;
+    });
+
+    msg += `💡 *Tips:* Sediakan uang tunai cukup & gunakan tabir surya ramah terumbu karang.\n`;
+    msg += `Info lengkap: https://si-pandu.banggailautkab.go.id/`;
+    return msg;
+  }
+
+  // Modal Swap Alternatif
+  window.openSwapAlternativeModal = function(dayIdx, slotIdx) {
+    if (!currentActiveItinerary) return;
+    const day = currentActiveItinerary.days[dayIdx];
+    if (!day) return;
+    const curSlot = day.slots[slotIdx];
+    if (!curSlot) return;
+
+    currentSwapContext = { dayIdx, slotIdx, curSlot };
+
+    const modal = document.getElementById('aiSwapModal');
+    const listEl = document.getElementById('aiSwapOptionsList') || document.getElementById('aiSwapList');
+    const curTitleEl = document.getElementById('swapCurrentTitle');
+
+    if (curTitleEl) curTitleEl.textContent = curSlot.title;
+
+    // Filter destinasi alternatif (kecualikan yang sedang aktif)
+    const hotel = currentActiveItinerary.hotel;
+    const alternatives = allWisata.filter(w => w.id !== curSlot.destId);
+
+    if (listEl) {
+      listEl.innerHTML = alternatives.map(alt => {
+        const distKm = parseFloat(calculateDistance(hotel.lat, hotel.lng, alt.lat || -1.594, alt.lng || 123.501).toFixed(1));
+        const estMin = Math.max(8, Math.round((distKm / 30) * 60));
+
+        return `
+          <div class="swap-option-card">
+            <img src="${alt.gambar}" alt="${alt.nama_tempat}" class="swap-option-img" loading="lazy">
+            <div class="swap-option-info">
+              <span class="swap-option-cat">${alt.nama_kategori}</span>
+              <h4 class="swap-option-title">${alt.nama_tempat}</h4>
+              <p class="swap-option-desc">${alt.deskripsi_id ? alt.deskripsi_id.substring(0, 95) + '...' : ''}</p>
+              <div class="swap-option-meta">
+                <span>📍 ${alt.lokasi}</span>
+                <span>📏 ${distKm} km dari hotel (~${estMin} mnt)</span>
+                <span>🎟️ ${alt.htm || 'Gratis'}</span>
+              </div>
+            </div>
+            <button type="button" class="btn-select-swap" onclick="applySwapChoice(${alt.id})">
+              Pilih Ini ✓
+            </button>
+          </div>
+        `;
+      }).join('');
+    }
+
+    if (modal) {
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+  };
+
+  window.applySwapChoice = function(newWisataId) {
+    if (!currentSwapContext || !currentActiveItinerary) return;
+    const { dayIdx, slotIdx } = currentSwapContext;
+    const newWisata = allWisata.find(w => w.id === newWisataId);
+    if (!newWisata) return;
+
+    const hotel = currentActiveItinerary.hotel;
+    const distKm = parseFloat(calculateDistance(hotel.lat, hotel.lng, newWisata.lat || -1.594, newWisata.lng || 123.501).toFixed(1));
+    const estMin = Math.max(8, Math.round((distKm / 30) * 60));
+
+    // Update slot
+    const slot = currentActiveItinerary.days[dayIdx].slots[slotIdx];
+    slot.destId = newWisata.id;
+    slot.title = newWisata.nama_tempat;
+    slot.category = newWisata.nama_kategori;
+    slot.desc = newWisata.deskripsi_id;
+    slot.img = newWisata.gambar;
+    slot.lat = newWisata.lat || -1.594;
+    slot.lng = newWisata.lng || 123.501;
+    slot.distanceFromHotelKm = distKm;
+    slot.estTimeMin = estMin;
+
+    // Tutup modal swap
+    const modal = document.getElementById('aiSwapModal');
+    if (modal) {
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    showToast(`Rekomendasi diubah menjadi "${newWisata.nama_tempat}"`);
+
+    // Render ulang timeline dan peta
+    renderItineraryView();
+  };
+
+  // Close swap modal handlers
+  const closeSwapBtn = document.getElementById('aiSwapModalClose') || document.getElementById('aiSwapClose');
+  const swapModal = document.getElementById('aiSwapModal');
+  if (closeSwapBtn && swapModal) {
+    closeSwapBtn.addEventListener('click', () => {
+      swapModal.classList.remove('open');
+      swapModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    });
+    swapModal.addEventListener('click', (e) => {
+      if (e.target === swapModal) {
+        swapModal.classList.remove('open');
+        swapModal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+    });
+  }
+
+  // ==========================================
+  // NATURAL LANGUAGE CHAT KNOWLEDGE ENGINE
+  // ==========================================
+  function generateAiChatAnswer(query) {
+    const q = query.toLowerCase();
+
+    if (q.includes('ubur') || q.includes('mbuang') || q.includes('danau')) {
+      return `
+        <strong>🏖️ Rute Menuju Danau Ubur-Ubur Mbuang-Mbuang:</strong><br>
+        1. Dari <strong>Pelabuhan Luwuk</strong>, naik kapal malam (KM. Fungka Permata) pukul 20:00 WITA menuju Pelabuhan Banggai (tiba ~05:00 WITA, tiket Rp 70.000).<br>
+        2. Dari <strong>Pelabuhan Banggai</strong>, lanjutkan pelayaran ke Kepulauan Bokan (Desa Mbuang-Mbuang) menggunakan:<br>
+        • <em>Kapal Kayu Reguler</em>: Rp 45.000 / orang (waktu tempuh 2.5 - 3 jam).<br>
+        • <em>Speedboat Charter</em>: Sekitar Rp 900.000 - Rp 1.500.000 / rombongan (waktu tempuh 50 menit).<br>
+        3. Danau ini adalah habitat <strong>ubur-ubur tanpa sengat</strong> (Golden & Moon Jellyfish) yang sangat langka di dunia!
+      `;
+    }
+
+    if (q.includes('jadwal') || q.includes('kapal') || q.includes('fungka') || q.includes('barcelona') || q.includes('tiket')) {
+      return `
+        <strong>⛴️ Ringkasan Jadwal Pelayaran Utama Banggai Laut:</strong><br>
+        • <strong>KM. Fungka Permata (Luwuk ➔ Banggai)</strong>: Beroperasi reguler setiap malam pukul 20:00 WITA, tiba pukul 05:00 WITA. Tiket: ~Rp 70.000 - Rp 95.000.<br>
+        • <strong>KM. Cepat Express Bahari (Luwuk ➔ Banggai)</strong>: Pagi pukul 09:00 WITA (3 Jam perjalanan). Tiket Rp 180.000.<br>
+        • <strong>Kapal Penyeberangan Bokan / Labobo</strong>: Berangkat pagi pukul 08:30 WITA dari Pelabuhan Banggai.<br>
+        <em>Tip: Anda bisa melihat daftar jadwal lengkap & jam operasional pada menu <a href="panduan.html" style="color:#f59e0b; font-weight:bold;">Jadwal Kapal & Panduan</a>.</em>
+      `;
+    }
+
+    if (q.includes('hotel') || q.includes('penginapan') || q.includes('homestay') || q.includes('tidur')) {
+      return `
+        <strong>🏨 Rekomendasi Akomodasi di Banggai Laut:</strong><br>
+        1. <strong>Mbuang-Mbuang Overwater Homestay</strong>: Pondok panggung tradisional di atas air laut jernih toska di Kepulauan Bokan. Cocok untuk menikmati sunrise kepulauan (Rp 250.000 - 450.000/malam).<br>
+        2. <strong>Hotel & Wisma Pusat Kota Banggai</strong>: Tersedia beberapa penginapan nyaman berjarak 5 menit dari Pelabuhan Banggai dan Keraton (Rp 150.000 - 300.000/malam).
+      `;
+    }
+
+    if (q.includes('kuliner') || q.includes('makan') || q.includes('ikan') || q.includes('sinole') || q.includes('tetu')) {
+      return `
+        <strong>🍽️ Kuliner Wajib Khas Banggai Laut:</strong><br>
+        • <strong>Sinole</strong>: Olahan sagu sangrai parut kelapa gurih, pendamping sempurna ikan kuah asam segar.<br>
+        • <strong>Ikan Cakalang Bakar Sambal Dabu-Dabu</strong>: Hasil tangkapan segar nelayan Banggai yang dibakar dengan bumbu rempah lokal.<br>
+        • <strong>Kue Tetu</strong>: Kue perahu pandan dengan gula aren meleleh, teman santai minum kopi khas Banggai.
+      `;
+    }
+
+    if (q.includes('budget') || q.includes('biaya') || q.includes('hemat') || q.includes('ongkos')) {
+      return `
+        <strong>💰 Estimasi Budget Liburan di Banggai Laut:</strong><br>
+        • <strong>Trip Backpacker 2D1N</strong>: Sekitar Rp 450.000 - Rp 650.000 / orang.<br>
+        • <strong>Trip Island Hopping 3D2N</strong>: Sekitar Rp 900.000 - Rp 1.500.000 / orang (Termasuk sewa perahu ke Bokan, Danau Ubur-Ubur, dan homestay terapung).
+      `;
+    }
+
+    if (q.includes('sejarah') || q.includes('keraton') || q.includes('budaya') || q.includes('makam') || q.includes('tumbe')) {
+      return `
+        <strong>🏛️ Warisan Sejarah & Budaya Kerajaan Banggai:</strong><br>
+        • <strong>Keraton Banggai</strong>: Bangunan kayu megah abad lampau yang memuat singgasana raja dan pusaka kerajaan.<br>
+        • <strong>Upacara Malabot Tumbe</strong>: Ritual sakral penghantaran telur burung maleo oleh masyarakat adat Batui ke Keraton Banggai.<br>
+        • <strong>Makam Raja-Raja</strong>: Kompleks cagar budaya spiritual di Lompio yang sakral dan penuh nilai historis.
+      `;
+    }
+
+    return `
+      Terima kasih atas pertanyaannya! Di <strong>Banggai Laut</strong>, Anda bisa menjelajahi keajaiban maritim dunia seperti <strong>Danau Ubur-Ubur Mbuang-Mbuang</strong>, laguna jernih <strong>Paisubatu</strong>, sunset <strong>Tanjung Gundul</strong>, dan cagar sejarah <strong>Keraton Banggai</strong>.<br><br>
+      Untuk rute terpadu otomatis sesuai preferensi Anda, Anda bisa mencoba tab <strong>"🧭 Susun Rute Cepat"</strong> di atas, dan AI akan otomatis menghitung jarak dari hotel dan menampilkan peta visual interaktif!
+    `;
+  }
+}
+
+// =========================================================
 // 11. BOOTSTRAP INISIALISASI HALAMAN
 // =========================================================
 document.addEventListener('DOMContentLoaded', () => {
@@ -1148,72 +2827,53 @@ document.addEventListener('DOMContentLoaded', () => {
   initMobileNav();
   initScrollEffects();
   initSecretAdminAccess();
+  initBalutLiveClock();
+  initHeroBannerSlider();
+  initCategoryMenuCards();
+  initViewMoreFeature();
+  initQuickDetailModal();
+  initAiRouteAssistant();
 
-  // 2. Inisialisasi Hero Slider (Halaman Beranda)
-  initHeroSlider();
+  // 2. Inisialisasi Papan Jadwal Kapal di Beranda
+  initHomeShipsBoard();
 
-  // 3. Inisialisasi Katalog Wisata & Filter (Halaman Beranda)
+  // 3A. Inisialisasi Kartu Destinasi Beranda (1 Baris Saja / Paging ‹ ›)
+  if (document.getElementById('homeDestinasiGrid')) {
+    renderHomeDestinasiCards();
+    initHomeDestinasiNav();
+  }
+
+  // 3B. Inisialisasi Katalog Destinasi Lengkap & Filter (destinasi.html)
   if (document.getElementById('destinasiGrid')) {
     renderWisataCards(allWisata);
 
-    // Filter Kategori (Floating Quickbar)
-    document.querySelectorAll('.qb-item').forEach(item => {
-      item.addEventListener('click', () => {
-        document.querySelectorAll('.qb-item').forEach(c => c.classList.remove('active'));
-        item.classList.add('active');
-        activeCategory = item.getAttribute('data-filter') || 'all';
-        filterWisata();
-
-        // Scroll halus ke katalog di layar HP
-        if (window.innerWidth <= 900) {
-          const destSec = document.getElementById('destinasi');
-          if (destSec) {
-            destSec.scrollIntoView({ behavior: 'smooth' });
-          }
-        }
-      });
-    });
-
     // Live Search
     const searchInput = document.getElementById('searchInput');
-    const heroSearchForm = document.getElementById('heroSearchForm');
-
     if (searchInput) {
       searchInput.addEventListener('input', filterWisata);
     }
 
-    if (heroSearchForm) {
-      heroSearchForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        filterWisata();
-        const destSec = document.getElementById('destinasi');
-        if (destSec) {
-          destSec.scrollIntoView({ behavior: 'smooth' });
-        }
-      });
-    }
-
     // Fitur Terdekat
     initNearbyFeature();
-
-    // Fetch API backend jika tersedia (graceful fallback ke allWisata)
-    fetch('http://localhost:3000/api/wisata')
-      .then(res => res.json())
-      .then(result => {
-        if (result.status === 'success' && Array.isArray(result.data) && result.data.length > 0) {
-          // Merge data backend dengan data lokal agar gambar dan highlights tetap kaya
-          const apiMap = new Map(result.data.map(d => [d.id, d]));
-          allWisata = allWisata.map(local => {
-            const apiItem = apiMap.get(local.id);
-            return apiItem ? { ...local, ...apiItem } : local;
-          });
-          filterWisata();
-        }
-      })
-      .catch(() => {
-        // Backend offline -> defaultWisataData tetap berjalan sempurna
-      });
   }
+
+  // Fetch API backend jika tersedia (graceful fallback ke allWisata)
+  fetch('http://localhost:3000/api/wisata')
+    .then(res => res.json())
+    .then(result => {
+      if (result.status === 'success' && Array.isArray(result.data) && result.data.length > 0) {
+        const apiMap = new Map(result.data.map(d => [d.id, d]));
+        allWisata = allWisata.map(local => {
+          const apiItem = apiMap.get(local.id);
+          return apiItem ? { ...local, ...apiItem } : local;
+        });
+        if (document.getElementById('homeDestinasiGrid')) renderHomeDestinasiCards();
+        if (document.getElementById('destinasiGrid')) filterWisata();
+      }
+    })
+    .catch(() => {
+      // Backend offline -> defaultWisataData tetap berjalan sempurna
+    });
 
   // 4. Inisialisasi Jadwal Kapal & Panduan (panduan.html)
   if (document.getElementById('transportasiGrid')) {
