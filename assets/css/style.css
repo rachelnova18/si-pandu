@@ -584,7 +584,7 @@ body {
 .hero-banner-slider-section {
   position: relative;
   width: 100%;
-  min-height: clamp(700px, 84vh, 860px);
+  min-height: clamp(780px, 92vh, 960px);
   background: var(--pine-darkest);
   overflow: hidden;
   display: flex;
@@ -650,17 +650,17 @@ body {
   max-width: 1320px;
   width: 100%;
   margin: 0 auto;
-  padding: 140px 80px 115px;
+  padding: 130px 80px 145px;
   display: flex;
   align-items: center;
   min-height: 100%;
 }
 
 .hero-slide-content {
-  max-width: 880px;
+  max-width: 960px;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 14px;
 }
 
 /* Tag Minimalis Elegan */
@@ -717,13 +717,13 @@ body {
 .hero-clean-title,
 .hero-poster-title {
   font-family: var(--font-editorial);
-  font-size: clamp(2rem, 3.5vw, 3.3rem);
+  font-size: clamp(1.9rem, 3.2vw, 2.9rem);
   font-weight: 700;
   color: #ffffff;
   line-height: 1.22;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
   text-shadow: 0 4px 24px rgba(0, 0, 0, 0.85);
-  margin: 4px 0 8px;
+  margin: 6px 0 10px;
   text-wrap: balance;
   word-break: normal;
   overflow-wrap: break-word;
@@ -733,13 +733,13 @@ body {
 .hero-clean-sub,
 .hero-poster-sub {
   font-family: var(--font-body);
-  font-size: clamp(1rem, 1.25vw, 1.15rem);
+  font-size: clamp(0.96rem, 1.15vw, 1.1rem);
   font-weight: 400;
   color: rgba(255, 255, 255, 0.94);
   line-height: 1.6;
-  max-width: 760px;
+  max-width: 820px;
   text-shadow: 0 2px 14px rgba(0, 0, 0, 0.85);
-  margin-bottom: 12px;
+  margin-bottom: 18px;
 }
 
 /* Tombol Aksi Kotak Outline Minimalis (Persis [Выбрать тур] di Gambar Referensi) */
@@ -860,15 +860,15 @@ body {
 /* Kontrol Bawah: Dots & Counter Kompak Bersih */
 .hero-slider-bottom-controls {
   position: absolute;
-  bottom: 26px;
+  bottom: 32px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 30;
   display: flex;
   align-items: center;
   gap: 14px;
-  background: rgba(17, 38, 33, 0.8);
-  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  background: rgba(17, 38, 33, 0.85);
+  border: 1.5px solid rgba(255, 255, 255, 0.22);
   padding: 7px 18px;
   border-radius: 9999px;
   backdrop-filter: blur(12px);
@@ -1514,126 +1514,7 @@ body {
   line-height: 1.55;
 }
 
-/* =====================================================
-   KARELIA SUNSET WHY-US FEATURE SECTION (4 FROSTED GLASS CARDS)
-   Persis Sesuai Mockup Sunset Danau/Pulau dengan 4 Kotak Transparan
-   ===================================================== */
-.karelia-why-section {
-  position: relative;
-  background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1920&q=80');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  padding: 95px 40px;
-  overflow: hidden;
-  border-top: 1px solid var(--border-glass-light);
-  border-bottom: 1px solid var(--border-glass-light);
-}
-
-.karelia-why-bg-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(22, 51, 44, 0.88) 0%,
-    rgba(22, 51, 44, 0.65) 50%,
-    rgba(17, 38, 33, 0.92) 100%
-  );
-  pointer-events: none;
-}
-
-.karelia-why-container {
-  position: relative;
-  z-index: 2;
-  max-width: 1320px;
-  margin: 0 auto;
-}
-
-.karelia-why-header {
-  text-align: center;
-  margin-bottom: 48px;
-}
-
-.karelia-why-tag {
-  display: inline-block;
-  font-size: 0.74rem;
-  font-weight: 800;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-  color: var(--gold-light);
-  margin-bottom: 10px;
-}
-
-.karelia-why-title {
-  font-family: var(--font-editorial);
-  font-size: clamp(1.8rem, 3.2vw, 2.6rem);
-  font-weight: 700;
-  color: #ffffff;
-  line-height: 1.25;
-  text-shadow: 0 4px 18px rgba(0, 0, 0, 0.6);
-}
-
-.karelia-why-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-}
-
-.karelia-why-card {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1.5px solid rgba(255, 255, 255, 0.38);
-  border-radius: 20px;
-  padding: 28px 22px;
-  color: #ffffff;
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.3);
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease, box-shadow 0.35s ease;
-  display: flex;
-  flex-direction: column;
-}
-
-.karelia-why-card:hover {
-  transform: translateY(-8px);
-  border-color: rgba(255, 255, 255, 0.75);
-  box-shadow: 0 22px 48px rgba(0, 0, 0, 0.45);
-}
-
-.why-card-icon {
-  font-size: 2rem;
-  margin-bottom: 16px;
-  line-height: 1;
-}
-
-.why-bullet-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.why-bullet-list li {
-  font-size: 0.86rem;
-  line-height: 1.55;
-  color: rgba(255, 255, 255, 0.92);
-  position: relative;
-  padding-left: 14px;
-}
-
-.why-bullet-list li::before {
-  content: '–';
-  position: absolute;
-  left: 0;
-  color: var(--gold-light);
-  font-weight: 700;
-}
-
-.why-bullet-list li strong {
-  color: #ffffff;
-  font-weight: 700;
-}
+/* (Karelia why section disembunyikan / ditiadakan sesuai instruksi user) */
 
 .empty-state-box {
   grid-column: 1 / -1;
@@ -4143,8 +4024,28 @@ body {
   flex-direction: column;
   overflow-y: auto;
   overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(123, 166, 216, 0.35) rgba(0, 0, 0, 0.2);
   transform: scale(0.96) translateY(18px);
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ai-modal-dialog::-webkit-scrollbar {
+  width: 7px;
+}
+
+.ai-modal-dialog::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 9999px;
+}
+
+.ai-modal-dialog::-webkit-scrollbar-thumb {
+  background: rgba(123, 166, 216, 0.35);
+  border-radius: 9999px;
+}
+
+.ai-modal-dialog::-webkit-scrollbar-thumb:hover {
+  background: rgba(123, 166, 216, 0.65);
 }
 
 .ai-modal-backdrop.open .ai-modal-dialog {
@@ -4153,11 +4054,11 @@ body {
 
 /* Tab Content Visibility Controller */
 .ai-tab-content {
-  display: none;
+  display: none !important;
 }
 
 .ai-tab-content.active {
-  display: block;
+  display: block !important;
 }
 
 /* Header Modal */

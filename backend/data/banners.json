@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "tag": "SULAWESI TENGAH • INDONESIA",
+    "badge": "SULAWESI TENGAH • INDONESIA",
+    "category": "Pesona Maritim Kepulauan",
+    "title": "BANGGAI &nbsp; LAUT",
+    "subtitle": "Sistem Pariwisata & Navigasi Bahari Terpadu • Pesona 200+ Pulau Karang & Danau Ubur-Ubur",
+    "date": "Edisi Wisata Terpadu 2026",
+    "location": "Kabupaten Banggai Laut, Sulawesi Tengah",
+    "htm": "Katalog Wisata & Panduan Lengkap",
+    "bgImage": "assets/img/hero-bg.jpg",
+    "ctaPrimaryText": "Jelajahi Wisata ➔",
+    "ctaPrimaryLink": "#destinasi"
+  },
+  {
+    "id": 2,
+    "tag": "DESTINASI UNGGULAN • BOKAN KEPULAUAN",
+    "badge": "DESTINASI UNGGULAN • BOKAN KEPULAUAN",
+    "category": "Ekowisata Bahari Langka",
+    "title": "Danau Ubur-Ubur Mbuang-Mbuang",
+    "subtitle": "Berenang bersama jutaan ubur-ubur emas jinak tanpa sengat di laguna karst alami.",
+    "date": "Buka Setiap Hari (07:00 - 17:00 WITA)",
+    "location": "Desa Mbuang-Mbuang, Kec. Bokan Kepulauan",
+    "htm": "Rp 25.000 / Orang",
+    "bgImage": "https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=1920&q=80",
+    "ctaPrimaryText": "Jelajahi Danau Ubur-Ubur ➔",
+    "ctaPrimaryLink": "detail.html?id=4"
+  },
+  {
+    "id": 3,
+    "tag": "CAGAR BUDAYA 5 ABAD • KERATON BANGGAI",
+    "badge": "CAGAR BUDAYA 5 ABAD • KERATON BANGGAI",
+    "category": "Upacara Adat Sakral",
+    "title": "Upacara Adat Sakral Malabot Tumbe",
+    "subtitle": "Tradisi sakral pelayaran penghantaran telur burung maleo menuju Keraton Banggai.",
+    "date": "Awal Desember 2026",
+    "location": "Keraton Kesultanan Banggai & Pelabuhan",
+    "htm": "Cagar Budaya Adat (Gratis)",
+    "bgImage": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1920&q=80",
+    "ctaPrimaryText": "Telusuri Keraton Banggai ➔",
+    "ctaPrimaryLink": "detail.html?id=1"
+  },
+  {
+    "id": 4,
+    "tag": "PANORAMA SENJA • PANTAI PASIR PUTIH",
+    "badge": "PANORAMA SENJA • PANTAI PASIR PUTIH",
+    "category": "Panorama Senja Bahari",
+    "title": "Pesona Senja Tebing Tanjung Gundul",
+    "subtitle": "Gradasi langit jingga keemasan berpadu dengan tebing karang dan birunya laut kepulauan.",
+    "date": "Waktu Terbaik: 16:30 - 18:30 WITA",
+    "location": "Desa Pasir Putih, Kec. Banggai",
+    "htm": "Rp 5.000 / Retribusi",
+    "bgImage": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=1920&q=80",
+    "ctaPrimaryText": "Lihat Spot Sunset ➔",
+    "ctaPrimaryLink": "detail.html?id=8"
+  },
+  {
+    "id": 5,
+    "tag": "KULINER OTENTIK • TRADISI PESISIR",
+    "badge": "KULINER OTENTIK • TRADISI PESISIR",
+    "category": "Pesta Kuliner Bahari",
+    "title": "Kuliner Ikan Bakar & Sinole Tradisional",
+    "subtitle": "Cita rasa otentik sagu sangrai gurih, ikan cakalang bumbu rempah, dan kue perahu Tetu.",
+    "date": "Setiap Hari & Akhir Pekan",
+    "location": "Sentra Wisata Kuliner Pesisir Banggai",
+    "htm": "Mulai Rp 15.000 / Porsi",
+    "bgImage": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1920&q=80",
+    "ctaPrimaryText": "Cek Rekomendasi Kuliner ➔",
+    "ctaPrimaryLink": "detail.html?id=10"
+  }
+]

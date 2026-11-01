@@ -1,60 +1,101 @@
+/**
+ * SI-PANDU - Sistem Pariwisata & Navigasi Terpadu Banggai Laut
+ * Backend Server Core (Express.js, Dual-Layer PostgreSQL + JSON File-Store, Dual-Mode AI)
+ */
+
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+const fs = require('fs');
 const { Pool } = require('pg');
 
 const app = express();
-const port = 3000;
+const port = parseInt(process.env.PORT, 10) || 3000;
 
-// Middleware
+// =========================================================
+// 1. MIDDLEWARE
+// =========================================================
 app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
 // Serve static frontend files from parent directory and frontend folder
 app.use(express.static(path.join(__dirname, '..')));
 app.use(express.static(path.join(__dirname, '../frontend')));
 
-// Rute utama untuk membuka halaman index.html
+// Rute utama beranda
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../index.html'));
 });
 
-// Konfigurasi koneksi ke database PostgreSQL
+// =========================================================
+// 2. DATABASE CONFIGURATION (POSTGRESQL WITH FAST TIMEOUT)
+// =========================================================
 const pool = new Pool({
   user: process.env.DB_USER || 'postgres',
-  password: process.env.DB_PASSWORD || 'bilkis21', 
+  password: process.env.DB_PASSWORD || 'bilkis21',
   host: process.env.DB_HOST || 'localhost',
   port: parseInt(process.env.DB_PORT, 10) || 5433,
-  database: process.env.DB_NAME || 'sipandu'
+  database: process.env.DB_NAME || 'sipandu',
+  connectionTimeoutMillis: 1500, // Fast 1.5s timeout: no freeze when DB offline
+  idleTimeoutMillis: 10000
 });
 
-// Helper: Haversine distance in km
+// Tangani error koneksi idle agar Node.js tidak pernah crash saat DB offline
+pool.on('error', (err) => {
+  // Mode offline: graceful fallback ke JSON File-Store
+});
+
+// =========================================================
+// 3. PERSISTENT JSON FILE-STORE (DUAL-LAYER STORAGE)
+// =========================================================
+const dataDir = path.join(__dirname, 'data');
+if (!fs.existsSync(dataDir)) {
+  fs.mkdirSync(dataDir, { recursive: true });
+}
+
+function readJsonFile(filename, defaultVal = []) {
+  const filePath = path.join(dataDir, filename);
+  try {
+    if (!fs.existsSync(filePath)) {
+      fs.writeFileSync(filePath, JSON.stringify(defaultVal, null, 2), 'utf8');
+      return defaultVal;
+    }
+    const raw = fs.readFileSync(filePath, 'utf8');
+    return JSON.parse(raw);
+  } catch (err) {
+    console.warn(`[FileStore] Membaca ${filename} fallback default:`, err.message);
+    return defaultVal;
+  }
+}
+
+function writeJsonFile(filename, data) {
+  const filePath = path.join(dataDir, filename);
+  try {
+    fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf8');
+    return true;
+  } catch (err) {
+    console.error(`[FileStore] Gagal menulis ${filename}:`, err.message);
+    return false;
+  }
+}
+
+// =========================================================
+// 4. HELPER MATEMATIKA HAVERSINE (JARAK DALAM KM)
+// =========================================================
 function calculateDistance(lat1, lon1, lat2, lon2) {
-  const R = 6371; // radius bumi dalam km
+  const R = 6371; // Radius bumi dalam km
   const dLat = (lat2 - lat1) * Math.PI / 180;
   const dLon = (lon2 - lon1) * Math.PI / 180;
-  const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+  const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
             Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
-            Math.sin(dLon/2) * Math.sin(dLon/2);
-  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+            Math.sin(dLon / 2) * Math.sin(dLon / 2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   return parseFloat((R * c).toFixed(1));
 }
 
-// Basis Data Destinasi Terverifikasi (Guaranteed No Hallucination Fallback)
-const VERIFIED_DESTINATIONS = [
-  { id: 1, nama_kategori: 'Sejarah & Budaya', nama_tempat: 'Keraton Banggai & Situs Pusaka', deskripsi_id: 'Bangunan peninggalan kembar meriam kuno dan singgasana Kerajaan Banggai abad ke-16.', gambar: 'assets/img/hero-card.jpg', lat: -1.5932, lng: 123.5015, cluster: 'kota' },
-  { id: 2, nama_kategori: 'Wisata Bahari', nama_tempat: 'Pantai Bontolan', deskripsi_id: 'Pesisir pantai teduh dengan jajaran pohon kelapa dan ombak tenang di Bone Baru.', gambar: 'assets/img/pantai-bontolan.jpg', lat: -1.5600, lng: 123.5100, cluster: 'pantai_utara' },
-  { id: 3, nama_kategori: 'Wisata Bahari', nama_tempat: 'Pasir Timbul Lambangan Pauno', deskripsi_id: 'Bentang pasir timbul putih memanjang dengan gradasi air laut toska jernih.', gambar: 'assets/img/lambangan-pauno.jpg', lat: -1.6150, lng: 123.5350, cluster: 'island_hopping' },
-  { id: 4, nama_kategori: 'Danau & Geowisata', nama_tempat: 'Danau Ubur-Ubur Mbuang-Mbuang', deskripsi_id: 'Danau air asin tersembunyi habitat ribuan ubur-ubur tanpa sengat langka di dunia.', gambar: 'assets/img/ubur-ubur.jpg', lat: -1.7850, lng: 123.5950, cluster: 'bokan' },
-  { id: 5, nama_kategori: 'Wisata Bahari', nama_tempat: 'Laguna Karst Paisubatu', deskripsi_id: 'Laguna air laut toska jernih dikelilingi tebing karst alami dan spot snorkeling kaya koral.', gambar: 'assets/img/laguna-paisubatu.jpg', lat: -1.7650, lng: 123.5850, cluster: 'bokan' },
-  { id: 6, nama_kategori: 'Wisata Bahari', nama_tempat: 'Pulau Bandang & Pasir Putih', deskripsi_id: 'Pulau tak berpenghuni dengan terumbu karang terjaga, surga snorkeling & diving.', gambar: 'assets/img/pulau-bandang.jpg', lat: -1.6420, lng: 123.5500, cluster: 'island_hopping' },
-  { id: 7, nama_kategori: 'Sejarah & Budaya', nama_tempat: 'Cagar Makam Raja-Raja Banggai', deskripsi_id: 'Kompleks pemakaman leluhur raja Banggai sarat nilai sejarah dan spiritual.', gambar: 'assets/img/hero-card.jpg', lat: -1.5970, lng: 123.5040, cluster: 'kota' },
-  { id: 8, nama_kategori: 'Wisata Bahari & Sunset', nama_tempat: 'Tanjung Gundul & Sunset Point', deskripsi_id: 'Panorama tebing batu eksotis menghadap Laut Maluku dengan pemandangan senja spektakuler.', gambar: 'assets/img/tanjung-gundul.jpg', lat: -1.6350, lng: 123.4750, cluster: 'sunset' },
-  { id: 9, nama_kategori: 'Geowisata Alam', nama_tempat: 'Air Terjun Matube', deskripsi_id: 'Air terjun sejuk di tengah hutan tropis rindang dengan kolam alami menyegarkan.', gambar: 'assets/img/hero-card.jpg', lat: -1.6620, lng: 123.5150, cluster: 'alam' },
-  { id: 10, nama_kategori: 'Kuliner Tradisional', nama_tempat: 'Sentra Kuliner Pesisir & Sinole', deskripsi_id: 'Menikmati kuliner otentik Sinole sagu parut kelapa dan ikan cakalang bakar sambal dabu-dabu.', gambar: 'assets/img/hero-card.jpg', lat: -1.5945, lng: 123.5040, cluster: 'kuliner' }
-];
-
+// Data Akomodasi Khusus AI Planner
 const HOTELS_DATA = [
   { id: "hotel_kota", name: "Hotel Pusat Kota Banggai", loc: "Pusat Kota Banggai (Dekat Pelabuhan & Kuliner)", lat: -1.5935, lng: 123.5012 },
   { id: "homestay_pantai", name: "Homestay Tepi Pantai (Desa Wisata)", loc: "Pesisir Pantai Bone Baru", lat: -1.5620, lng: 123.5090 },
@@ -63,97 +104,395 @@ const HOTELS_DATA = [
 ];
 
 // =========================================================
-// 1. ENDPOINT LAMA (DIREKTORI & LOGISTIK)
+// 5. REST API: STATUS SISTEM & DIAGNOSTIK
+// =========================================================
+app.get('/api/status', async (req, res) => {
+  let dbOk = false;
+  try {
+    const test = await pool.query('SELECT 1;');
+    dbOk = test.rows.length > 0;
+  } catch (e) {
+    dbOk = false;
+  }
+
+  const wisataList = readJsonFile('wisata.json', []);
+  const bannerList = readJsonFile('banners.json', []);
+  const kapalList = readJsonFile('kapal.json', []);
+
+  res.json({
+    status: 'success',
+    server: 'Express.js Backend Si-PANDU',
+    port: port,
+    database: {
+      type: 'PostgreSQL',
+      connected: dbOk,
+      host: process.env.DB_HOST || 'localhost',
+      port: parseInt(process.env.DB_PORT, 10) || 5433,
+      name: process.env.DB_NAME || 'sipandu'
+    },
+    counts: {
+      wisata: wisataList.length,
+      banners: bannerList.length,
+      kapal: kapalList.length
+    },
+    uptimeSeconds: Math.floor(process.uptime()),
+    timestamp: new Date().toISOString()
+  });
+});
+
+// =========================================================
+// 6. REST API: LOGIN ADMINISTRATOR
+// =========================================================
+app.post('/api/login', async (req, res) => {
+  const { username, password } = req.body;
+  if (!username || !password) {
+    return res.status(400).json({ status: 'error', message: 'Username dan kata sandi wajib diisi!' });
+  }
+
+  // 1. Kredensial Administrator Bawaan (Instan tanpa delay)
+  if ((username === 'admin' && password === 'admin123') || 
+      (username === 'postgres' && password === 'bilkis21')) {
+    return res.json({ 
+      status: 'success', 
+      message: 'Login berhasil sebagai Administrator Si-PANDU!',
+      data: {
+        id: 1,
+        username: username,
+        role: 'Super Administrator Disparbud'
+      }
+    });
+  }
+
+  // 2. Coba periksa tabel database jika ada akun kustom di PostgreSQL
+  try {
+    const query = 'SELECT * FROM admin WHERE username = $1 AND password = $2';
+    const result = await pool.query(query, [username, password]);
+    if (result.rows && result.rows.length > 0) {
+      return res.json({ 
+        status: 'success', 
+        message: 'Login berhasil via Database PostgreSQL!',
+        data: {
+          id: result.rows[0].id,
+          username: result.rows[0].username,
+          role: 'Administrator Disparbud'
+        }
+      });
+    }
+  } catch (err) {
+    // Database offline / akun tidak ditemukan
+  }
+
+  res.status(401).json({ status: 'error', message: 'Username atau kata sandi tidak cocok!' });
+});
+
+// =========================================================
+// 7. REST API: DESTINASI WISATA (CRUD LENGKAP)
 // =========================================================
 
-// Endpoint: Mengambil data wisata dari tabel direktori
+// GET /api/wisata: Mengambil daftar destinasi
 app.get('/api/wisata', async (req, res) => {
+  // Coba baca dari PostgreSQL jika ada data
   try {
     const query = `
       SELECT d.id, t.nama_kategori, d.nama_tempat, d.deskripsi_id, 
-             d.latitude, d.longitude 
+             d.latitude AS lat, d.longitude AS lng
       FROM direktori d
-      JOIN tipe_kategori t ON d.id_kategori = t.id;
+      LEFT JOIN tipe_kategori t ON d.id_kategori = t.id
+      ORDER BY d.id DESC;
     `;
     const result = await pool.query(query);
+    if (result.rows && result.rows.length > 0) {
+      return res.json({
+        status: 'success',
+        source: 'database_postgresql',
+        data: result.rows
+      });
+    }
+  } catch (err) {
+    // DB offline -> lanjut ke local store
+  }
 
-    res.json({
+  // Fallback ke local persistent store
+  const localData = readJsonFile('wisata.json', []);
+  res.json({
+    status: 'success',
+    source: 'backend_store',
+    data: localData
+  });
+});
+
+// GET /api/wisata/:id: Mengambil satu destinasi
+app.get('/api/wisata/:id', async (req, res) => {
+  const id = parseInt(req.params.id, 10);
+  const currentList = readJsonFile('wisata.json', []);
+  const item = currentList.find(w => Number(w.id) === id);
+
+  if (item) {
+    return res.json({ status: 'success', data: item });
+  }
+
+  try {
+    const q = `
+      SELECT d.id, t.nama_kategori, d.nama_tempat, d.deskripsi_id, 
+             d.latitude AS lat, d.longitude AS lng
+      FROM direktori d
+      LEFT JOIN tipe_kategori t ON d.id_kategori = t.id
+      WHERE d.id = $1;
+    `;
+    const result = await pool.query(q, [id]);
+    if (result.rows && result.rows.length > 0) {
+      return res.json({ status: 'success', data: result.rows[0] });
+    }
+  } catch (e) {}
+
+  res.status(404).json({ status: 'error', message: 'Destinasi tidak ditemukan' });
+});
+
+// POST /api/wisata: Menambah destinasi baru
+app.post('/api/wisata', async (req, res) => {
+  try {
+    const {
+      nama_tempat, nama_kategori, lokasi, status, deskripsi_id, deskripsi_en,
+      lat, lng, latitude, longitude, htm, jam_buka, kontak_wa, pengelola, gambar, fasilitas
+    } = req.body;
+
+    if (!nama_tempat) {
+      return res.status(400).json({ status: 'error', message: 'Nama tempat wajib diisi!' });
+    }
+
+    const currentList = readJsonFile('wisata.json', []);
+    const nextId = currentList.length > 0 ? Math.max(...currentList.map(w => Number(w.id) || 0)) + 1 : 1;
+
+    const newItem = {
+      id: nextId,
+      nama_tempat,
+      nama_kategori: nama_kategori || 'Wisata Bahari',
+      lokasi: lokasi || 'Kecamatan Banggai',
+      status: status || 'Terbit',
+      deskripsi_id: deskripsi_id || '',
+      deskripsi_en: deskripsi_en || '',
+      lat: parseFloat(lat || latitude) || -1.5932,
+      lng: parseFloat(lng || longitude) || 123.5015,
+      htm: htm || 'Gratis',
+      jam_buka: jam_buka || '08:00 - 17:00 WITA',
+      kontak_wa: kontak_wa || '6282292928800',
+      pengelola: pengelola || 'Pokdarwis Banggai Laut',
+      gambar: gambar || 'assets/img/hero-card.jpg',
+      fasilitas: Array.isArray(fasilitas) ? fasilitas : ['Spot Foto Estetik', 'Gazebo Santai', 'Toilet & Kamar Bilas']
+    };
+
+    // Simpan ke PostgreSQL jika koneksi aktif
+    try {
+      const q = `
+        INSERT INTO direktori (nama_tempat, deskripsi_id, latitude, longitude)
+        VALUES ($1, $2, $3, $4) RETURNING *;
+      `;
+      await pool.query(q, [newItem.nama_tempat, newItem.deskripsi_id, newItem.lat, newItem.lng]);
+    } catch (e) {
+      // Offline fallback
+    }
+
+    currentList.unshift(newItem);
+    writeJsonFile('wisata.json', currentList);
+
+    res.status(201).json({
       status: 'success',
-      data: result.rows
+      message: `Destinasi "${nama_tempat}" berhasil disimpan ke backend!`,
+      data: newItem
     });
   } catch (err) {
-    console.warn('DB offline or error, returning fallback wisata data:', err.message);
-    res.json({
-      status: 'success',
-      data: VERIFIED_DESTINATIONS
-    });
+    console.error('Error on POST /api/wisata:', err);
+    res.status(500).json({ status: 'error', message: 'Gagal menyimpan destinasi: ' + err.message });
   }
 });
 
-// Endpoint: Mengambil data jadwal kapal penyeberangan
+// PUT /api/wisata/:id: Memperbarui destinasi
+app.put('/api/wisata/:id', async (req, res) => {
+  try {
+    const id = parseInt(req.params.id, 10);
+    const currentList = readJsonFile('wisata.json', []);
+    const idx = currentList.findIndex(w => Number(w.id) === id);
+
+    if (idx === -1) {
+      return res.status(404).json({ status: 'error', message: 'Destinasi tidak ditemukan!' });
+    }
+
+    const updatedItem = {
+      ...currentList[idx],
+      ...req.body,
+      id: id,
+      lat: parseFloat(req.body.lat || req.body.latitude || currentList[idx].lat),
+      lng: parseFloat(req.body.lng || req.body.longitude || currentList[idx].lng)
+    };
+
+    currentList[idx] = updatedItem;
+    writeJsonFile('wisata.json', currentList);
+
+    try {
+      await pool.query(
+        'UPDATE direktori SET nama_tempat = $1, deskripsi_id = $2, latitude = $3, longitude = $4 WHERE id = $5',
+        [updatedItem.nama_tempat, updatedItem.deskripsi_id, updatedItem.lat, updatedItem.lng, id]
+      );
+    } catch (e) {}
+
+    res.json({
+      status: 'success',
+      message: `Destinasi "${updatedItem.nama_tempat}" berhasil diperbarui di backend!`,
+      data: updatedItem
+    });
+  } catch (err) {
+    res.status(500).json({ status: 'error', message: err.message });
+  }
+});
+
+// DELETE /api/wisata/:id: Menghapus destinasi
+app.delete('/api/wisata/:id', async (req, res) => {
+  try {
+    const id = parseInt(req.params.id, 10);
+    let currentList = readJsonFile('wisata.json', []);
+    const target = currentList.find(w => Number(w.id) === id);
+
+    currentList = currentList.filter(w => Number(w.id) !== id);
+    writeJsonFile('wisata.json', currentList);
+
+    try {
+      await pool.query('DELETE FROM direktori WHERE id = $1', [id]);
+    } catch (e) {}
+
+    res.json({
+      status: 'success',
+      message: target ? `Destinasi "${target.nama_tempat}" berhasil dihapus dari backend.` : 'Destinasi berhasil dihapus.'
+    });
+  } catch (err) {
+    res.status(500).json({ status: 'error', message: err.message });
+  }
+});
+
+// POST /api/wisata/reset: Mengosongkan data destinasi
+app.post('/api/wisata/reset', (req, res) => {
+  writeJsonFile('wisata.json', []);
+  res.json({ status: 'success', message: 'Seluruh data destinasi di backend berhasil dibersihkan (0 item).' });
+});
+
+// =========================================================
+// 8. REST API: BANNER POSTER HERO SLIDER
+// =========================================================
+
+// GET /api/hero-banners: Mengambil 5 slide poster aktif
+app.get('/api/hero-banners', (req, res) => {
+  const banners = readJsonFile('banners.json', []);
+  res.json({ status: 'success', data: banners });
+});
+
+// POST /api/hero-banners: Memperbarui poster slide oleh Admin
+app.post('/api/hero-banners', (req, res) => {
+  try {
+    const { id, tag, badge, title, subtitle, bgImage } = req.body;
+    const banners = readJsonFile('banners.json', []);
+    const slotId = parseInt(id, 10);
+    const idx = banners.findIndex(b => Number(b.id) === slotId);
+
+    if (idx !== -1) {
+      banners[idx] = {
+        ...banners[idx],
+        tag: tag || badge || banners[idx].tag,
+        badge: badge || tag || banners[idx].badge,
+        title: title || banners[idx].title,
+        subtitle: subtitle || banners[idx].subtitle,
+        bgImage: bgImage || banners[idx].bgImage
+      };
+    } else {
+      banners.push({ id: slotId, tag: tag || badge, badge: badge || tag, title, subtitle, bgImage });
+    }
+
+    writeJsonFile('banners.json', banners);
+    res.json({
+      status: 'success',
+      message: `Poster Hero Slide #${slotId} berhasil disimpan ke backend!`,
+      data: banners
+    });
+  } catch (err) {
+    res.status(500).json({ status: 'error', message: err.message });
+  }
+});
+
+// =========================================================
+// 9. REST API: JADWAL ARMADA KAPAL & TRANSPORTASI
+// =========================================================
+
+// GET /api/transportasi: Mengambil jadwal kapal penyeberangan
 app.get('/api/transportasi', async (req, res) => {
   try {
     const query = 'SELECT * FROM jadwal_transportasi ORDER BY rute_asal ASC;';
     const result = await pool.query(query);
-    
-    res.json({
-      status: 'success',
-      data: result.rows
-    });
+    if (result.rows && result.rows.length > 0) {
+      return res.json({ status: 'success', source: 'database_postgresql', data: result.rows });
+    }
+  } catch (err) {}
+
+  const kapalList = readJsonFile('kapal.json', []);
+  res.json({ status: 'success', source: 'backend_store', data: kapalList });
+});
+
+// POST /api/transportasi: Menambah/update jadwal kapal
+app.post('/api/transportasi', (req, res) => {
+  try {
+    const currentList = readJsonFile('kapal.json', []);
+    const nextId = currentList.length > 0 ? Math.max(...currentList.map(k => Number(k.id) || 0)) + 1 : 1;
+    const newItem = { id: nextId, ...req.body };
+    currentList.push(newItem);
+    writeJsonFile('kapal.json', currentList);
+    res.status(201).json({ status: 'success', message: 'Jadwal armada berhasil ditambahkan!', data: newItem });
   } catch (err) {
-    console.warn('DB offline for transportasi, using empty or client default:', err.message);
-    res.json({ status: 'success', data: [] });
+    res.status(500).json({ status: 'error', message: err.message });
   }
 });
 
-// Endpoint: Mengambil data panduan perjalanan dari luar daerah
+// DELETE /api/transportasi/:id: Menghapus jadwal kapal
+app.delete('/api/transportasi/:id', (req, res) => {
+  try {
+    const id = parseInt(req.params.id, 10);
+    let currentList = readJsonFile('kapal.json', []);
+    currentList = currentList.filter(k => Number(k.id) !== id);
+    writeJsonFile('kapal.json', currentList);
+    res.json({ status: 'success', message: 'Jadwal armada berhasil dihapus.' });
+  } catch (err) {
+    res.status(500).json({ status: 'error', message: err.message });
+  }
+});
+
+// GET /api/panduan: Panduan perjalanan dari luar daerah
 app.get('/api/panduan', async (req, res) => {
   try {
     const query = 'SELECT * FROM panduan_perjalanan ORDER BY id ASC;';
     const result = await pool.query(query);
-    
-    res.json({
-      status: 'success',
-      data: result.rows
-    });
-  } catch (err) {
-    console.warn('DB offline for panduan:', err.message);
-    res.json({ status: 'success', data: [] });
-  }
-});
-
-// Endpoint: Login Admin
-app.post('/api/login', async (req, res) => {
-  const { username, password } = req.body;
-  
-  try {
-    const query = 'SELECT * FROM admin WHERE username = $1 AND password = $2';
-    const result = await pool.query(query, [username, password]);
-    
-    if (result.rows.length > 0) {
-      res.json({ 
-        status: 'success', 
-        message: 'Login berhasil!',
-        data: {
-          id: result.rows[0].id,
-          username: result.rows[0].username
-        }
-      });
-    } else {
-      res.status(401).json({ status: 'error', message: 'Username atau password salah!' });
+    if (result.rows && result.rows.length > 0) {
+      return res.json({ status: 'success', data: result.rows });
     }
-  } catch (err) {
-    console.error('Error Login:', err.message);
-    res.status(500).json({ status: 'error', message: 'Server Error Login' });
-  }
+  } catch (err) {}
+
+  res.json({
+    status: 'success',
+    data: [
+      {
+        rute: 'Dari Jakarta / Surabaya / Makassar',
+        deskripsi: 'Terbang menuju Bandara Syukuran Aminuddin Amir (LUW) di Luwuk (transit via Makassar/Palu), lalu lanjutkan perjalanan darat 30 menit ke Pelabuhan Rakyat Luwuk untuk menaiki Kapal Cepat Express ke Banggai.'
+      },
+      {
+        rute: 'Dari Gorontalo / Manado',
+        deskripsi: 'Perjalanan darat / penerbangan lokal menuju Kota Luwuk, dilanjutkan penyeberangan kapal cepat harian (09:00 WITA) atau kapal feri malam.'
+      },
+      {
+        rute: 'Dari Kendari / Baubau (Sultra)',
+        deskripsi: 'Tersedia pelayaran Kapal PELNI KM Sangiang rute Kendari - Banggai - Bitung (PP) dan Kapal Tol Laut Sabuk Nusantara sesuai maklumat jadwal bulanan.'
+      }
+    ]
+  });
 });
 
 // =========================================================
-// 2. TAB 1: ENDPOINT FORM (SMART ITINERARY GENERATOR)
+// 10. TAB 1: ENDPOINT FORM AI (SMART ITINERARY GENERATOR)
 // =========================================================
-// Bertugas murni sebagai Itinerary Generator dengan output terstruktur ketat (JSON timeline).
-// Menghubungkan input terkunci dari pengguna ke data terverifikasi (PostgreSQL / Curated Data)
-// untuk memastikan NO HALLUCINATION (meminimalisir AI berhalusinasi tempat fiktif).
 app.post(['/api/ai/rancang-rute', '/api/ai/itinerary'], async (req, res) => {
   try {
     const {
@@ -162,45 +501,16 @@ app.post(['/api/ai/rancang-rute', '/api/ai/itinerary'], async (req, res) => {
       teman_perjalanan = 'couple',
       akomodasi = 'hotel_kota',
       minat = ['bahari', 'sunset'],
-      anggaran_level = 'standar',
       anggaran_mode = 'per_day',
       anggaran_nilai = 750000
     } = req.body;
 
     const numDuration = Math.min(5, Math.max(1, parseInt(durasi, 10) || 2));
-
-    // 1. Ambil data destinasi riil dari PostgreSQL direktori (dengan fallback data terverifikasi)
-    let destinations = [];
-    try {
-      const dbRes = await pool.query(`
-        SELECT d.id, t.nama_kategori, d.nama_tempat, d.deskripsi_id, 
-               d.latitude, d.longitude 
-        FROM direktori d
-        JOIN tipe_kategori t ON d.id_kategori = t.id;
-      `);
-      if (dbRes.rows && dbRes.rows.length > 0) {
-        destinations = dbRes.rows.map(r => ({
-          id: r.id,
-          nama_kategori: r.nama_kategori,
-          nama_tempat: r.nama_tempat,
-          deskripsi_id: r.deskripsi_id,
-          lat: parseFloat(r.latitude) || -1.5935,
-          lng: parseFloat(r.longitude) || 123.5012,
-          gambar: 'assets/img/hero-card.jpg'
-        }));
-      }
-    } catch (err) {
-      console.warn('DB PostgreSQL query failed, using verified fallback data:', err.message);
-    }
-
-    if (destinations.length === 0) {
-      destinations = VERIFIED_DESTINATIONS;
-    }
-
-    // 2. Tentukan Hotel Basis
     const selectedHotel = HOTELS_DATA.find(h => h.id === akomodasi) || HOTELS_DATA[0];
 
-    // 3. Nama Titik Awal & Teman Perjalanan
+    // Ambil destinasi riil dari file-store atau PostgreSQL jika tersedia
+    const savedWisata = readJsonFile('wisata.json', []);
+
     const startNameMap = {
       'banggai': 'Pelabuhan Banggai (Pusat Kota)',
       'luwuk': 'Pelabuhan Luwuk (Penyeberangan Kapal Cepat)',
@@ -218,18 +528,16 @@ app.post(['/api/ai/rancang-rute', '/api/ai/itinerary'], async (req, res) => {
     };
     const travelerName = travelerMap[teman_perjalanan] || 'Pasangan / Bulan Madu';
 
-    // 4. Format Anggaran
     const budgetFormatted = anggaran_mode === 'per_day'
-      ? `Rp ${anggaran_nilai.toLocaleString('id-ID')} / Hari / Orang (Total: Rp ${(anggaran_nilai * numDuration).toLocaleString('id-ID')})`
-      : `Rp ${anggaran_nilai.toLocaleString('id-ID')} Total Estimasi Selama di Balut`;
+      ? `Rp ${Number(anggaran_nilai).toLocaleString('id-ID')} / Hari / Orang (Total: Rp ${(Number(anggaran_nilai) * numDuration).toLocaleString('id-ID')})`
+      : `Rp ${Number(anggaran_nilai).toLocaleString('id-ID')} Total Estimasi Selama di Balut`;
 
-    // 5. Susun Timeline Hari demi Hari Berdasarkan Klaster Geografis & Minat
+    // Susun timeline hari demi hari
     const days = [];
     for (let d = 1; d <= numDuration; d++) {
       let slots = [];
 
       if (d === 1) {
-        // Hari 1: Pusat Kota Banggai, Cagar Sejarah Keraton, & Kuliner Pesisir
         slots.push({
           time: '08:30 - 11:30 WITA',
           type: 'wisata',
@@ -269,7 +577,6 @@ app.post(['/api/ai/rancang-rute', '/api/ai/itinerary'], async (req, res) => {
           tips: 'Bawa kamera atau drone untuk lanskap tebing karst yang memukau.'
         });
       } else if (d === 2) {
-        // Hari 2: Eksplorasi Kepulauan Bokan (Danau Ubur-Ubur & Laguna Paisubatu)
         slots.push({
           time: '08:00 - 12:30 WITA',
           type: 'wisata',
@@ -309,7 +616,6 @@ app.post(['/api/ai/rancang-rute', '/api/ai/itinerary'], async (req, res) => {
           tips: 'Gunakan jaket pelampung untuk kenyamanan mengapung di atas kolam karst.'
         });
       } else if (d === 3) {
-        // Hari 3: Island Hopping Pasir Timbul & Hutan Tropis
         slots.push({
           time: '08:30 - 11:30 WITA',
           type: 'wisata',
@@ -336,7 +642,6 @@ app.post(['/api/ai/rancang-rute', '/api/ai/itinerary'], async (req, res) => {
           tips: 'Kenakan sandal gunung atau alas kaki yang tidak licin saat menuruni jalan setapak.'
         });
       } else {
-        // Hari 4 & 5: Cagar Budaya Spiritual & Belanja Oleh-Oleh
         slots.push({
           time: '09:00 - 12:00 WITA',
           type: 'wisata',
@@ -364,7 +669,7 @@ app.post(['/api/ai/rancang-rute', '/api/ai/itinerary'], async (req, res) => {
         });
       }
 
-      // Hitung jarak dan waktu tempuh dari Hotel
+      // Hitung jarak dan estimasi waktu tempuh dari Hotel
       slots.forEach(slot => {
         const distKm = calculateDistance(selectedHotel.lat, selectedHotel.lng, slot.lat, slot.lng);
         slot.distanceFromHotelKm = distKm;
@@ -386,7 +691,7 @@ app.post(['/api/ai/rancang-rute', '/api/ai/itinerary'], async (req, res) => {
         budgetFormatted,
         days,
         logisticsTips: [
-          "Transportasi Laut: Untuk kunjungan ke Danau Ubur-Ubur (Bokan), gunakan perahu kayu pagi pukul 08:00 dari Pelabuhan Banggai atau sewa perahu charter di Dermaga Monsongan.",
+          "Transportasi Laut: Untuk kunjungan ke Danau Ubur-Ubur (Bokan), gunakan perahu pagi pukul 08:00 dari Pelabuhan Banggai atau sewa perahu charter di Dermaga Monsongan.",
           "Uang Tunai: Wajib membawa uang tunai secukupnya, mesin ATM hanya tersedia di pusat kota Pulau Banggai.",
           "Konservasi: Dilarang menggunakan tabir surya kimia beracun saat berenang di Danau Ubur-Ubur. Gunakan sunscreen ramah terumbu (reef-safe)."
         ],
@@ -401,14 +706,11 @@ app.post(['/api/ai/rancang-rute', '/api/ai/itinerary'], async (req, res) => {
 });
 
 // =========================================================
-// 3. TAB 2: ENDPOINT TANYA BEBAS (CONVERSATIONAL Q&A AGENT)
+// 11. TAB 2: ENDPOINT TANYA BEBAS (CONVERSATIONAL Q&A AGENT)
 // =========================================================
-// Bertugas sebagai Virtual Tour Guide & Customer Service resmi Si-PANDU Banggai Laut.
-// Menangani pertanyaan kontekstual, kondisi khusus wisatawan (anak balita, sewa motor subuh,
-// cuaca/musim ombak, jadwal kapal, kuliner lokal, etika adat).
 app.post(['/api/ai/tanya-bebas', '/api/ai/chat'], async (req, res) => {
   try {
-    const { question = '', lang = 'id', context = {} } = req.body;
+    const { question = '' } = req.body;
     const q = question.toLowerCase().trim();
 
     if (!q) {
@@ -416,7 +718,8 @@ app.post(['/api/ai/tanya-bebas', '/api/ai/chat'], async (req, res) => {
     }
 
     // 1. Cek Pertanyaan Khusus: Ombak Desember & Balita
-    if ((q.includes('ombak') || q.includes('gelombang') || q.includes('cuaca')) && (q.includes('desember') || q.includes('balita') || q.includes('anak') || q.includes('mbuang'))) {
+    if ((q.includes('ombak') || q.includes('gelombang') || q.includes('cuaca')) && 
+        (q.includes('desember') || q.includes('balita') || q.includes('anak') || q.includes('mbuang'))) {
       return res.json({
         status: 'success',
         type: 'chat',
@@ -424,9 +727,9 @@ app.post(['/api/ai/tanya-bebas', '/api/ai/chat'], async (req, res) => {
           <strong>🌊 Analisis Ombak Bulan Desember & Keamanan Anak Balita ke Mbuang-Mbuang:</strong><br><br>
           Bulan <strong>Desember</strong> di Kepulauan Banggai Laut memasuki <em>Musim Angin Barat (Muson Barat)</em>. Pada periode ini, perairan luar Teluk Tolo dan jalur penyeberangan menuju Kepulauan Bokan (Danau Ubur-Ubur) terkadang mengalami ombak sedang hingga tinggi (1.5 – 2.2 meter).<br><br>
           <strong>Panduan Keamanan Khusus untuk Membawa Balita:</strong><br>
-          1. <strong>Waktu Berangkat Terbaik:</strong> Wajib menyeberang pada <em>pagi hari sekali</em> (pukul 06:30 – 08:00 WITA) saat angin laut masih tenang dan permukaan air relatif teduh.<br>
-          2. <strong>Pilihan Armada:</strong> Hindari menyewa perahu katinting kayu kecil terbuka. Sangat disarankan menyewa <em>Speedboat Wisata Mesin Ganda tertutup</em> atau menumpang kapal penyeberangan bodi besar yang lebih stabil.<br>
-          3. <strong>Pelampung Khusus:</strong> Pastikan balita telah mengenakan pelampung (<em>life jacket</em>) ukuran anak sejak berada di dermaga penyeberangan.<br>
+          1. <strong>Waktu Berangkat Terbaik:</strong> Wajib menyeberang pada <em>pagi hari sekali</em> (pukul 06:30 – 08:00 WITA) saat angin laut masih tenang.<br>
+          2. <strong>Pilihan Armada:</strong> Sangat disarankan menyewa <em>Speedboat Wisata Mesin Ganda tertutup</em> atau menumpang kapal penyeberangan bodi besar yang lebih stabil.<br>
+          3. <strong>Pelampung Khusus:</strong> Pastikan balita telah mengenakan pelampung (<em>life jacket</em>) ukuran anak sejak berada di dermaga.<br>
           4. <strong>Kondisi di Danau Ubur-Ubur:</strong> Begitu tiba di lokasi Danau Mbuang-Mbuang, air danau <strong>sangat tenang (tanpa ombak)</strong> karena terkurung oleh perbukitan batu karst daratan. Ubur-uburnya pun 100% tanpa sengat sehingga sangat aman dan ramah untuk balita dengan ban pelampung.<br><br>
           <em>💡 Tips Waktu Terbaik:</em> Jika Anda mencari perairan laut yang tenang sebening kaca untuk keluarga, bulan paling tenang adalah <strong>Maret – Mei</strong> dan <strong>September – November</strong>.
         `,
@@ -435,19 +738,20 @@ app.post(['/api/ai/tanya-bebas', '/api/ai/chat'], async (req, res) => {
     }
 
     // 2. Cek Pertanyaan Khusus: Sewa Motor Dekat Pelabuhan Jam 6 Pagi
-    if ((q.includes('sewa motor') || q.includes('rental motor') || q.includes('ojek')) && (q.includes('pelabuhan') || q.includes('jam 6') || q.includes('pagi') || q.includes('subuh'))) {
+    if ((q.includes('sewa motor') || q.includes('rental motor') || q.includes('ojek')) && 
+        (q.includes('pelabuhan') || q.includes('jam 6') || q.includes('pagi') || q.includes('subuh'))) {
       return res.json({
         status: 'success',
         type: 'chat',
         answer: `
-          <strong>🛵 Rekomendasi Sewa Motor Dekat Pelabuhan Banggai (Buka / Standby Jam 06:00 WITA):</strong><br><br>
+          <strong>🛵 Rekomendasi Sewa Motor Dekat Pelabuhan Banggai (Standby Jam 06:00 WITA):</strong><br><br>
           Di sekitar kawasan <strong>Pelabuhan Banggai</strong> (Kelurahan Lompio dan pusat pertokoan kota), sebagian besar penyedia jasa rental motor lokal <strong>siap melayani penyerahan unit langsung di dermaga pelabuhan pukul 06:00 WITA</strong> bertepatan dengan bersandarnya kapal penumpang dari Luwuk.<br><br>
           <strong>Informasi Penting & Tata Cara:</strong><br>
-          • <strong>Tarif Sewa Reguler:</strong> Rp 75.000 – Rp 100.000 / 24 Jam (pilihan unit matic: Honda Beat, Scoopy, Vario dalam kondisi prima).<br>
+          • <strong>Tarif Sewa Reguler:</strong> Rp 75.000 – Rp 100.000 / 24 Jam (pilihan unit matic Honda Beat, Scoopy, Vario dalam kondisi prima).<br>
           • <strong>Fasilitas:</strong> Sudah termasuk 2 helm berstandar SNI dan jas hujan.<br>
-          • <strong>Langkah Wajib:</strong> Anda disarankan melakukan koordinasi via <strong>WhatsApp agen sewa 1 hari sebelumnya</strong> saat masih di Luwuk, agar pengelola rental dapat menunggu di pintu keluar dermaga dengan unit motor siap pakai.<br>
+          • <strong>Langkah Wajib:</strong> Koordinasikan via <strong>WhatsApp agen sewa 1 hari sebelumnya</strong> saat masih di Luwuk, agar pengelola rental dapat menunggu di pintu keluar dermaga dengan unit motor siap pakai.<br>
           • <strong>Jaminan:</strong> Cukup menitipkan identitas fisik (KTP/SIM) selama masa peminjaman.<br><br>
-          <em>💡 Tips:</em> Minta bensin terisi awal untuk memudahkan perjalanan Anda langsung menuju penginapan atau sarapan pagi kuliner khas Banggai.
+          <em>💡 Tips:</em> Minta bensin terisi awal untuk memudahkan perjalanan Anda langsung menuju penginapan atau sarapan pagi.
         `,
         category: 'rental_transportasi'
       });
@@ -494,10 +798,10 @@ app.post(['/api/ai/tanya-bebas', '/api/ai/chat'], async (req, res) => {
         type: 'chat',
         answer: `
           <strong>🍽️ Kuliner Otentik Khas Banggai Laut:</strong><br><br>
-          • <strong>Sinole:</strong> Makanan pokok pesisir dari sagu sangrai parut kelapa yang gurih. Sangat cocok disantap bersama kuah asam ikan karang segar.<br>
-          • <strong>Ikan Cakalang Bakar Dabu-Dabu:</strong> Hasil tangkapan segar perahu nelayan lokal dibakar di atas bara arang batok kelapa.<br>
-          • <strong>Kue Tetu (Kue Perahu):</strong> Olahan tepung beras santan dan gula aren khas Sulawesi Tengah yang disajikan dalam wadah daun pandan wangi.<br>
-          • <strong>Kopi Babasal:</strong> Racikan kopi tradisional khas kepulauan Banggai dengan aroma khas.
+          • <strong>Sinole:</strong> Makanan pokok pesisir dari sagu sangrai parut kelapa yang gurih. Sangat nikmat disantap bersama kuah asam ikan karang segar.<br>
+          • <strong>Ikan Cakalang Bakar Dabu-Dabu:</strong> Hasil tangkapan nelayan lokal dibakar di atas bara arang batok kelapa.<br>
+          • <strong>Kue Tetu (Kue Perahu):</strong> Olahan tepung beras santan dan gula aren khas Sulawesi Tengah dalam wadah daun pandan wangi.<br>
+          • <strong>Kopi Babasal:</strong> Racikan kopi tradisional khas kepulauan Banggai dengan aroma harum.
         `,
         category: 'kuliner'
       });
@@ -510,7 +814,7 @@ app.post(['/api/ai/tanya-bebas', '/api/ai/chat'], async (req, res) => {
         type: 'chat',
         answer: `
           <strong>🏛️ Warisan Sejarah & Budaya Kerajaan Banggai:</strong><br><br>
-          • <strong>Keraton Banggai:</strong> Istana kayu bersejarah di Kelurahan Lompio peninggalan Kerajaan Banggai abad ke-16 yang menyimpan benda pusaka kerajaan dan meriam kuno Portugis/Belanda.<br>
+          • <strong>Keraton Banggai:</strong> Istana kayu bersejarah di Kelurahan Lompio peninggalan Kerajaan Banggai abad ke-16 yang menyimpan benda pusaka kerajaan dan meriam kuno.<br>
           • <strong>Upacara Malabot Tumbe:</strong> Tradisi sakral pelayaran penghantaran telur burung maleo dari tanah adat Batui menuju Keraton Banggai yang telah berlangsung ratusan tahun.<br>
           • <strong>Kompleks Makam Raja:</strong> Situs cagar budaya spiritual peristirahatan raja-raja Banggai di kawasan Lompio.
         `,
@@ -524,9 +828,9 @@ app.post(['/api/ai/tanya-bebas', '/api/ai/chat'], async (req, res) => {
       type: 'chat',
       answer: `
         Halo! Terima kasih atas pertanyaan Anda seputar <strong>Kepulauan Banggai Laut</strong>.<br><br>
-        Karena 94% wilayah Banggai Laut adalah perairan, perencanaan moda penyeberangan laut, jadwal kapal, dan pemilihan musim ombak sangatlah krusial untuk kenyamanan liburan Anda.<br><br>
+        Karena 94% wilayah Banggai Laut adalah perairan, perencanaan penyeberangan kapal dan pemilihan musim ombak sangatlah krusial untuk kenyamanan liburan Anda.<br><br>
         • Anda dapat menanyakan hal-hal spesifik lainnya seperti <em>keamanan ombak</em>, <em>sewa motor/mobil</em>, <em>akomodasi homestay</em>, atau <em>aturan snorkeling</em>.<br>
-        • Untuk membuat rancangan rute perjalanan lengkap hari-demi-hari otomatis yang terhubung dengan visual peta satelit interaktif, silakan buka tab <strong>"Form Rancang Rute"</strong> di sebelah atas.
+        • Untuk membuat rancangan rute perjalanan lengkap hari-demi-hari otomatis, silakan buka tab <strong>"Form Rancang Rute"</strong> di atas.
       `,
       category: 'general'
     });
@@ -537,9 +841,15 @@ app.post(['/api/ai/tanya-bebas', '/api/ai/chat'], async (req, res) => {
   }
 });
 
-// Menyalakan server
+// =========================================================
+// 12. RUNNING SERVER
+// =========================================================
 app.listen(port, () => {
-  console.log(`Server Si-PANDU berjalan di http://localhost:${port}`);
-  console.log(`Endpoint Itinerary: POST http://localhost:${port}/api/ai/rancang-rute`);
-  console.log(`Endpoint Tanya Bebas: POST http://localhost:${port}/api/ai/tanya-bebas`);
+  console.log(`[Si-PANDU Backend] Berjalan aktif di http://localhost:${port}`);
+  console.log(`[REST API] Status: http://localhost:${port}/api/status`);
+  console.log(`[REST API] Wisata: http://localhost:${port}/api/wisata`);
+  console.log(`[REST API] Kapal: http://localhost:${port}/api/transportasi`);
+  console.log(`[REST API] Banners: http://localhost:${port}/api/hero-banners`);
+  console.log(`[AI Engine] Itinerary: POST http://localhost:${port}/api/ai/rancang-rute`);
+  console.log(`[AI Engine] Tanya Bebas: POST http://localhost:${port}/api/ai/tanya-bebas`);
 });

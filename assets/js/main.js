@@ -3,6 +3,11 @@
  * Frontend Core Script (Interaktivitas, Responsif HP, Multi-Bahasa ID/EN, Carousel, Katalog, Kapal, Detail)
  */
 
+// Konfigurasi Endpoint REST API Backend Si-PANDU (Dynamic Host/Port Auto-Detection)
+const API_BASE = (window.location.origin.includes('3000') || window.location.origin.includes('localhost:3000'))
+  ? '' 
+  : 'http://localhost:3000';
+
 // =========================================================
 // 1. KAMUS MULTI-BAHASA (INDONESIAN & ENGLISH)
 // =========================================================
@@ -574,6 +579,30 @@ window.HERO_SLIDES_DATA = [
   }
 ];
 
+// Sinkronisasi otomatis dengan pembaruan banner dari Admin Panel
+try {
+  const customHeroBanners = localStorage.getItem('sipandu_hero_banners');
+  if (customHeroBanners) {
+    const parsed = JSON.parse(customHeroBanners);
+    if (Array.isArray(parsed) && parsed.length > 0) {
+      window.HERO_SLIDES_DATA = parsed.map(b => ({
+        id: b.id,
+        badge: b.tag || b.badge || "SULAWESI TENGAH • INDONESIA",
+        tag: b.tag || b.badge || "SULAWESI TENGAH • INDONESIA",
+        category: b.category || "Informasi Resmi Disparbud",
+        title: b.title,
+        subtitle: b.subtitle,
+        date: b.date || "Edisi Wisata Terpadu 2026",
+        location: b.location || "Kabupaten Banggai Laut",
+        htm: b.htm || "Katalog Wisata & Panduan Lengkap",
+        bgImage: b.bgImage ? b.bgImage.replace(/^\.\.\//, '') : "assets/img/hero-bg.jpg",
+        ctaPrimaryText: "Jelajahi Wisata ➔",
+        ctaPrimaryLink: "#destinasi"
+      }));
+    }
+  }
+} catch (e) {}
+
 // =========================================================
 // 6. DATA LENGKAP KATALOG WISATA (DENGAN GALERI, HTM, FASILITAS, WA API)
 // =========================================================
@@ -978,7 +1007,29 @@ const HOTELS_DATA = [
   }
 ];
 
-let allWisata = [...defaultWisataData];
+// Framework Mode: Inisialisasi daftar destinasi bersih (0 data dummy)
+if (localStorage.getItem('sipandu_framework_cleaned') !== 'v1') {
+  localStorage.setItem('sipandu_admin_wisata', JSON.stringify([]));
+  localStorage.setItem('sipandu_framework_cleaned', 'v1');
+}
+
+let allWisata = [];
+
+// Sinkronisasi pembaruan destinasi dari Admin Panel
+try {
+  const customAdminWisata = localStorage.getItem('sipandu_admin_wisata');
+  if (customAdminWisata) {
+    const parsedWisata = JSON.parse(customAdminWisata);
+    if (Array.isArray(parsedWisata)) {
+      allWisata = parsedWisata.map(w => ({
+        ...w,
+        gambar: w.gambar ? w.gambar.replace(/^\.\.\//, '') : 'assets/img/hero-card.jpg'
+      }));
+    }
+  }
+} catch (e) {
+  allWisata = [];
+}
 let activeCategory = 'all';
 let isDestinasiExpanded = false;
 
@@ -1019,7 +1070,23 @@ function createWisataCardHtml(item, index = 0) {
 let homeDestinasiPage = 0;
 function renderHomeDestinasiCards() {
   const grid = document.getElementById('homeDestinasiGrid');
+  const destSection = document.getElementById('destinasi');
+  const heroBtn = document.querySelector('.hero-clean-btn');
   if (!grid) return;
+
+  // Jika belum ada destinasi yang diinput/diterbitkan:
+  // Sembunyikan seluruh seksi destinasi dari halaman publik pengunjung,
+  // sehingga pengguna umum tidak melihat kartu slot kosong ataupun tombol admin.
+  if (allWisata.length === 0) {
+    if (destSection) destSection.style.display = 'none';
+    if (heroBtn) heroBtn.setAttribute('href', '#mengenal');
+    grid.innerHTML = '';
+    return;
+  }
+
+  // Jika ada destinasi terbit, tampilkan kembali seksi destinasi
+  if (destSection) destSection.style.display = '';
+  if (heroBtn) heroBtn.setAttribute('href', '#destinasi');
 
   const pageSize = 4;
   const total = allWisata.length;
@@ -1033,6 +1100,9 @@ function renderHomeDestinasiCards() {
   if (window.observeReveals) {
     window.observeReveals();
   }
+
+  const viewMore = document.getElementById('viewMoreText');
+  if (viewMore) viewMore.textContent = `Jelajahi Seluruh Destinasi (${total} Lokasi) ➔`;
 }
 
 function initHomeDestinasiNav() {
@@ -1066,7 +1136,16 @@ function renderWisataCards(dataArray) {
   const t = TRANSLATIONS[currentLang] || TRANSLATIONS.id;
 
   if (dataArray.length === 0) {
-    grid.innerHTML = `<div class="empty-state-box" style="grid-column: 1 / -1; text-align: center; padding: 60px 20px;"><p style="font-size: 1.1rem; color: var(--text-muted);">${t.destNotFound}</p></div>`;
+    grid.innerHTML = `
+      <div class="empty-state-box" style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; background: rgba(22, 51, 44, 0.35); border: 1px solid rgba(212, 176, 123, 0.25); border-radius: 16px; margin: 20px 0;">
+        <span style="font-size: 2.2rem; display: inline-block; margin-bottom: 10px;">🏝️</span>
+        <h3 style="font-family: var(--font-editorial); font-size: 1.35rem; color: var(--gold-accent); margin-bottom: 8px;">Katalog Destinasi Resmi Segera Hadir</h3>
+        <p style="font-size: 0.92rem; color: #cbd5e1; max-width: 540px; margin: 0 auto 20px; line-height: 1.6;">
+          Daftar destinasi dan panduan wisata resmi Kabupaten Banggai Laut sedang dalam tahap kurasi dan pembaruan berkala oleh Dinas Pariwisata & Kebudayaan. Silakan jelajahi informasi jadwal kapal dan rute penyeberangan.
+        </p>
+        <a href="panduan.html" style="display: inline-flex; align-items: center; gap: 8px; background: rgba(212, 176, 123, 0.15); border: 1px solid var(--gold-accent); color: #ffffff; padding: 10px 22px; border-radius: 9999px; font-size: 0.84rem; font-weight: 700; text-decoration: none;">Lihat Jadwal Kapal & Transportasi ➔</a>
+      </div>
+    `;
   } else {
     grid.innerHTML = dataArray.map((item, idx) => createWisataCardHtml(item, idx)).join('');
     if (window.observeReveals) {
@@ -2409,22 +2488,22 @@ function initAiRouteAssistant() {
       if (tabBtnChat) tabBtnChat.classList.remove('active');
       if (tabGen) {
         tabGen.classList.add('active');
-        tabGen.style.display = 'block';
+        tabGen.style.setProperty('display', 'block', 'important');
       }
       if (tabChat) {
         tabChat.classList.remove('active');
-        tabChat.style.display = 'none';
+        tabChat.style.setProperty('display', 'none', 'important');
       }
     } else {
       if (tabBtnChat) tabBtnChat.classList.add('active');
       if (tabBtnGen) tabBtnGen.classList.remove('active');
       if (tabChat) {
         tabChat.classList.add('active');
-        tabChat.style.display = 'block';
+        tabChat.style.setProperty('display', 'block', 'important');
       }
       if (tabGen) {
         tabGen.classList.remove('active');
-        tabGen.style.display = 'none';
+        tabGen.style.setProperty('display', 'none', 'important');
       }
       if (chatInput) chatInput.focus();
     }
@@ -2582,7 +2661,7 @@ function initAiRouteAssistant() {
     chatHistory.scrollTop = chatHistory.scrollHeight;
 
     // Panggil Endpoint Tab 2 (Conversational Q&A Agent) di backend
-    fetch('http://localhost:3000/api/ai/tanya-bebas', {
+    fetch(`${API_BASE}/api/ai/tanya-bebas`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ question: query, lang: currentLang })
@@ -2636,7 +2715,7 @@ function initAiRouteAssistant() {
       anggaran_nilai: rawBudget
     };
 
-    fetch('http://localhost:3000/api/ai/rancang-rute', {
+    fetch(`${API_BASE}/api/ai/rancang-rute`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
@@ -3500,22 +3579,53 @@ document.addEventListener('DOMContentLoaded', () => {
     initNearbyFeature();
   }
 
-  // Fetch API backend jika tersedia (graceful fallback ke allWisata)
-  fetch('http://localhost:3000/api/wisata')
+  // 1. Fetch Banner Hero dari Backend REST API
+  fetch(`${API_BASE}/api/hero-banners`)
     .then(res => res.json())
     .then(result => {
       if (result.status === 'success' && Array.isArray(result.data) && result.data.length > 0) {
-        const apiMap = new Map(result.data.map(d => [d.id, d]));
-        allWisata = allWisata.map(local => {
-          const apiItem = apiMap.get(local.id);
-          return apiItem ? { ...local, ...apiItem } : local;
-        });
+        const formattedBanners = result.data.map(b => ({
+          id: b.id,
+          badge: b.tag || b.badge || "SULAWESI TENGAH • INDONESIA",
+          tag: b.tag || b.badge || "SULAWESI TENGAH • INDONESIA",
+          category: b.category || "Informasi Resmi Disparbud",
+          title: b.title,
+          subtitle: b.subtitle,
+          date: b.date || "Edisi Wisata Terpadu 2026",
+          location: b.location || "Kabupaten Banggai Laut",
+          htm: b.htm || "Katalog Wisata & Panduan Lengkap",
+          bgImage: b.bgImage ? b.bgImage.replace(/^\.\.\//, '') : "assets/img/hero-bg.jpg",
+          ctaPrimaryText: "Jelajahi Wisata ➔",
+          ctaPrimaryLink: "#destinasi"
+        }));
+        if (typeof window.updateHeroSlides === 'function') {
+          window.updateHeroSlides(formattedBanners);
+        }
+      }
+    })
+    .catch(() => {});
+
+  // 2. Fetch API backend jika tersedia (sinkronisasi direktori destinasi real-time)
+  fetch(`${API_BASE}/api/wisata`)
+    .then(res => res.json())
+    .then(result => {
+      if (result.status === 'success' && Array.isArray(result.data)) {
+        allWisata = result.data.map(w => ({
+          ...w,
+          id: Number(w.id),
+          lat: parseFloat(w.lat || w.latitude) || -1.5932,
+          lng: parseFloat(w.lng || w.longitude) || 123.5015,
+          gambar: w.gambar ? w.gambar.replace(/^\.\.\//, '') : 'assets/img/hero-card.jpg',
+          galeri: Array.isArray(w.galeri) && w.galeri.length > 0 ? w.galeri : [(w.gambar ? w.gambar.replace(/^\.\.\//, '') : 'assets/img/hero-card.jpg')],
+          fasilitas: Array.isArray(w.fasilitas) ? w.fasilitas : ['Spot Foto Estetik', 'Gazebo Santai', 'Toilet & Kamar Bilas'],
+          highlights: Array.isArray(w.highlights) ? w.highlights : ['Panorama Alami Banggai Laut', 'Spot Foto Eksotis']
+        }));
         if (document.getElementById('homeDestinasiGrid')) renderHomeDestinasiCards();
         if (document.getElementById('destinasiGrid')) filterWisata();
       }
     })
     .catch(() => {
-      // Backend offline -> defaultWisataData tetap berjalan sempurna
+      // Backend offline -> penyimpanan browser lokal tetap berjalan
     });
 
   // 4. Inisialisasi Jadwal Kapal & Panduan (panduan.html)
@@ -3544,7 +3654,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Backend fetch untuk kapal
-    fetch('http://localhost:3000/api/transportasi')
+    fetch(`${API_BASE}/api/transportasi`)
       .then(res => res.json())
       .then(result => {
         if (result.status === 'success' && Array.isArray(result.data) && result.data.length > 0) {
@@ -3555,7 +3665,7 @@ document.addEventListener('DOMContentLoaded', () => {
       .catch(() => {});
 
     // Backend fetch untuk panduan
-    fetch('http://localhost:3000/api/panduan')
+    fetch(`${API_BASE}/api/panduan`)
       .then(res => res.json())
       .then(result => {
         if (result.status === 'success' && Array.isArray(result.data) && result.data.length > 0) {
