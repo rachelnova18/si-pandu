@@ -3,14 +3,13 @@
  * Backend Server Core (Express.js, Dual-Layer PostgreSQL + JSON File-Store, Dual-Mode AI)
  */
 
-require('dotenv').config();
-const express = require('express');
-const cors = require('cors');
 const path = require('path');
 const fs = require('fs');
+require('dotenv').config({ path: path.join(__dirname, '.env') });
+const express = require('express');
+const cors = require('cors');
 const { Pool } = require('pg');
-const jwt = require('jsonwebtoken'); // Modul JWT dipanggil di sini
-require('dotenv').config();
+const jwt = require('jsonwebtoken');
 
 const app = express();
 const port = parseInt(process.env.PORT, 10) || 3000;
@@ -32,21 +31,30 @@ app.get('/', (req, res) => {
 });
 
 // =========================================================
-// 2. DATABASE CONFIGURATION (POSTGRESQL WITH FAST TIMEOUT)
+// 2. DATABASE CONFIGURATION (SUPABASE CLOUD / POSTGRESQL POOL)
 // =========================================================
-const pool = new Pool({
-  user: process.env.DB_USER || 'postgres',
-  password: process.env.DB_PASSWORD || 'bilkis21',
-  host: process.env.DB_HOST || 'localhost',
-  port: parseInt(process.env.DB_PORT, 10) || 5433,
-  database: process.env.DB_NAME || 'sipandu',
-  connectionTimeoutMillis: 1500, // Fast 1.5s timeout: no freeze when DB offline
-  idleTimeoutMillis: 10000
-});
+const pool = new Pool(
+  process.env.DATABASE_URL
+    ? {
+        connectionString: process.env.DATABASE_URL,
+        ssl: { rejectUnauthorized: false },
+        connectionTimeoutMillis: 5000,
+        idleTimeoutMillis: 30000
+      }
+    : {
+        user: process.env.DB_USER || 'postgres',
+        password: process.env.DB_PASSWORD || 'bilkis21',
+        host: process.env.DB_HOST || 'localhost',
+        port: parseInt(process.env.DB_PORT, 10) || 5433,
+        database: process.env.DB_NAME || 'sipandu',
+        connectionTimeoutMillis: 2000,
+        idleTimeoutMillis: 10000
+      }
+);
 
-// Tangani error koneksi idle agar Node.js tidak pernah crash saat DB offline
+// Tangani error koneksi idle agar Node.js tidak pernah crash saat koneksi terputus
 pool.on('error', (err) => {
-  // Mode offline: graceful fallback ke JSON File-Store
+  console.warn('[PostgreSQL Pool Warning]:', err.message);
 });
 
 // =========================================================
@@ -110,11 +118,17 @@ const HOTELS_DATA = [
 // =========================================================
 app.get('/api/status', async (req, res) => {
   let dbOk = false;
+  let dbInfo = 'Disconnected';
+  let totalDestinasiDB = 0;
   try {
-    const test = await pool.query('SELECT 1;');
+    const test = await pool.query('SELECT current_database(), current_user;');
     dbOk = test.rows.length > 0;
+    dbInfo = `Connected to ${test.rows[0].current_database} as ${test.rows[0].current_user}`;
+    const cnt = await pool.query('SELECT count(*) FROM direktori;');
+    totalDestinasiDB = parseInt(cnt.rows[0].count, 10);
   } catch (e) {
     dbOk = false;
+    dbInfo = e.message;
   }
 
   const wisataList = readJsonFile('wisata.json', []);
@@ -126,13 +140,14 @@ app.get('/api/status', async (req, res) => {
     server: 'Express.js Backend Si-PANDU',
     port: port,
     database: {
-      type: 'PostgreSQL',
+      type: 'PostgreSQL (Supabase Cloud)',
       connected: dbOk,
-      host: process.env.DB_HOST || 'localhost',
-      port: parseInt(process.env.DB_PORT, 10) || 5433,   name: process.env.DB_NAME || 'sipandu'
+      info: dbInfo,
+      host: process.env.DATABASE_URL ? 'aws-0-eu-west-1.pooler.supabase.com' : (process.env.DB_HOST || 'localhost'),
+      totalDestinasiDB: totalDestinasiDB
     },
     counts: {
-      wisata: wisataList.length,
+      wisataLocal: wisataList.length,
       banners: bannerList.length,
       kapal: kapalList.length
     },
@@ -192,26 +207,41 @@ app.post('/api/login', async (req, res) => {
 
 // GET /api/wisata: Mengambil daftar destinasi
 app.get('/api/wisata', async (req, res) => {
-  // Coba baca dari PostgreSQL jika ada data
+  // Coba baca dari PostgreSQL (Supabase Cloud) jika ada data
   try {
     const query = `
-      SELECT d.id, t.nama_kategori, d.nama_tempat, d.deskripsi_id, 
-             d.latitude AS lat, d.longitude AS lng,
-             d.lokasi, d.htm, d.jam_buka, d.kontak_wa, d.pengelola, d.gambar, d.status, d.fasilitas
+      SELECT d.id, 
+             COALESCE(t.nama_kategori, 'Wisata Bahari') AS nama_kategori, 
+             d.nama_tempat, 
+             d.nama_tempat_en,
+             d.deskripsi_id, 
+             d.deskripsi_en,
+             d.latitude AS lat, 
+             d.longitude AS lng,
+             d.lokasi, 
+             d.htm, 
+             d.jam_buka, 
+             d.kontak_wa, 
+             d.pengelola, 
+             d.gambar, 
+             d.status, 
+             d.fasilitas
       FROM direktori d
       LEFT JOIN tipe_kategori t ON d.id_kategori = t.id
       ORDER BY d.id DESC;
     `;
     const result = await pool.query(query);
     if (result.rows && result.rows.length > 0) {
+      writeJsonFile('wisata.json', result.rows);
       return res.json({
         status: 'success',
         source: 'database_postgresql',
+        count: result.rows.length,
         data: result.rows
       });
     }
   } catch (err) {
-    // DB offline -> lanjut ke local store
+    console.warn('[DB Error on /api/wisata]:', err.message);
   }
 
   // Fallback ke local persistent store
@@ -219,6 +249,7 @@ app.get('/api/wisata', async (req, res) => {
   res.json({
     status: 'success',
     source: 'backend_store',
+    count: localData.length,
     data: localData
   });
 });
@@ -226,26 +257,42 @@ app.get('/api/wisata', async (req, res) => {
 // GET /api/wisata/:id: Mengambil satu destinasi
 app.get('/api/wisata/:id', async (req, res) => {
   const id = parseInt(req.params.id, 10);
-  const currentList = readJsonFile('wisata.json', []);
-  const item = currentList.find(w => Number(w.id) === id);
-
-  if (item) {
-    return res.json({ status: 'success', data: item });
-  }
 
   try {
     const q = `
-      SELECT d.id, t.nama_kategori, d.nama_tempat, d.deskripsi_id, 
-             d.latitude AS lat, d.longitude AS lng
+      SELECT d.id, 
+             COALESCE(t.nama_kategori, 'Wisata Bahari') AS nama_kategori, 
+             d.nama_tempat, 
+             d.nama_tempat_en,
+             d.deskripsi_id, 
+             d.deskripsi_en,
+             d.latitude AS lat, 
+             d.longitude AS lng,
+             d.lokasi, 
+             d.htm, 
+             d.jam_buka, 
+             d.kontak_wa, 
+             d.pengelola, 
+             d.gambar, 
+             d.status, 
+             d.fasilitas
       FROM direktori d
       LEFT JOIN tipe_kategori t ON d.id_kategori = t.id
       WHERE d.id = $1;
     `;
     const result = await pool.query(q, [id]);
     if (result.rows && result.rows.length > 0) {
-      return res.json({ status: 'success', data: result.rows[0] });
+      return res.json({ status: 'success', source: 'database_postgresql', data: result.rows[0] });
     }
-  } catch (e) {}
+  } catch (e) {
+    console.warn(`[DB Error on /api/wisata/${id}]:`, e.message);
+  }
+
+  const currentList = readJsonFile('wisata.json', []);
+  const item = currentList.find(w => Number(w.id) === id);
+  if (item) {
+    return res.json({ status: 'success', source: 'backend_store', data: item });
+  }
 
   res.status(404).json({ status: 'error', message: 'Destinasi tidak ditemukan' });
 });
@@ -254,7 +301,7 @@ app.get('/api/wisata/:id', async (req, res) => {
 app.post('/api/wisata', async (req, res) => {
   try {
     const {
-      nama_tempat, nama_kategori, lokasi, status, deskripsi_id, deskripsi_en,
+      nama_tempat, nama_tempat_en, nama_kategori, lokasi, status, deskripsi_id, deskripsi_en,
       lat, lng, latitude, longitude, htm, jam_buka, kontak_wa, pengelola, gambar, fasilitas
     } = req.body;
 
@@ -262,44 +309,86 @@ app.post('/api/wisata', async (req, res) => {
       return res.status(400).json({ status: 'error', message: 'Nama tempat wajib diisi!' });
     }
 
-    const currentList = readJsonFile('wisata.json', []);
-    const nextId = currentList.length > 0 ? Math.max(...currentList.map(w => Number(w.id) || 0)) + 1 : 1;
+    const itemLat = parseFloat(lat || latitude) || -1.5932;
+    const itemLng = parseFloat(lng || longitude) || 123.5015;
+    const itemFasilitas = Array.isArray(fasilitas) ? fasilitas : ['Spot Foto Estetik', 'Gazebo Santai', 'Toilet & Kamar Bilas'];
+    const itemKategoriName = nama_kategori || 'Wisata Bahari';
 
-    const newItem = {
+    let dbSavedItem = null;
+
+    // 1. Simpan ke Supabase PostgreSQL
+    try {
+      const katRes = await pool.query('SELECT id FROM tipe_kategori WHERE LOWER(nama_kategori) = LOWER($1) LIMIT 1;', [itemKategoriName]);
+      const idKategori = (katRes.rows && katRes.rows.length > 0) ? katRes.rows[0].id : 1;
+
+      const q = `
+        INSERT INTO direktori (
+          id_kategori, nama_tempat, nama_tempat_en, lokasi, deskripsi_id, deskripsi_en,
+          latitude, longitude, htm, jam_buka, kontak_wa, pengelola, gambar, status, fasilitas
+        )
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)
+        RETURNING *;
+      `;
+      const values = [
+        idKategori,
+        nama_tempat,
+        nama_tempat_en || nama_tempat,
+        lokasi || 'Kecamatan Banggai',
+        deskripsi_id || '',
+        deskripsi_en || '',
+        itemLat,
+        itemLng,
+        htm || 'Gratis',
+        jam_buka || '08:00 - 17:00 WITA',
+        kontak_wa || '6282292928800',
+        pengelola || 'Pokdarwis Banggai Laut',
+        gambar || 'assets/img/hero-card.jpg',
+        status || 'Terbit',
+        itemFasilitas
+      ];
+      const dbResult = await pool.query(q, values);
+      if (dbResult.rows && dbResult.rows.length > 0) {
+        dbSavedItem = {
+          ...dbResult.rows[0],
+          nama_kategori: itemKategoriName,
+          lat: dbResult.rows[0].latitude,
+          lng: dbResult.rows[0].longitude
+        };
+      }
+    } catch (dbErr) {
+      console.warn('[DB Error on POST /api/wisata]:', dbErr.message);
+    }
+
+    // 2. Simpan juga ke file-store lokal sebagai sinkronisasi dual-layer
+    const currentList = readJsonFile('wisata.json', []);
+    const nextId = dbSavedItem ? dbSavedItem.id : (currentList.length > 0 ? Math.max(...currentList.map(w => Number(w.id) || 0)) + 1 : 1);
+
+    const newItem = dbSavedItem || {
       id: nextId,
       nama_tempat,
-      nama_kategori: nama_kategori || 'Wisata Bahari',
+      nama_tempat_en: nama_tempat_en || nama_tempat,
+      nama_kategori: itemKategoriName,
       lokasi: lokasi || 'Kecamatan Banggai',
       status: status || 'Terbit',
       deskripsi_id: deskripsi_id || '',
       deskripsi_en: deskripsi_en || '',
-      lat: parseFloat(lat || latitude) || -1.5932,
-      lng: parseFloat(lng || longitude) || 123.5015,
+      lat: itemLat,
+      lng: itemLng,
       htm: htm || 'Gratis',
       jam_buka: jam_buka || '08:00 - 17:00 WITA',
       kontak_wa: kontak_wa || '6282292928800',
       pengelola: pengelola || 'Pokdarwis Banggai Laut',
       gambar: gambar || 'assets/img/hero-card.jpg',
-      fasilitas: Array.isArray(fasilitas) ? fasilitas : ['Spot Foto Estetik', 'Gazebo Santai', 'Toilet & Kamar Bilas']
+      fasilitas: itemFasilitas
     };
-
-    // Simpan ke PostgreSQL jika koneksi aktif
-    try {
-      const q = `
-        INSERT INTO direktori (nama_tempat, deskripsi_id, latitude, longitude)
-        VALUES ($1, $2, $3, $4) RETURNING *;
-      `;
-      await pool.query(q, [newItem.nama_tempat, newItem.deskripsi_id, newItem.lat, newItem.lng]);
-    } catch (e) {
-      // Offline fallback
-    }
 
     currentList.unshift(newItem);
     writeJsonFile('wisata.json', currentList);
 
     res.status(201).json({
       status: 'success',
-      message: `Destinasi "${nama_tempat}" berhasil disimpan ke backend!`,
+      source: dbSavedItem ? 'database_postgresql' : 'backend_store',
+      message: `Destinasi "${nama_tempat}" berhasil disimpan ke database!`,
       data: newItem
     });
   } catch (err) {
@@ -312,6 +401,56 @@ app.post('/api/wisata', async (req, res) => {
 app.put('/api/wisata/:id', async (req, res) => {
   try {
     const id = parseInt(req.params.id, 10);
+    const itemLat = parseFloat(req.body.lat || req.body.latitude);
+    const itemLng = parseFloat(req.body.lng || req.body.longitude);
+    const itemFasilitas = Array.isArray(req.body.fasilitas) ? req.body.fasilitas : undefined;
+
+    // Update ke Supabase PostgreSQL
+    try {
+      let idKategori = null;
+      if (req.body.nama_kategori) {
+        const katRes = await pool.query('SELECT id FROM tipe_kategori WHERE LOWER(nama_kategori) = LOWER($1) LIMIT 1;', [req.body.nama_kategori]);
+        if (katRes.rows && katRes.rows.length > 0) idKategori = katRes.rows[0].id;
+      }
+
+      const q = `
+        UPDATE direktori SET
+          id_kategori = COALESCE($1, id_kategori),
+          nama_tempat = COALESCE($2, nama_tempat),
+          deskripsi_id = COALESCE($3, deskripsi_id),
+          latitude = COALESCE($4, latitude),
+          longitude = COALESCE($5, longitude),
+          lokasi = COALESCE($6, lokasi),
+          htm = COALESCE($7, htm),
+          jam_buka = COALESCE($8, jam_buka),
+          kontak_wa = COALESCE($9, kontak_wa),
+          pengelola = COALESCE($10, pengelola),
+          gambar = COALESCE($11, gambar),
+          status = COALESCE($12, status),
+          fasilitas = COALESCE($13, fasilitas)
+        WHERE id = $14
+        RETURNING *;
+      `;
+      await pool.query(q, [
+        idKategori,
+        req.body.nama_tempat,
+        req.body.deskripsi_id,
+        isNaN(itemLat) ? null : itemLat,
+        isNaN(itemLng) ? null : itemLng,
+        req.body.lokasi,
+        req.body.htm,
+        req.body.jam_buka,
+        req.body.kontak_wa,
+        req.body.pengelola,
+        req.body.gambar,
+        req.body.status,
+        itemFasilitas,
+        id
+      ]);
+    } catch (dbErr) {
+      console.warn(`[DB Error on PUT /api/wisata/${id}]:`, dbErr.message);
+    }
+
     const currentList = readJsonFile('wisata.json', []);
     const idx = currentList.findIndex(w => Number(w.id) === id);
 
@@ -323,19 +462,12 @@ app.put('/api/wisata/:id', async (req, res) => {
       ...currentList[idx],
       ...req.body,
       id: id,
-      lat: parseFloat(req.body.lat || req.body.latitude || currentList[idx].lat),
-      lng: parseFloat(req.body.lng || req.body.longitude || currentList[idx].lng)
+      lat: isNaN(itemLat) ? currentList[idx].lat : itemLat,
+      lng: isNaN(itemLng) ? currentList[idx].lng : itemLng
     };
 
     currentList[idx] = updatedItem;
     writeJsonFile('wisata.json', currentList);
-
-    try {
-      await pool.query(
-        'UPDATE direktori SET nama_tempat = $1, deskripsi_id = $2, latitude = $3, longitude = $4 WHERE id = $5',
-        [updatedItem.nama_tempat, updatedItem.deskripsi_id, updatedItem.lat, updatedItem.lng, id]
-      );
-    } catch (e) {}
 
     res.json({
       status: 'success',
@@ -351,19 +483,23 @@ app.put('/api/wisata/:id', async (req, res) => {
 app.delete('/api/wisata/:id', async (req, res) => {
   try {
     const id = parseInt(req.params.id, 10);
+
+    // Hapus dari PostgreSQL
+    try {
+      await pool.query('DELETE FROM direktori WHERE id = $1', [id]);
+    } catch (e) {
+      console.warn(`[DB Error on DELETE /api/wisata/${id}]:`, e.message);
+    }
+
     let currentList = readJsonFile('wisata.json', []);
     const target = currentList.find(w => Number(w.id) === id);
 
     currentList = currentList.filter(w => Number(w.id) !== id);
     writeJsonFile('wisata.json', currentList);
 
-    try {
-      await pool.query('DELETE FROM direktori WHERE id = $1', [id]);
-    } catch (e) {}
-
     res.json({
       status: 'success',
-      message: target ? `Destinasi "${target.nama_tempat}" berhasil dihapus dari backend.` : 'Destinasi berhasil dihapus.'
+      message: target ? `Destinasi "${target.nama_tempat}" berhasil dihapus.` : 'Destinasi berhasil dihapus.'
     });
   } catch (err) {
     res.status(500).json({ status: 'error', message: err.message });
@@ -371,9 +507,12 @@ app.delete('/api/wisata/:id', async (req, res) => {
 });
 
 // POST /api/wisata/reset: Mengosongkan data destinasi
-app.post('/api/wisata/reset', (req, res) => {
+app.post('/api/wisata/reset', async (req, res) => {
+  try {
+    await pool.query('TRUNCATE TABLE direktori RESTART IDENTITY CASCADE;');
+  } catch (e) {}
   writeJsonFile('wisata.json', []);
-  res.json({ status: 'success', message: 'Seluruh data destinasi di backend berhasil dibersihkan (0 item).' });
+  res.json({ status: 'success', message: 'Seluruh data destinasi di database & backend berhasil dibersihkan (0 item).' });
 });
 
 // =========================================================
@@ -381,9 +520,28 @@ app.post('/api/wisata/reset', (req, res) => {
 // =========================================================
 
 // GET /api/hero-banners: Mengambil 5 slide poster aktif
-app.get('/api/hero-banners', (req, res) => {
+app.get('/api/hero-banners', async (req, res) => {
+  try {
+    const q = 'SELECT * FROM hero_banners ORDER BY id ASC;';
+    const result = await pool.query(q);
+    if (result.rows && result.rows.length > 0) {
+      const banners = result.rows.map(b => ({
+        id: b.id,
+        tag: b.tag,
+        badge: b.tag,
+        title: b.title,
+        subtitle: b.subtitle,
+        bgImage: b.bg_image
+      }));
+      writeJsonFile('banners.json', banners);
+      return res.json({ status: 'success', source: 'database_postgresql', data: banners });
+    }
+  } catch (e) {
+    console.warn('[DB Error on /api/hero-banners]:', e.message);
+  }
+
   const banners = readJsonFile('banners.json', []);
-  res.json({ status: 'success', data: banners });
+  res.json({ status: 'success', source: 'backend_store', data: banners });
 });
 
 // POST /api/hero-banners: Memperbarui poster slide oleh Admin
@@ -846,7 +1004,7 @@ app.post(['/api/ai/tanya-bebas', '/api/ai/chat'], async (req, res) => {
 // =========================================================
 // 12. RUNNING SERVER
 // =========================================================
-app.listen(port, () => {
+const server = app.listen(port, () => {
   console.log(`[Si-PANDU Backend] Berjalan aktif di http://localhost:${port}`);
   console.log(`[REST API] Status: http://localhost:${port}/api/status`);
   console.log(`[REST API] Wisata: http://localhost:${port}/api/wisata`);
@@ -855,3 +1013,6 @@ app.listen(port, () => {
   console.log(`[AI Engine] Itinerary: POST http://localhost:${port}/api/ai/rancang-rute`);
   console.log(`[AI Engine] Tanya Bebas: POST http://localhost:${port}/api/ai/tanya-bebas`);
 });
+
+// Heartbeat interval agar Node.js event loop selalu aktif di lingkungan Windows
+setInterval(() => {}, 60000);

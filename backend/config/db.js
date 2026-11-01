@@ -1,22 +1,28 @@
 const { Pool } = require('pg');
 require('dotenv').config();
 
-// Mengambil konfigurasi dari file .env
-const pool = new Pool({
-  user: postgres,
-  host: process.env.DB_HOST,
-  database: process.env.DB_NAME,
-  password: process.env.DB_PASSWORD,
-  port: process.env.DB_PORT,
-});
+// Koneksi Supabase Pooler atau PostgreSQL Lokal
+const pool = new Pool(
+  process.env.DATABASE_URL
+    ? {
+        connectionString: process.env.DATABASE_URL,
+        ssl: { rejectUnauthorized: false },
+        connectionTimeoutMillis: 5000,
+        idleTimeoutMillis: 30000
+      }
+    : {
+        user: process.env.DB_USER || 'postgres',
+        password: process.env.DB_PASSWORD || 'bilkis21',
+        host: process.env.DB_HOST || 'localhost',
+        database: process.env.DB_NAME || 'sipandu',
+        port: parseInt(process.env.DB_PORT, 10) || 5433,
+        connectionTimeoutMillis: 2000,
+        idleTimeoutMillis: 10000
+      }
+);
 
-// Mengecek apakah koneksi berhasil
-pool.connect((err, client, release) => {
-  if (err) {
-    return console.error('Gagal terkoneksi ke database PostgreSQL:', err.stack);
-  }
-  console.log('Berhasil terhubung ke database PostgreSQL Si-PANDU!');
-  release(); // melepaskan client kembali ke pool
+pool.on('error', (err) => {
+  console.warn('[PostgreSQL Pool Warning]', err.message);
 });
 
 module.exports = pool;
