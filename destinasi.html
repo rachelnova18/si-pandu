@@ -87,7 +87,7 @@
   <div class="nav-backdrop" id="navBackdrop"></div>
 
   <!-- Subpage Hero Banner -->
-  <section class="subpage-hero" style="background-image: linear-gradient(to bottom, rgba(7, 9, 11, 0.65) 0%, #07090b 100%), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600');">
+  <section class="subpage-hero" style="background-image: linear-gradient(to bottom, rgba(17, 38, 33, 0.65) 0%, #16332c 100%), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600');">
     <div class="subpage-overlay"></div>
     <div class="subpage-content reveal-item">
       <span class="section-subtitle" data-i18n="katalogHeroSubtitle">Katalog Lengkap Kepulauan</span>
@@ -206,7 +206,11 @@
     <div class="ai-modal-dialog" role="dialog" aria-labelledby="aiModalTitle">
       <div class="ai-modal-header">
         <div class="ai-header-info">
-          <div class="ai-avatar-badge">✨</div>
+          <div class="ai-avatar-badge">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="3 11 22 2 13 21 11 13 3 11"/>
+            </svg>
+          </div>
           <div>
             <h3 id="aiModalTitle">Si-PANDU AI Trip Planner</h3>
             <p>Asisten Pintar Rekomendasi Rute, Jadwal Kapal & Itinerary Wisata Banggai Laut</p>
@@ -217,10 +221,10 @@
 
       <div class="ai-mode-tabs">
         <button type="button" class="ai-tab-btn active" data-tab="generator" id="tabBtnGenerator">
-          🧭 Form Rancang Rute (AI Smart Planner)
+          Form Rancang Rute
         </button>
         <button type="button" class="ai-tab-btn" data-tab="chat" id="tabBtnChat">
-          💬 Tanya AI Bebas
+          Tanya AI Bebas
         </button>
       </div>
 
@@ -229,7 +233,7 @@
         <form class="ai-planner-form" id="aiPlannerForm">
           <div class="ai-form-grid">
             <div class="ai-field-group">
-              <label for="aiStartPoint">📍 Titik Awal Keberangkatan</label>
+              <label for="aiStartPoint">Titik Keberangkatan</label>
               <select id="aiStartPoint">
                 <option value="banggai" selected>Pelabuhan Banggai (Pusat Kota Banggai Laut)</option>
                 <option value="luwuk">Pelabuhan Luwuk (Wisatawan Luar Daerah / Akses Bandara)</option>
@@ -237,7 +241,7 @@
               </select>
             </div>
             <div class="ai-field-group">
-              <label for="aiDuration">⏳ Lama Kunjungan</label>
+              <label for="aiDuration">Lama Kunjungan</label>
               <select id="aiDuration">
                 <option value="1">1 Hari (One Day Tour Express)</option>
                 <option value="2">2 Hari 1 Malam (Rekomendasi Populer)</option>
@@ -249,48 +253,48 @@
 
           <!-- Pilihan Minat & Gaya Wisata Multi-Select -->
           <div class="ai-field-group" style="margin-top: 15px;">
-            <label>🎯 Gaya & Minat Wisata (Pilih satu atau lebih):</label>
+            <label>Gaya & Minat Wisata (Pilih satu atau lebih):</label>
             <div class="ai-interests-grid" id="aiInterestsGrid">
               <label class="interest-chip selected">
                 <input type="checkbox" name="interest" value="bahari" checked>
-                <span>🌊 Wisata Bahari & Pantai</span>
+                <span>Wisata Bahari & Pantai</span>
               </label>
               <label class="interest-chip selected">
                 <input type="checkbox" name="interest" value="snorkeling" checked>
-                <span>🤿 Snorkeling & Diving Karang</span>
+                <span>Snorkeling & Diving Karang</span>
               </label>
               <label class="interest-chip">
                 <input type="checkbox" name="interest" value="sejarah">
-                <span>🏛️ Sejarah Kerajaan Banggai</span>
+                <span>Sejarah Kerajaan Banggai</span>
               </label>
               <label class="interest-chip">
                 <input type="checkbox" name="interest" value="alam">
-                <span>🌿 Air Terjun & Goa Alami</span>
+                <span>Air Terjun & Goa Alami</span>
               </label>
               <label class="interest-chip">
                 <input type="checkbox" name="interest" value="foto">
-                <span>📸 Spot Foto Estetik & Sunrise</span>
+                <span>Spot Foto Estetik & Sunrise</span>
               </label>
               <label class="interest-chip">
                 <input type="checkbox" name="interest" value="kuliner">
-                <span>🍽️ Kuliner Laut Khas Balut</span>
+                <span>Kuliner Laut Khas Balut</span>
               </label>
             </div>
           </div>
 
           <div class="ai-form-grid" style="margin-top: 15px;">
             <div class="ai-field-group">
-              <label for="aiTravelerType">👥 Teman Perjalanan</label>
+              <label for="aiTravelerType">Kategori Wisatawan</label>
               <select id="aiTravelerType">
                 <option value="solo">Solo Traveler (Petualang Sendiri)</option>
-                <option value="couple">Pasangan / Honey Moon</option>
+                <option value="couple">Pasangan / Bulan Madu</option>
                 <option value="family" selected>Keluarga & Anak-anak</option>
                 <option value="group">Rombongan Teman / Komunitas</option>
               </select>
             </div>
 
             <div class="ai-field-group">
-              <label for="aiHotelPreference">🏨 Preferensi Akomodasi / Penginapan</label>
+              <label for="aiHotelPreference">Preferensi Akomodasi</label>
               <select id="aiHotelPreference">
                 <option value="banggai_hotel" selected>Hotel Kota Banggai (AC, Nyaman, Pusat Kota)</option>
                 <option value="resort_floating">Resort Bahari / Cottage Apung</option>
@@ -303,7 +307,7 @@
           <!-- Budget Input & Switcher -->
           <div class="ai-budget-section" style="margin-top: 18px;">
             <div class="budget-section-header">
-              <label for="aiBudgetAmount">💰 Estimasi Budget Perjalanan</label>
+              <label for="aiBudgetAmount">Estimasi Anggaran Perjalanan</label>
               <div class="budget-mode-toggle" id="budgetModeToggle">
                 <button type="button" class="mode-toggle-btn active" data-mode="total">Total Seluruh Trip</button>
                 <button type="button" class="mode-toggle-btn" data-mode="per_person">Per Orang / Hari</button>
@@ -312,15 +316,15 @@
 
             <div class="budget-presets-row" id="budgetPresetsRow">
               <button type="button" class="budget-preset-btn" data-amount="350000" data-preset="backpacker">
-                <span class="preset-name">🎒 Backpacker</span>
+                <span class="preset-name">Hemat / Backpacker</span>
                 <span class="preset-val" id="presetValBackpacker">Rp 350.000 / hari</span>
               </button>
               <button type="button" class="budget-preset-btn active" data-amount="750000" data-preset="nyaman">
-                <span class="preset-name">⭐ Liburan Nyaman</span>
+                <span class="preset-name">Liburan Nyaman</span>
                 <span class="preset-val" id="presetValNyaman">Rp 750.000 / hari</span>
               </button>
               <button type="button" class="budget-preset-btn" data-amount="1750000" data-preset="sultan">
-                <span class="preset-name">👑 Eksklusif / Sultan</span>
+                <span class="preset-name">Eksklusif</span>
                 <span class="preset-val" id="presetValSultan">Rp 1.750.000 / hari</span>
               </button>
             </div>
@@ -329,7 +333,7 @@
           </div>
 
           <button type="submit" class="ai-submit-btn" id="btnGenerateRoute">
-            <span>✨ Rancang Rute Itinerary & Tampilkan Peta Interaktif</span>
+            <span>Rancang Rute & Tampilkan Peta Interaktif</span>
           </button>
         </form>
       </div>
@@ -337,10 +341,11 @@
       <!-- Content Tab 2: Conversational Chat -->
       <div class="ai-tab-content" id="tabChat" style="display: none;">
         <div class="ai-chat-quick-tags">
-          <span class="quick-tag" data-query="Bagaimana rute ke Danau Ubur-Ubur Mbuang-Mbuang dari Luwuk?">🏖️ Rute ke Danau Ubur-Ubur</span>
-          <span class="quick-tag" data-query="Jadwal kapal KM Fungka Permata dan harga tiketnya">⛴️ Jadwal KM Fungka</span>
-          <span class="quick-tag" data-query="Rekomendasi liburan 2 hari dengan budget hemat">💰 Trip 2 Hari Hemat</span>
-          <span class="quick-tag" data-query="Kuliner khas dan oleh-oleh wajib di Banggai Laut">🍽️ Kuliner & Oleh-oleh</span>
+          <span class="quick-tag" data-query="Apakah ombak ke Pulau Mbuang-Mbuang bulan Desember aman untuk anak balita?">Ombak Desember & Balita</span>
+          <span class="quick-tag" data-query="Tolong rekomendasikan tempat sewa motor dekat Pelabuhan Banggai yang buka jam 6 pagi">Sewa Motor Jam 6 Pagi</span>
+          <span class="quick-tag" data-query="Bagaimana rute ke Danau Ubur-Ubur Mbuang-Mbuang dari Luwuk?">Rute Danau Ubur-Ubur</span>
+          <span class="quick-tag" data-query="Jadwal kapal cepat Luwuk ke Banggai dan harga tiketnya">Jadwal Kapal Cepat</span>
+          <span class="quick-tag" data-query="Kuliner khas dan oleh-oleh wajib di Banggai Laut">Kuliner & Sinole</span>
         </div>
 
         <div class="ai-chat-history" id="aiChatHistory">
@@ -385,12 +390,7 @@
   </div>
 
   <!-- QUICK DETAIL WISATA MODAL -->
-  <div class="quick-detail-backdrop" id="quickDetailModal" aria-hidden="true">
-    <div class="quick-detail-dialog">
-      <button type="button" class="quick-detail-close" id="quickDetailClose">✕</button>
-      <div class="quick-detail-body" id="quickDetailBody"></div>
-    </div>
-  </div>
+  <div class="quick-detail-backdrop" id="quickDetailModal" aria-hidden="true"></div>
 
   <!-- Toast Notification Container -->
   <div id="toastNotification" class="toast-notification" aria-live="polite"></div>

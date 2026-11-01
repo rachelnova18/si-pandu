@@ -90,40 +90,471 @@
     <div class="subpage-overlay"></div>
     <div class="subpage-content reveal-item">
       <span class="section-subtitle" data-i18n="panduanHeroSubtitle">Navigasi Logistik Kepulauan</span>
-      <h1 data-i18n="panduanHeroTitle">Jadwal Kapal & Panduan Rute</h1>
-      <p data-i18n="panduanHeroDesc">Informasi terpadu jadwal pelayaran antar-pulau, estimasi tiket penyeberangan, serta panduan akses menuju Kabupaten Banggai Laut.</p>
+      <h1 data-i18n="panduanHeroTitle">Panduan Transportasi & Jadwal Kapal</h1>
+      <p data-i18n="panduanHeroDesc">Karena 94% wilayah Banggai Laut adalah perairan, kelancaran perjalanan Anda sangat bergantung pada ketepatan rute dan jadwal kapal. Berikut panduan lengkap transportasi udara, laut, jadwal pelayaran, estimasi tarif resmi, hingga sewa kapal lokal.</p>
+      
+      <!-- Quick Jump Navigation Pills -->
+      <div class="subpage-jump-pills">
+        <a href="#ruteKedatangan" class="jump-pill">Rute Kedatangan</a>
+        <a href="#jenisArmada" class="jump-pill">Jenis Armada</a>
+        <a href="#jadwalKapal" class="jump-pill">Jadwal Kapal</a>
+        <a href="#tarifTiket" class="jump-pill">Tarif & Tiket</a>
+        <a href="#islandHopping" class="jump-pill">Transportasi Lokal</a>
+        <a href="#tipsPelayaran" class="jump-pill">Tips Pelayaran</a>
+      </div>
     </div>
   </section>
 
-  <!-- Bagian 1: Papan Jadwal Kapal Penyeberangan -->
-  <section class="maritime-section">
-    <div class="maritime-header reveal-item">
-      <div>
-        <span class="section-subtitle" data-i18n="maritimeSubtitle">Banggai Maritime Hub</span>
-        <h2 class="section-title-white" data-i18n="maritimeTitle">⛴️ Jadwal Pelayaran & Kapal Antar-Pulau</h2>
+  <!-- =====================================================
+       1. RUTE KEDATANGAN UTAMA (CARA MENUJU BANGGAI LAUT)
+       ===================================================== -->
+  <section class="panduan-section" id="ruteKedatangan">
+    <div class="panduan-container">
+      <div class="section-header-clean reveal-item text-center">
+        <span class="clean-tag">Akses & Rute Perjalanan</span>
+        <h2 class="clean-heading">Cara Menuju Kabupaten Banggai Laut</h2>
+        <p class="clean-lead">Panduan rute kedatangan udara, darat, dan laut dari luar pulau Sulawesi maupun kota-kota sekitar.</p>
       </div>
-      <!-- Filter Rute Kapal -->
-      <div class="route-filter-box">
-        <input type="text" id="searchKapal" placeholder="Cari rute atau nama kapal (misal: Luwuk, Bokan, Ferry)..." data-i18n-ph="searchKapalPlaceholder" autocomplete="off">
-      </div>
-    </div>
 
-    <!-- Grid Kartu Jadwal Kapal -->
-    <div class="ship-grid" id="transportasiGrid">
-      <!-- Di-render otomatis dari database / data kapal Banggai Laut -->
+      <!-- Main Step-by-Step Flow: Dari Luar Sulawesi -->
+      <div class="flight-route-hero-card reveal-item">
+        <div class="route-hero-badge">RUTE UTAMA TERCEPAT (WISATAWAN LUAR SULAWESI)</div>
+        <h3 class="route-hero-title">Jakarta / Surabaya / Bali / Makassar ➔ Luwuk ➔ Banggai Laut</h3>
+        <p class="route-hero-lead">Rute paling direkomendasikan dan efisien untuk wisatawan dari luar pulau Sulawesi.</p>
+
+        <div class="step-flow-grid">
+          <!-- Step 1 -->
+          <div class="step-flow-item">
+            <div class="step-badge-num">1</div>
+            <h4>Terbang ke Bandara Luwuk (LUW)</h4>
+            <p>Pesan tiket penerbangan menuju <strong>Bandara Syukuran Aminuddin Amir di Luwuk (LUW)</strong>. Penerbangan dari Jakarta, Surabaya, atau Bali transit melalui Bandara Sultan Hasanuddin Makassar (UPG) dengan maskapai Batik Air, Lion Air, atau Wings Air.</p>
+          </div>
+          <!-- Step 2 -->
+          <div class="step-flow-item">
+            <div class="step-badge-num">2</div>
+            <h4>Transfer ke Pelabuhan Rakyat Luwuk</h4>
+            <p>Dari Bandara Luwuk, lanjutkan perjalanan darat menuju <strong>Pelabuhan Rakyat Luwuk</strong> (untuk kapal cepat) atau Pelabuhan Lalong/Feri Luwuk sekitar 25–35 menit menggunakan taksi bandara atau mobil rental lokal.</p>
+          </div>
+          <!-- Step 3 -->
+          <div class="step-flow-item">
+            <div class="step-badge-num">3</div>
+            <h4>Penyeberangan Laut ke Banggai Laut</h4>
+            <p>Naik <strong>Kapal Cepat (Speedboat Express)</strong> dengan waktu tempuh 2–3 jam, atau <strong>Kapal Feri Ro-Ro ASDP</strong> (sekitar 7–9 jam) langsung merapat di Pelabuhan Banggai (Ibu Kota Banggai Laut).</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Alternatif Jalur dari Kota Lain -->
+      <div class="alt-routes-grid reveal-item">
+        <div class="alt-route-card">
+          <div class="alt-card-header">
+            <span class="alt-card-num">01</span>
+            <h4>Dari Palu (Ibu Kota Sulteng)</h4>
+          </div>
+          <p><strong>Jalur Udara:</strong> Terbang dari Bandara Mutiara SIS Al-Jufri Palu (PLW) menuju Bandara Luwuk (LUW) sekitar 50 menit dengan Wings Air, kemudian menyeberang via kapal laut.</p>
+          <p><strong>Jalur Darat (Travel):</strong> Bus/travel rute Palu – Luwuk memakan waktu sekitar 12–14 jam perjalanan Trans-Sulawesi melintasi Poso dan Ampana bagi backpacker.</p>
+        </div>
+
+        <div class="alt-route-card">
+          <div class="alt-card-header">
+            <span class="alt-card-num">02</span>
+            <h4>Dari Gorontalo & Manado</h4>
+          </div>
+          <p><strong>Jalur Udara:</strong> Terbang transit via Makassar menuju Bandara Luwuk.</p>
+          <p><strong>Jalur Feri Laut:</strong> Naik Kapal Feri ASDP rute Gorontalo – Pagimana (menyeberang malam ~12 jam), lalu lanjut jalan darat Pagimana ke Luwuk (2 jam), dan menyeberang ke Banggai Laut.</p>
+        </div>
+
+        <div class="alt-route-card">
+          <div class="alt-card-header">
+            <span class="alt-card-num">03</span>
+            <h4>Dari Kendari / Sultra (Via PELNI)</h4>
+          </div>
+          <p><strong>Pelayaran Antar-Provinsi:</strong> Kapal penumpang PELNI (seperti KM Sangiang) melayani rute berkala Kendari / Bau-Bau – Banggai – Bitung, menawarkan perjalanan laut langsung antar-provinsi.</p>
+          <p><strong>Rute Perintis:</strong> Kapal motor perintis nusantara juga melayani rute singgah antar-pelabuhan pesisir Sulawesi Tenggara dan Maluku.</p>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- Bagian 2: Panduan Perjalanan dari Luar Daerah (Step-by-step) -->
-  <section class="guide-section">
-    <div class="section-header reveal-item" style="text-align: center; margin-bottom: 40px;">
-      <span class="section-subtitle" data-i18n="guideSubtitle">Rute Wisatawan Luar Daerah</span>
-      <h2 class="section-title-white" data-i18n="guideTitle">🧭 Panduan Perjalanan Menuju Banggai Laut</h2>
-      <p data-i18n="guideDesc" style="color: var(--text-muted); max-width: 650px; margin: 10px auto 0;">Langkah demi langkah moda transportasi udara, darat, dan laut untuk mencapai surga bahari Banggai Laut.</p>
-    </div>
+  <!-- =====================================================
+       2. KATEGORI JENIS ARMADA PENYEBERANGAN
+       ===================================================== -->
+  <section class="panduan-section alt-bg" id="jenisArmada">
+    <div class="panduan-container">
+      <div class="section-header-clean reveal-item text-center">
+        <span class="clean-tag">Pilihan Moda Laut</span>
+        <h2 class="clean-heading">Kategori Jenis Armada Penyeberangan</h2>
+        <p class="clean-lead">Sesuaikan pilihan jenis kapal dengan kebutuhan waktu tempuh, kenyamanan, serta barang bawaan Anda.</p>
+      </div>
 
-    <div class="guide-timeline" id="panduanGrid">
-      <!-- Di-render otomatis -->
+      <div class="fleet-category-grid reveal-item">
+        <!-- Kapal Cepat -->
+        <div class="fleet-card featured">
+          <div class="fleet-badge">Paling Populer & Tercepat</div>
+          <h3 class="fleet-title">Kapal Cepat (Speedboat / Express)</h3>
+          <p class="fleet-desc">Opsi terbaik dan tercepat bagi wisatawan umum yang ingin segera tiba di lokasi wisata tanpa menghabiskan waktu di laut.</p>
+          
+          <ul class="fleet-specs">
+            <li><strong>Waktu Tempuh:</strong> Sekitar 2 – 3 Jam (dari Luwuk)</li>
+            <li><strong>Karakteristik:</strong> Kabin ber-AC penuh, kursi reclining, televisi, toilet bersih</li>
+            <li><strong>Kapasitas Kendaraan:</strong> Khusus penumpang & bagasi tas/koper (tidak membawa motor/mobil)</li>
+            <li><strong>Jadwal:</strong> Keberangkatan pagi reguler pukul 09:00 WITA</li>
+            <li><strong>Rekomendasi:</strong> Traveler dengan waktu liburan akhir pekan & mengejar waktu</li>
+          </ul>
+        </div>
+
+        <!-- Kapal Feri Ro-Ro -->
+        <div class="fleet-card">
+          <div class="fleet-badge neutral">Ekonomis & Muat Kendaraan</div>
+          <h3 class="fleet-title">Kapal Feri (Ro-Ro ASDP)</h3>
+          <p class="fleet-desc">Pilihan tepat bagi yang membawa kendaraan pribadi (motor/mobil), barang logistik dalam jumlah banyak, atau ingin opsi tiket lebih hemat.</p>
+          
+          <ul class="fleet-specs">
+            <li><strong>Waktu Tempuh:</strong> Sekitar 7 – 9 Jam (Luwuk – Banggai)</li>
+            <li><strong>Karakteristik:</strong> Dek kendaraan luas, kantin kapal, opsi kasur istirahat/tatami</li>
+            <li><strong>Kapasitas Kendaraan:</strong> Sepeda motor, mobil keluarga, hingga truk kargo logistik</li>
+            <li><strong>Jadwal:</strong> Keberangkatan siang / malam sesuai kalender ASDP</li>
+            <li><strong>Rekomendasi:</strong> Road trip keluarga, penggiat touring, & ekspedisi kargo</li>
+          </ul>
+        </div>
+
+        <!-- Kapal PELNI & Perintis -->
+        <div class="fleet-card">
+          <div class="fleet-badge accent">Rute Antar-Provinsi</div>
+          <h3 class="fleet-title">Kapal PELNI & Kapal Perintis</h3>
+          <p class="fleet-desc">Armada kapal besar milik negara untuk perjalanan jarak jauh antar-pulau dan lintas provinsi dengan stabilitas ombak yang sangat baik.</p>
+          
+          <ul class="fleet-specs">
+            <li><strong>Waktu Tempuh:</strong> Menyesuaikan rute pelayaran regional</li>
+            <li><strong>Karakteristik:</strong> Kapal bobot besar, minim goyangan ombak, kamar kabin & dek ekonomi</li>
+            <li><strong>Rute Terhubung:</strong> Luwuk, Banggai, Bitung, Ternate, Kendari, Ambon</li>
+            <li><strong>Jadwal:</strong> Jadwal berkala mingguan / 2 minggu sekali</li>
+            <li><strong>Rekomendasi:</strong> Wisatawan petualang dan penjelajah kepulauan nusantara</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       3. TABEL JADWAL KEBERANGKATAN & KEDATANGAN
+       ===================================================== -->
+  <section class="panduan-section" id="jadwalKapal">
+    <div class="panduan-container">
+      <div class="section-header-clean reveal-item text-center">
+        <span class="clean-tag">Informasi Terpadu</span>
+        <h2 class="clean-heading">Tabel Jadwal Keberangkatan & Kedatangan Kapal</h2>
+        <p class="clean-lead">Daftar lengkap jadwal armada laut penyeberangan menuju dan dari Kabupaten Banggai Laut.</p>
+      </div>
+
+      <!-- Controls: Tabs + Search Input -->
+      <div class="schedule-controls-box reveal-item">
+        <div class="schedule-tabs" id="scheduleTabs" role="tablist">
+          <button type="button" class="sched-tab active" data-filter="all">Semua Rute</button>
+          <button type="button" class="sched-tab" data-filter="luwuk">Dari / Ke Luwuk</button>
+          <button type="button" class="sched-tab" data-filter="salakan">Dari / Ke Salakan (Bangkep)</button>
+          <button type="button" class="sched-tab" data-filter="balut">Antar-Pulau Balut (Bokan)</button>
+          <button type="button" class="sched-tab" data-filter="pelni">Kapal PELNI</button>
+        </div>
+
+        <div class="schedule-search-wrap">
+          <input type="text" id="schedSearchInput" placeholder="Cari nama kapal, pelabuhan, hari..." autocomplete="off">
+        </div>
+      </div>
+
+      <!-- Responsive Schedule Table -->
+      <div class="schedule-table-wrap reveal-item">
+        <table class="schedule-table" id="scheduleTable">
+          <thead>
+            <tr>
+              <th data-i18n="tableShipName">Nama Armada & Jenis</th>
+              <th data-i18n="tableRoute">Rute Perjalanan</th>
+              <th data-i18n="tableDay">Hari Berangkat</th>
+              <th data-i18n="tableDeparture">Jam Berangkat</th>
+              <th data-i18n="tableArrival">Estimasi Tiba</th>
+              <th data-i18n="tableFare">Tarif Tiket</th>
+              <th data-i18n="tableStatus">Status Operasional</th>
+              <th data-i18n="tableAction">Pemesanan</th>
+            </tr>
+          </thead>
+          <tbody id="scheduleTableBody">
+            <!-- Di-render dinamis oleh main.js dari armadaKapalData -->
+          </tbody>
+        </table>
+      </div>
+
+      <div class="schedule-disclaimer reveal-item">
+        <span>Catatan Operasional: Jadwal pelayaran dapat sewaktu-waktu menyesuaikan kondisi cuaca dan maklumat syahbandar pelabuhan. Disarankan selalu melakukan konfirmasi via loket atau kontak agen sebelum hari keberangkatan.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       4. INFORMASI TARIF & PEMBELIAN TIKET
+       ===================================================== -->
+  <section class="panduan-section alt-bg" id="tarifTiket">
+    <div class="panduan-container">
+      <div class="section-header-clean reveal-item text-center">
+        <span class="clean-tag">Transparansi Biaya</span>
+        <h2 class="clean-heading">Informasi Tarif & Pembelian Tiket</h2>
+        <p class="clean-lead">Rincian estimasi harga tiket resmi dan tata cara pembelian tiket kapal penyeberangan.</p>
+      </div>
+
+      <div class="ticket-info-grid reveal-item">
+        <!-- Rincian Tarif -->
+        <div class="ticket-pricing-card">
+          <h3 class="card-box-title">Estimasi Tarif Penyeberangan Utama</h3>
+          <div class="price-rows-list">
+            <div class="price-row-item">
+              <div class="price-row-info">
+                <strong>Kapal Cepat Express (Luwuk ➔ Banggai)</strong>
+                <span>Kelas Eksekutif (AC & Reclining Seat)</span>
+              </div>
+              <div class="price-row-cost">Rp 180.000 <span>/ org</span></div>
+            </div>
+
+            <div class="price-row-item">
+              <div class="price-row-info">
+                <strong>Kapal Cepat Express (Kelas VIP)</strong>
+                <span>Kabin VIP Atas & Privasi Lebih Luas</span>
+              </div>
+              <div class="price-row-cost">Rp 220.000 <span>/ org</span></div>
+            </div>
+
+            <div class="price-row-item">
+              <div class="price-row-info">
+                <strong>Kapal Cepat Express (Anak-anak)</strong>
+                <span>Usia 2 – 10 Tahun</span>
+              </div>
+              <div class="price-row-cost">Rp 110.000 <span>/ anak</span></div>
+            </div>
+
+            <div class="price-row-item">
+              <div class="price-row-info">
+                <strong>Feri ASDP Ro-Ro (Tiket Penumpang)</strong>
+                <span>Dek Ekonomi Penumpang Luwuk – Banggai</span>
+              </div>
+              <div class="price-row-cost">Rp 85.000 <span>/ org</span></div>
+            </div>
+
+            <div class="price-row-item">
+              <div class="price-row-info">
+                <strong>Feri ASDP (Bawa Sepeda Motor)</strong>
+                <span>Termasuk 1 Pengendara Motor</span>
+              </div>
+              <div class="price-row-cost">Rp 140.000 <span>/ motor</span></div>
+            </div>
+
+            <div class="price-row-item">
+              <div class="price-row-info">
+                <strong>Feri ASDP (Bawa Mobil Pribadi)</strong>
+                <span>Golongan IV (Sedan / MPV / SUV)</span>
+              </div>
+              <div class="price-row-cost">Rp 850.000 <span>/ mobil</span></div>
+            </div>
+
+            <div class="price-row-item">
+              <div class="price-row-info">
+                <strong>Kapal Kayu Reguler Balut ➔ Bokan</strong>
+                <span>Rute Pelabuhan Banggai – Mbuang-Mbuang</span>
+              </div>
+              <div class="price-row-cost">Rp 60.000 – 75.000</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lokasi & Tata Cara Pembelian Tiket -->
+        <div class="ticket-booking-card">
+          <h3 class="card-box-title">Lokasi & Metode Pembelian Tiket</h3>
+          
+          <div class="booking-methods-list">
+            <div class="booking-method-box">
+              <h4>1. Loket Resmi Pelabuhan (Pembelian Langsung)</h4>
+              <p>Pembelian langsung dapat dilakukan pada hari keberangkatan mulai pukul 07:00 WITA di <strong>Loket Pelabuhan Rakyat Luwuk</strong> atau <strong>Loket Pelabuhan Banggai</strong>. Pembayaran menggunakan uang tunai (cash).</p>
+            </div>
+
+            <div class="booking-method-box">
+              <h4>2. Reservasi Dini via Agen Resmi (WhatsApp)</h4>
+              <p>Untuk menghindari kehabisan kursi saat akhir pekan, musim liburan, atau upacara adat Malabot Tumbe, Anda dapat melakukan pemesanan tiket kapal cepat lebih awal melalui kontak agen resmi.</p>
+              
+              <div class="agent-contacts-group">
+                <a href="https://wa.me/6282292928800?text=Halo%20Admin%20Tiket%20Kapal%20Banggai%20Laut%2C%20saya%20ingin%20cek%20dan%20pesan%20tiket%20kapal%20Luwuk-Banggai." target="_blank" rel="noopener noreferrer" class="btn-wa-booking">
+                  Hubungi Agen Tiket Kapal Cepat via WhatsApp ➔
+                </a>
+                <a href="https://wa.me/6285241002233?text=Halo%20Pusat%20Informasi%20Disparbud%20Banggai%20Laut%2C%20mohon%20informasi%20jadwal%20penyeberangan%20terkini." target="_blank" rel="noopener noreferrer" class="btn-wa-info">
+                  Kontak Informasi Disparbud Balut via WhatsApp ➔
+                </a>
+              </div>
+            </div>
+
+            <div class="booking-method-box">
+              <h4>3. Tiket Kapal Feri ASDP</h4>
+              <p>Pembelian tiket feri ASDP dilakukan di loket Pelabuhan Feri ASDP Luwuk atau melalui sistem resmi ASDP Ferizy pada lintasan penyeberangan regional yang telah terintegrasi.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       5. TRANSPORTASI LOKAL & ANTAR-PULAU (ISLAND HOPPING)
+       ===================================================== -->
+  <section class="panduan-section" id="islandHopping">
+    <div class="panduan-container">
+      <div class="section-header-clean reveal-item text-center">
+        <span class="clean-tag">Eksplorasi Bahari & Darat</span>
+        <h2 class="clean-heading">Transportasi Lokal & Antar-Pulau (Island Hopping)</h2>
+        <p class="clean-lead">Informasi sewa perahu tradisional, speedboat tur keliling pulau karang, serta rental motor dan mobil di Pulau Banggai.</p>
+      </div>
+
+      <div class="island-hopping-grid reveal-item">
+        <!-- Sewa Perahu Katinting -->
+        <div class="hopping-card">
+          <div class="hopping-card-type">Wisata Bahari</div>
+          <h3 class="hopping-card-title">Perahu Kayu / Katinting (Bodi Tradisional)</h3>
+          <p class="hopping-card-desc">Pilihan khas nelayan lokal untuk menyeberang jarak dekat ke pulau-pulau pantai pasir putih dan spot snorkeling dangkal.</p>
+          <div class="hopping-price-box">
+            <span class="price-val">Rp 350.000 – Rp 500.000</span>
+            <span class="price-unit">/ hari (Kapasitas 4 – 8 Orang)</span>
+          </div>
+          <ul class="hopping-features">
+            <li>Cocok untuk: Pulau Bandang, Lambangan Pauno, pesisir Bontolan</li>
+            <li>Termasuk motoris lokal berpengalaman</li>
+            <li>Titik kumpul: Dermaga Monsongan / Pelabuhan Banggai</li>
+          </ul>
+        </div>
+
+        <!-- Speedboat Charter Wisata -->
+        <div class="hopping-card featured">
+          <div class="hopping-card-type">Ekspedisi Jarak Jauh</div>
+          <h3 class="hopping-card-title">Speedboat Wisata Charter (Mesin Ganda)</h3>
+          <p class="hopping-card-desc">Pilihan terbaik untuk rombongan yang ingin menjelajahi Danau Ubur-Ubur Mbuang-Mbuang dan laguna karst terjauh dalam 1 hari penuh.</p>
+          <div class="hopping-price-box">
+            <span class="price-val">Rp 1.500.000 – Rp 2.500.000</span>
+            <span class="price-unit">/ hari (Kapasitas 10 – 15 Orang)</span>
+          </div>
+          <ul class="hopping-features">
+            <li>Cocok untuk: Danau Ubur-Ubur Bokan, Pulau Labobo, Tebing Karst</li>
+            <li>Waktu tempuh 2x lebih cepat dan aman untuk perairan luar</li>
+            <li>Termasuk pelampung keselamatan (life jacket) lengkap</li>
+          </ul>
+        </div>
+
+        <!-- Rental Motor di Pulau Banggai -->
+        <div class="hopping-card">
+          <div class="hopping-card-type">Transportasi Darat</div>
+          <h3 class="hopping-card-title">Rental Sepeda Motor Matic</h3>
+          <p class="hopping-card-desc">Moda paling fleksibel dan efisien untuk menyusuri pusat kota Banggai, cagar sejarah Keraton, kuliner malam, dan tanjung sunset.</p>
+          <div class="hopping-price-box">
+            <span class="price-val">Rp 75.000 – Rp 100.000</span>
+            <span class="price-unit">/ 24 Jam</span>
+          </div>
+          <ul class="hopping-features">
+            <li>Pilihan unit: Honda Beat, Scoopy, Vario (kondisi terawat)</li>
+            <li>Termasuk 2 helm standar SNI</li>
+            <li>Bisa diantar langsung ke penginapan atau pelabuhan</li>
+          </ul>
+        </div>
+
+        <!-- Rental Mobil + Driver -->
+        <div class="hopping-card">
+          <div class="hopping-card-type">Kenyamanan Rombongan</div>
+          <h3 class="hopping-card-title">Rental Mobil (Avanza / Innova) + Supir</h3>
+          <p class="hopping-card-desc">Solusi praktis dan sejuk untuk rombongan keluarga, pejabat dinas, atau wisatawan yang membawa banyak perlengkapan koper dan drone.</p>
+          <div class="hopping-price-box">
+            <span class="price-val">Rp 500.000 – Rp 700.000</span>
+            <span class="price-unit">/ hari (Termasuk Supir)</span>
+          </div>
+          <ul class="hopping-features">
+            <li>Kapasitas: 6 – 7 Penumpang ber-AC</li>
+            <li>Supir lokal yang paham rute dan titik sejarah cagar budaya</li>
+            <li>Bebas repot navigasi jalan pulau</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       6. PUSAT INFORMASI & TIPS PERJALANAN LAUT
+       ===================================================== -->
+  <section class="panduan-section alt-bg" id="tipsPelayaran">
+    <div class="panduan-container">
+      <div class="section-header-clean reveal-item text-center">
+        <span class="clean-tag">Keamanan & Logistik</span>
+        <h2 class="clean-heading">Pusat Informasi & Tips Perjalanan Laut</h2>
+        <p class="clean-lead">Panduan penting terkait musim ombak, jam kedatangan, dan titik lokasi pelabuhan demi kenyamanan pelayaran Anda.</p>
+      </div>
+
+      <div class="safety-tips-grid reveal-item">
+        <!-- Peringatan Musim Ombak -->
+        <div class="safety-tip-card">
+          <div class="tip-card-header">
+            <span class="tip-icon-badge">Musim & Cuaca</span>
+            <h4>Peringatan Musim Ombak & Kalender Laut</h4>
+          </div>
+          <div class="tip-body">
+            <p><strong>Waktu Laut Tenang Terbaik (Recommended):</strong> Bulan <strong>Maret s/d Mei</strong> serta <strong>September s/d November</strong> adalah periode laut paling tenang dengan kejernihan air maksimal, ideal untuk snorkeling dan diving.</p>
+            <p><strong>Musim Angin & Ombak (Harap Pantau Cuaca):</strong> Bulan <strong>Juli s/d Agustus</strong> (Angin Muson Timur) dan <strong>Desember s/d Januari</strong> (Angin Barat) perairan luar kadang bergelombang. Pada musim ini, jadwal kapal cepat bisa mengalami penyesuaian atau dialihkan ke Kapal Feri Ro-Ro yang berbadan besar.</p>
+          </div>
+        </div>
+
+        <!-- Himbauan Boarding & Waktu Tiba -->
+        <div class="safety-tip-card">
+          <div class="tip-card-header">
+            <span class="tip-icon-badge">Boarding & Waktu</span>
+            <h4>Himbauan Waktu Tiba di Pelabuhan</h4>
+          </div>
+          <div class="tip-body">
+            <ul class="clean-bullet-list">
+              <li><strong>Tiba 60 Menit Sebelum Keberangkatan:</strong> Wajib berada di pelabuhan minimal 1 jam sebelum kapal berlayar untuk antre tiket, verifikasi identitas, dan penataan bagasi.</li>
+              <li><strong>Ketersediaan Uang Tunai (Cash):</strong> Bawalah uang tunai secukupnya dari Luwuk atau kota asal. Mesin ATM hanya tersedia di pusat Pulau Banggai dan belum menjangkau pulau-pulau kecil seperti Mbuang-Mbuang.</li>
+              <li><strong>Obat Anti Mabuk Laut:</strong> Siapkan obat mabuk perjalanan bagi yang belum terbiasa menempuh perjalanan laut 2–3 jam.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Integrasi Peta Lokasi Pelabuhan Resmi Google Maps -->
+      <div class="port-map-integration-card reveal-item">
+        <div class="port-map-info">
+          <span class="port-badge">Titik Resmi Peta</span>
+          <h3>Peta Lokasi Pelabuhan Banggai Laut & Luwuk</h3>
+          <p>Pelabuhan Banggai adalah pintu gerbang maritim utama di Pulau Banggai tempat bersandarnya kapal cepat dari Luwuk, feri ASDP, dan kapal penyeberangan antar-pulau.</p>
+          
+          <div class="port-meta-list">
+            <div class="port-meta-item">
+              <strong>Pelabuhan Banggai (Ibu Kota Balut):</strong>
+              <span>Kelurahan Lompio, Kec. Banggai, Kabupaten Banggai Laut</span>
+            </div>
+            <div class="port-meta-item">
+              <strong>Pelabuhan Rakyat Luwuk (Titik Keberangkatan Luwuk):</strong>
+              <span>Kawasan Teluk Lalong, Kota Luwuk, Kabupaten Banggai</span>
+            </div>
+          </div>
+
+          <div class="port-btn-group">
+            <a href="https://maps.app.goo.gl/MSv8Dqtnqu29brcw8" target="_blank" rel="noopener noreferrer" class="btn-port-map">
+              Buka Titik Pelabuhan Banggai di Google Maps ↗
+            </a>
+          </div>
+        </div>
+
+        <div class="port-map-embed">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d255171.2139174779!2d123.442028!3d-1.84854!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2d833c9ed3593f8f%3A0x97c1d347a681c801!2sKab.%20Banggai%20Laut%2C%20Sulawesi%20Tengah!5e0!3m2!1sid!2sid!4v1710000000000!5m2!1sid!2sid" 
+            width="100%" 
+            height="100%" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Peta Lokasi Resmi Pelabuhan Banggai Laut">
+          </iframe>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -168,7 +599,11 @@
     <div class="ai-modal-dialog" role="dialog" aria-labelledby="aiModalTitle">
       <div class="ai-modal-header">
         <div class="ai-header-info">
-          <div class="ai-avatar-badge">✨</div>
+          <div class="ai-avatar-badge">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="3 11 22 2 13 21 11 13 3 11"/>
+            </svg>
+          </div>
           <div>
             <h3 id="aiModalTitle">Si-PANDU AI Route Assistant</h3>
             <p>Asisten Pintar Rekomendasi Rute Kapal & Itinerary Wisata Banggai Laut</p>
@@ -179,10 +614,10 @@
 
       <div class="ai-mode-tabs">
         <button type="button" class="ai-tab-btn active" data-tab="generator" id="tabBtnGenerator">
-          🧭 Susun Rute Cepat (Smart Planner)
+          Susun Rute Cepat
         </button>
         <button type="button" class="ai-tab-btn" data-tab="chat" id="tabBtnChat">
-          💬 Tanya AI Bebas
+          Tanya AI Bebas
         </button>
       </div>
 
@@ -190,7 +625,7 @@
         <form class="ai-planner-form" id="aiPlannerForm">
           <div class="ai-form-grid">
             <div class="ai-field-group">
-              <label for="aiStartPoint">📍 Titik Awal Keberangkatan</label>
+              <label for="aiStartPoint">Titik Keberangkatan</label>
               <select id="aiStartPoint">
                 <option value="luwuk">Pelabuhan Luwuk (Wisatawan Luar Daerah)</option>
                 <option value="banggai" selected>Pelabuhan Banggai (Pusat Kota Balut)</option>
@@ -198,16 +633,16 @@
               </select>
             </div>
             <div class="ai-field-group">
-              <label for="aiDuration">⏳ Durasi Perjalanan</label>
+              <label for="aiDuration">Durasi Perjalanan</label>
               <select id="aiDuration">
                 <option value="1">1 Hari (Day Trip Cepat)</option>
-                <option value="2" selected>2 Hari 1 Malam (Weekend Escapade)</option>
+                <option value="2" selected>2 Hari 1 Malam (Akhir Pekan)</option>
                 <option value="3">3 Hari 2 Malam (Island Hopping Lengkap)</option>
                 <option value="4">4+ Hari (Eksplorasi Menyeluruh & Adat)</option>
               </select>
             </div>
             <div class="ai-field-group">
-              <label for="aiInterest">🏝️ Gaya / Minat Wisata</label>
+              <label for="aiInterest">Gaya & Minat Wisata</label>
               <select id="aiInterest">
                 <option value="bahari" selected>Wisata Bahari & Snorkeling (Mbuang-Mbuang, Ubur-Ubur)</option>
                 <option value="sejarah">Sejarah & Budaya Kerajaan Banggai</option>
@@ -216,27 +651,28 @@
               </select>
             </div>
             <div class="ai-field-group">
-              <label for="aiTraveler">👥 Teman Perjalanan</label>
+              <label for="aiTraveler">Kategori Wisatawan</label>
               <select id="aiTraveler">
                 <option value="solo">Solo Traveler / Backpacker</option>
-                <option value="couple" selected>Pasangan / Honeymoon</option>
+                <option value="couple" selected>Pasangan / Bulan Madu</option>
                 <option value="family">Keluarga & Anak-anak</option>
                 <option value="group">Rombongan Teman / Komunitas</option>
               </select>
             </div>
           </div>
           <button type="submit" class="ai-submit-btn" id="btnGenerateRoute">
-            <span>✨ Rancang Rute Rekomendasi AI</span>
+            <span>Rancang Rute Rekomendasi AI</span>
           </button>
         </form>
       </div>
 
       <div class="ai-tab-content" id="tabChat" style="display: none;">
         <div class="ai-chat-quick-tags">
-          <span class="quick-tag" data-query="Bagaimana rute ke Danau Ubur-Ubur Mbuang-Mbuang dari Luwuk?">🏖️ Rute ke Danau Ubur-Ubur</span>
-          <span class="quick-tag" data-query="Jadwal kapal KM Fungka Permata dan harga tiketnya">⛴️ Jadwal KM Fungka</span>
-          <span class="quick-tag" data-query="Rekomendasi liburan 2 hari dengan budget hemat">💰 Trip 2 Hari Hemat</span>
-          <span class="quick-tag" data-query="Kuliner khas dan oleh-oleh wajib di Banggai Laut">🍽️ Kuliner & Oleh-oleh</span>
+          <span class="quick-tag" data-query="Apakah ombak ke Pulau Mbuang-Mbuang bulan Desember aman untuk anak balita?">Ombak Desember & Balita</span>
+          <span class="quick-tag" data-query="Tolong rekomendasikan tempat sewa motor dekat Pelabuhan Banggai yang buka jam 6 pagi">Sewa Motor Jam 6 Pagi</span>
+          <span class="quick-tag" data-query="Bagaimana rute ke Danau Ubur-Ubur Mbuang-Mbuang dari Luwuk?">Rute Danau Ubur-Ubur</span>
+          <span class="quick-tag" data-query="Jadwal kapal cepat Luwuk ke Banggai dan harga tiketnya">Jadwal Kapal Cepat</span>
+          <span class="quick-tag" data-query="Kuliner khas dan oleh-oleh wajib di Banggai Laut">Kuliner & Sinole</span>
         </div>
         <div class="ai-chat-history" id="aiChatHistory">
           <div class="ai-message ai-bot">
@@ -276,12 +712,7 @@
   </div>
 
   <!-- QUICK DETAIL WISATA MODAL -->
-  <div class="quick-detail-backdrop" id="quickDetailModal" aria-hidden="true">
-    <div class="quick-detail-dialog">
-      <button type="button" class="quick-detail-close" id="quickDetailClose">✕</button>
-      <div class="quick-detail-body" id="quickDetailBody"></div>
-    </div>
-  </div>
+  <div class="quick-detail-backdrop" id="quickDetailModal" aria-hidden="true"></div>
 
   <!-- Toast Notification Container -->
   <div id="toastNotification" class="toast-notification" aria-live="polite"></div>
