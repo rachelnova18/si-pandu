@@ -1,17 +1,19 @@
 const express = require('express');
 const cors = require('cors');
-const path = require('path'); // Wajib di-require untuk membaca folder frontend
+const path = require('path'); 
 const { Pool } = require('pg');
+const jwt = require('jsonwebtoken'); // Modul JWT dipanggil di sini
+require('dotenv').config();
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 // Middleware
 app.use(cors());
 app.use(express.json());
-app.use(express.urlencoded({ extended: true })); // Agar bisa membaca data dari form HTML
+app.use(express.urlencoded({ extended: true })); 
 
-// 👉 Konfigurasi agar file Frontend (HTML, CSS, JS) bisa diakses langsung oleh server backend
+// Konfigurasi agar file Frontend bisa diakses langsung oleh server backend
 app.use(express.static(path.join(__dirname, '../frontend')));
 
 // Rute utama untuk membuka halaman index.html
@@ -21,14 +23,31 @@ app.get('/', (req, res) => {
 
 // Konfigurasi koneksi ke database PostgreSQL
 const pool = new Pool({
-    user: 'postgres',
-    password: 'bilkis21', 
-    host: 'localhost',
-    port: 5433,
-    database: 'sipandu'
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    database: process.env.DB_NAME
 });
 
-// Endpoint: Mengambil data wisata dari tabel direktori
+// Middleware untuk mengecek token JWT
+const authenticateToken = (req, res, next) => {
+    const authHeader = req.headers['authorization'];
+    // Mengambil token dari format "Bearer <token>"
+    const token = authHeader && authHeader.split(' ')[1]; 
+    
+    if (!token) {
+        return res.status(401).json({ status: 'error', message: 'Akses ditolak. Token tidak ditemukan!' });
+    }
+
+    jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+        if (err) return res.status(403).json({ status: 'error', message: 'Token tidak valid atau sudah kedaluwarsa!' });
+        req.user = user;
+        next(); // Jika token sah, izinkan lanjut ke proses selanjutnya
+    });
+};
+
+// Endpoint: Mengambil data wisata
 app.get('/api/wisata', async (req, res) => {
     try {
         const query = `
@@ -65,7 +84,7 @@ app.get('/api/transportasi', async (req, res) => {
     }
 });
 
-// Endpoint: Mengambil data panduan perjalanan dari luar daerah
+// Endpoint: Mengambil data panduan perjalanan
 app.get('/api/panduan', async (req, res) => {
     try {
         const query = 'SELECT * FROM panduan_perjalanan ORDER BY id ASC;';
@@ -81,7 +100,7 @@ app.get('/api/panduan', async (req, res) => {
     }
 });
 
-// Endpoint: Login Admin
+// Endpoint: Login Admin dengan JWT
 app.post('/api/login', async (req, res) => {
     const { username, password } = req.body;
     
@@ -90,12 +109,22 @@ app.post('/api/login', async (req, res) => {
         const result = await pool.query(query, [username, password]);
         
         if (result.rows.length > 0) {
+            const admin = result.rows[0];
+
+            // Membuat Token JWT dari data admin dan JWT_SECRET
+            const token = jwt.sign(
+                { id: admin.id, username: admin.username },
+                process.env.JWT_SECRET,
+                { expiresIn: '1d' } // Token akan hangus dalam 1 hari
+            );
+            
             res.json({ 
                 status: 'success', 
                 message: 'Login berhasil!',
+                token: token, // Mengirim token sebagai tiket ke frontend
                 data: {
-                    id: result.rows[0].id,
-                    username: result.rows[0].username
+                    id: admin.id,
+                    username: admin.username
                 }
             });
         } else {
@@ -107,7 +136,50 @@ app.post('/api/login', async (req, res) => {
     }
 });
 
-// 👉 Menyalakan server (Diletakkan di bagian PALING BAWAH setelah semua endpoint)
+// Endpoint: Menambah data wisata baru (POST)
+app.post('/api/wisata', authenticateToken, async (req, res) => {
+    const { id_kategori, nama_tempat, deskripsi_id, deskripsi_en, latitude, longitude, harga_mulai, kontak_wa } = req.body;
+    try {
+        const query = `
+            INSERT INTO direktori (id_kategori, nama_tempat, deskripsi_id, deskripsi_en, latitude, longitude, harga_mulai, kontak_wa) 
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *;
+        `;
+        const values = [id_kategori, nama_tempat, deskripsi_id, deskripsi_en, latitude, longitude, harga_mulai, kontak_wa];
+        const result = await pool.query(query, values);
+        res.json({ status: 'success', message: 'Destinasi berhasil ditambahkan!', data: result.rows[0] });
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).json({ status: 'error', message: 'Gagal menambah data' });
+    }
+});
+
+// Endpoint: Mengedit data wisata (PUT)
+app.put('/api/wisata/:id', authenticateToken, async (req, res) => {
+    const { id } = req.params;
+    const { nama_tempat, harga_mulai, kontak_wa } = req.body;
+    try {
+        const query = `UPDATE direktori SET nama_tempat = $1, harga_mulai = $2, kontak_wa = $3 WHERE id = $4 RETURNING *`;
+        const result = await pool.query(query, [nama_tempat, harga_mulai, kontak_wa, id]);
+        res.json({ status: 'success', message: 'Data berhasil diubah!', data: result.rows[0] });
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).json({ status: 'error', message: 'Gagal mengubah data' });
+    }
+});
+
+// Endpoint: Menghapus data wisata (DELETE)
+app.delete('/api/wisata/:id', authenticateToken, async (req, res) => {
+    const { id } = req.params;
+    try {
+        await pool.query('DELETE FROM direktori WHERE id = $1', [id]);
+        res.json({ status: 'success', message: 'Data destinasi berhasil dihapus!' });
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).json({ status: 'error', message: 'Gagal menghapus data' });
+    }
+});
+
+// Menyalakan server
 app.listen(port, () => {
     console.log(`Server Si-PANDU berjalan di http://localhost:${port}`);
 });

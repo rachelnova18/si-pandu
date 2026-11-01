@@ -1,0 +1,28 @@
+@startuml
+|Wisatawan|
+start
+:Buka halaman beranda Si-PANDU;
+:Pilih menu "Cari Destinasi Terdekat";
+
+|Sistem|
+:Menampilkan peringatan izin lokasi GPS;
+
+|Wisatawan|
+:Klik "Izinkan" (Allow Location);
+
+|Sistem|
+:Mendeteksi koordinat latitude & longitude wisatawan;
+:Mengirim koordinat ke server Backend;
+
+|Backend|
+:Menghitung jarak menggunakan algoritma Haversine;
+:Mengurutkan destinasi berdasarkan jarak terdekat;
+:Mengirimkan data respons JSON ke Frontend;
+
+|Sistem|
+:Menampilkan daftar kartu destinasi wisata;
+
+|Wisatawan|
+:Melihat destinasi terdekat beserta estimasi jaraknya;
+stop
+@enduml

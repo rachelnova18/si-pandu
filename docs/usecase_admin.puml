@@ -1,0 +1,21 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+
+actor "Admin Dinas" as admin
+
+package "Sistem Web Si-PANDU" {
+  usecase "Melakukan Login" as UC1
+  usecase "Mengelola Destinasi Wisata (CRUD)" as UC2
+  usecase "Mengelola Jadwal Transportasi" as UC3
+  usecase "Mengelola Panduan Perjalanan" as UC4
+  usecase "Mengelola Kalender Event" as UC5
+}
+
+admin --> UC1
+admin --> UC2
+admin --> UC3
+admin --> UC4
+admin --> UC5
+
+@enduml

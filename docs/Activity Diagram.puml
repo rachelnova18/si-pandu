@@ -1,0 +1,30 @@
+@startuml
+|Admin|
+start
+:Login ke Dashboard Admin;
+:Pilih menu "Kelola Destinasi";
+:Klik tombol "Tambah Destinasi";
+
+|Sistem|
+:Menampilkan form input destinasi;
+
+|Admin|
+:Mengisi form (nama, kategori, deskripsi_id, deskripsi_en, koordinat);
+:Klik tombol "Simpan";
+
+|Sistem|
+:Memvalidasi input data;
+if (Apakah data valid dan lengkap?) then (Ya)
+  :Menyimpan data ke tabel direktori;
+  :Menampilkan notifikasi sukses;
+else (Tidak)
+  :Menampilkan pesan error validasi;
+  |Admin|
+  :Memperbaiki input data yang salah;
+  note right: Kembali menekan tombol Simpan
+  detach
+endif
+
+|Sistem|
+stop
+@enduml

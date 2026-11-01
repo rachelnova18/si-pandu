@@ -1,0 +1,67 @@
+@startuml
+skinparam roundcorner 5
+skinparam linetype ortho
+skinparam shadowing false
+skinparam handwritten false
+
+!define primary_key(x) <b><color:#b8861b><&key></color> x</b>
+!define foreign_key(x) <color:#aaaaaa><&key></color> x
+!define column(x) <color:#efefef><&media-record></color> x
+!define table(x) entity x << (T, white) >>
+
+table(admin) {
+  primary_key(id) : SERIAL
+  column(username) : VARCHAR(50)
+  column(password) : VARCHAR(255)
+}
+
+table(tipe_kategori) {
+  primary_key(id) : SERIAL
+  column(nama_kategori) : VARCHAR(100)
+}
+
+table(direktori) {
+  primary_key(id) : SERIAL
+  foreign_key(id_kategori) : INT
+  column(nama_tempat) : VARCHAR(150)
+  column(deskripsi_id) : TEXT
+  column(deskripsi_en) : TEXT
+  column(latitude) : DECIMAL(10,8)
+  column(longitude) : DECIMAL(11,8)
+  column(harga_mulai) : INT
+  column(kontak_wa) : VARCHAR(20)
+}
+
+table(galeri_foto) {
+  primary_key(id) : SERIAL
+  foreign_key(id_direktori) : INT
+  column(url_foto) : TEXT
+}
+
+table(jadwal_transportasi) {
+  primary_key(id) : SERIAL
+  column(rute_asal) : VARCHAR(100)
+  column(rute_tujuan) : VARCHAR(100)
+  column(waktu_berangkat) : TIME
+  column(harga) : INT
+}
+
+table(event) {
+  primary_key(id) : SERIAL
+  column(nama_event) : VARCHAR(150)
+  column(tanggal_mulai) : DATE
+  column(tanggal_selesai) : DATE
+  column(deskripsi) : TEXT
+}
+
+table(panduan_perjalanan) {
+  primary_key(id) : SERIAL
+  column(judul_panduan) : VARCHAR(150)
+  column(isi_panduan) : TEXT
+}
+
+' Relasi antar tabel
+tipe_kategori ||--o{ direktori : "1 to Many"
+direktori ||--o{ galeri_foto : "1 to Many"
+
+@enduml

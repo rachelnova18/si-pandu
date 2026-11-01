@@ -1,0 +1,23 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+
+actor "Wisatawan" as wisatawan
+
+package "Sistem Web Si-PANDU" {
+  usecase "Melihat Direktori Tempat Wisata" as UC1
+  usecase "Mencari Destinasi Terdekat" as UC2
+  usecase "Melihat Jadwal Kapal Penyeberangan" as UC3
+  usecase "Membaca Panduan Perjalanan" as UC4
+  usecase "Menghubungi Pengurus via WhatsApp" as UC5
+  usecase "Mengganti Bahasa (ID/EN)" as UC6
+}
+
+wisatawan --> UC1
+wisatawan --> UC2
+wisatawan --> UC3
+wisatawan --> UC4
+wisatawan --> UC5
+wisatawan --> UC6
+
+@enduml
