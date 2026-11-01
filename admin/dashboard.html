@@ -3,121 +3,585 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Command Center - Si-PANDU</title>
-  <link rel="stylesheet" href="../assets/css/style.css">
-  <style>
-    .admin-card {
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-      margin-bottom: 20px;
-    }
-    .form-group {
-      margin-bottom: 12px;
-    }
-    .form-group label {
-      display: block;
-      font-weight: 600;
-      margin-bottom: 5px;
-      font-size: 0.88rem;
-    }
-    .form-group input, .form-group select, .form-group textarea {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 0.9rem;
-    }
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-    .btn-submit {
-      background: #006699;
-      color: white;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 6px;
-      font-weight: bold;
-      cursor: pointer;
-      width: 100%;
-    }
-  </style>
+  <title>Admin Command Center - Si-PANDU Banggai Laut</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/admin.css">
 </head>
-<body>
+<body class="admin-body">
 
-  <header class="navbar">
-    <div class="logo">⚙️ Admin Si-PANDU</div>
-    <nav class="nav-links">
-      <a href="../index.html">Lihat Web Publik ➔</a>
-    </nav>
+  <!-- =====================================================
+       1. TOPBAR ADMIN
+       ===================================================== -->
+  <header class="admin-topbar">
+    <div class="admin-topbar-left">
+      <button type="button" class="sidebar-toggle-btn" id="sidebarToggleBtn" aria-label="Toggle Sidebar">☰</button>
+      <div class="admin-brand">
+        <span class="brand-title">Si-PANDU Admin Panel</span>
+        <span class="brand-sub">Dinas Pariwisata & Kebudayaan Kabupaten Banggai Laut</span>
+      </div>
+      <div id="liveServerStatusBadge" style="margin-left: 20px; font-size: 0.8rem; display: flex; align-items: center; gap: 8px; background: rgba(0,0,0,0.3); padding: 5px 14px; border-radius: 9999px; border: 1px solid var(--admin-border);">
+        <span style="color: #94a3b8;">Menghubungkan ke backend...</span>
+      </div>
+    </div>
+
+    <div class="admin-topbar-right">
+      <div class="admin-clock-box">
+        <span>Zona Waktu WITA:</span>
+        <strong id="adminLiveClock">00:00:00 WITA</strong>
+      </div>
+
+      <a href="../index.html" class="topbar-btn-web" target="_blank" rel="noopener noreferrer">
+        <span>Lihat Web Publik</span> ↗
+      </a>
+
+      <div class="admin-profile-pill">
+        <div class="admin-avatar">AD</div>
+        <span class="admin-role" id="adminNameDisplay">Admin Disparbud</span>
+      </div>
+
+      <button type="button" class="btn-logout" id="btnLogout">Keluar</button>
+    </div>
   </header>
 
-  <main class="container">
-    <div class="admin-card">
-      <h2 style="margin-bottom: 14px; color: #006699;">+ Tambah Destinasi / Direktori Baru</h2>
-      <form id="form-wisata" onsubmit="simpanWisata(event)">
-        <div class="form-row">
-          <div class="form-group">
-            <label>Nama Tempat</label>
-            <input type="text" id="nama_tempat" required placeholder="Contoh: Pantai Bongo">
+  <!-- =====================================================
+       2. LAYOUT: SIDEBAR + MAIN CONTENT
+       ===================================================== -->
+  <div class="admin-layout">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="admin-sidebar" id="adminSidebar">
+      <div class="sidebar-nav">
+        <span class="sidebar-section-title">Modul Pengelolaan</span>
+        <a class="sidebar-link active" data-tab="tabOverview">
+          <span class="link-num">01</span> Ringkasan & Statistik
+        </a>
+        <a class="sidebar-link" data-tab="tabHeroBanner">
+          <span class="link-num">02</span> Banner Hero & Poster
+        </a>
+        <a class="sidebar-link" data-tab="tabWisata">
+          <span class="link-num">03</span> Kelola Destinasi
+        </a>
+        <a class="sidebar-link" data-tab="tabKapal">
+          <span class="link-num">04</span> Jadwal Kapal & Rute
+        </a>
+        <a class="sidebar-link" data-tab="tabSystem">
+          <span class="link-num">05</span> Status Database & API
+        </a>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-status-tag">
+          <span class="status-indicator-dot"></span>
+          <span>Sistem Berjalan Aktif</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Workspace -->
+    <main class="admin-main">
+      
+      <!-- ===================================================
+           TAB 1: RINGKASAN & STATISTIK (OVERVIEW)
+           =================================================== -->
+      <section class="admin-tab-pane active" id="tabOverview">
+        <div class="pane-header">
+          <div class="pane-title-group">
+            <h2>Pusat Komando Administrasi</h2>
+            <p>Ringkasan data direktori pariwisata, armada penyeberangan maritim, dan banner publikasi.</p>
           </div>
-          <div class="form-group">
-            <label>Kategori</label>
-            <select id="kategori">
-              <option value="Bahari">Bahari</option>
-              <option value="Sejarah & Budaya">Sejarah & Budaya</option>
-              <option value="Hotel">Hotel</option>
-              <option value="Kuliner">Kuliner</option>
-            </select>
+          <div class="pane-header-actions">
+            <button type="button" class="btn-admin-action" onclick="switchAdminTab('tabHeroBanner')">
+              + Pasang Poster Hero
+            </button>
+            <button type="button" class="btn-admin-action" onclick="openWisataModal()">
+              + Tambah Destinasi
+            </button>
           </div>
         </div>
 
-        <div class="form-group">
-          <label>Deskripsi (Bahasa Indonesia)</label>
-          <textarea id="deskripsi_id" rows="2" required placeholder="Tulis deskripsi bahasa Indonesia..."></textarea>
+        <!-- 4 Metric Cards -->
+        <div class="stats-metrics-grid">
+          <div class="metric-card">
+            <div class="metric-top">
+              <span class="metric-label">Destinasi Terverifikasi</span>
+              <span class="metric-badge">Aktif</span>
+            </div>
+            <div class="metric-num" id="statDestinasiCount">10</div>
+            <div class="metric-sub">Katalog direktori wisata bahari & budaya</div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-top">
+              <span class="metric-label">Armada Kapal</span>
+              <span class="metric-badge">Terjadwal</span>
+            </div>
+            <div class="metric-num" id="statKapalCount">10</div>
+            <div class="metric-sub">Rute kapal cepat, feri ASDP, & perintis</div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-top">
+              <span class="metric-label">Poster Hero Berjalan</span>
+              <span class="metric-badge">Slide Tayang</span>
+            </div>
+            <div class="metric-num" id="statBannerCount">5</div>
+            <div class="metric-sub">Publikasi event & informasi utama beranda</div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-top">
+              <span class="metric-label">Asisten AI Si-PANDU</span>
+              <span class="metric-badge">Dual-Mode</span>
+            </div>
+            <div class="metric-num">2</div>
+            <div class="metric-sub">Form Generator & Tanya Jawab Konversasional</div>
+          </div>
         </div>
 
-        <div class="form-group">
-          <label>Deskripsi (Bahasa Inggris / EN)</label>
-          <textarea id="deskripsi_en" rows="2" required placeholder="Write description in English..."></textarea>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label>Latitude</label>
-            <input type="number" step="any" id="latitude" required placeholder="-1.5833">
-          </div>
-          <div class="form-group">
-            <label>Longitude</label>
-            <input type="number" step="any" id="longitude" required placeholder="123.5000">
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label>Harga Mulai (Rp)</label>
-            <input type="number" id="harga_mulai" required placeholder="10000">
-          </div>
-          <div class="form-group">
-            <label>Nomor WhatsApp Pengurus (Format 628xxx)</label>
-            <input type="text" id="kontak_wa" required placeholder="6281234567890">
+        <!-- Quick Access Section -->
+        <div class="admin-card-section">
+          <h3 class="section-box-title">Pintasan Cepat Manajemen Portal</h3>
+          <div class="quick-actions-row">
+            <div class="quick-action-item" onclick="switchAdminTab('tabHeroBanner')">
+              <h4>Update Poster Hero Beranda</h4>
+              <p>Perbarui poster promosi wisata terkini, upacara adat Malabot Tumbe, atau festival bahari.</p>
+            </div>
+            <div class="quick-action-item" onclick="switchAdminTab('tabWisata'); openWisataModal();">
+              <h4>Input Destinasi Wisata Baru</h4>
+              <p>Tambah objek wisata, lokasi pantai, pulau snorkeling, koordinat peta, dan kontak WA pengurus.</p>
+            </div>
+            <div class="quick-action-item" onclick="switchAdminTab('tabKapal'); openKapalModal();">
+              <h4>Perbarui Jadwal Penyeberangan</h4>
+              <p>Sesuaikan jam keberangkatan kapal cepat Luwuk-Banggai atau jadwal feri ASDP Ro-Ro.</p>
+            </div>
           </div>
         </div>
+      </section>
 
-        <button type="submit" class="btn-submit">Simpan Data ke Sistem</button>
-      </form>
+      <!-- ===================================================
+           TAB 2: KELOLA BANNER HERO & POSTER (FITUR UTAMA USER)
+           =================================================== -->
+      <section class="admin-tab-pane" id="tabHeroBanner">
+        <div class="pane-header">
+          <div class="pane-title-group">
+            <h2>Manajemen Poster & Banner Hero Beranda</h2>
+            <p>Admin dapat mengunggah dan memperbarui poster event, festival adat, atau berita wisata terkini yang tampil di slider utama beranda.</p>
+          </div>
+        </div>
+
+        <div class="hero-editor-grid">
+          <!-- Live Preview Card -->
+          <div class="banner-preview-card">
+            <span class="preview-tag-badge" id="previewBadge">CAGAR BUDAYA 5 ABAD • KERATON BANGGAI</span>
+            <div class="preview-hero-img-wrap">
+              <img id="previewImg" src="../assets/img/hero-card.jpg" alt="Preview Poster Hero">
+            </div>
+            <h3 class="preview-hero-title" id="previewTitle">UPACARA ADAT SAKRAL MALABOT TUMBE</h3>
+            <p class="preview-hero-desc" id="previewDesc">Tradisi sakral pelayaran penghantaran telur burung maleo menuju Keraton Banggai oleh pemangku adat Batui.</p>
+            <div class="preview-live-label">
+              <span class="status-indicator-dot"></span> Tampilan Simulasi Real-Time Hero Beranda
+            </div>
+          </div>
+
+          <!-- Form Editor Banner Hero -->
+          <div class="admin-card-section" style="margin-bottom: 0;">
+            <h3 class="section-box-title">Form Update Poster / Event Hero</h3>
+            <form id="formHeroBanner" onsubmit="simpanHeroBanner(event)">
+              <div class="admin-form-group">
+                <label for="bannerSlot">Pilih Slide Target</label>
+                <select id="bannerSlot" class="admin-form-control" onchange="loadSelectedBannerSlot()">
+                  <option value="1">Slide 1 (Utama): Upacara Adat Malabot Tumbe</option>
+                  <option value="2">Slide 2: Danau Ubur-Ubur Bokan</option>
+                  <option value="3">Slide 3: Pantai Pasir Timbul Lambangan Pauno</option>
+                  <option value="4">Slide 4: Tebing Karang Sunset Tanjung Gundul</option>
+                  <option value="5">Slide 5: Habitat Banggai Cardinalfish</option>
+                </select>
+              </div>
+
+              <div class="admin-form-group">
+                <label for="bannerTag">Tagline / Kategori Poster</label>
+                <input type="text" id="bannerTag" class="admin-form-control" required placeholder="Contoh: EVENT BUDAYA • DESEMBER 2026">
+              </div>
+
+              <div class="admin-form-group">
+                <label for="bannerTitle">Judul Utama Poster / Event</label>
+                <input type="text" id="bannerTitle" class="admin-form-control" required placeholder="Contoh: FESTIVAL BAHARI BANGGAI LAUT 2026">
+              </div>
+
+              <div class="admin-form-group">
+                <label for="bannerDesc">Deskripsi Pengumuman Singkat</label>
+                <textarea id="bannerDesc" class="admin-form-control" rows="3" required placeholder="Tuliskan informasi ringkas acara atau daya tarik wisata..."></textarea>
+              </div>
+
+              <div class="admin-form-group">
+                <label for="bannerImg">URL Gambar / Poster Event</label>
+                <input type="text" id="bannerImg" class="admin-form-control" required placeholder="Contoh: assets/img/hero-card.jpg atau URL gambar">
+              </div>
+
+              <button type="submit" class="btn-admin-submit">
+                Simpan & Pasang ke Beranda ➔
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================
+           TAB 3: KELOLA DESTINASI WISATA (FRAMEWORK CMS)
+           =================================================== -->
+      <section class="admin-tab-pane" id="tabWisata">
+        <div class="pane-header">
+          <div class="pane-title-group">
+            <h2>Katalog Direktori Destinasi Wisata</h2>
+            <p>Kelola data objek wisata bahari, cagar sejarah, geowisata alam, dan sentra kuliner Banggai Laut secara dinamis.</p>
+          </div>
+          <div class="pane-header-actions">
+            <button type="button" class="btn-admin-action" onclick="openWisataModal()">
+              + Tambah Destinasi Baru
+            </button>
+          </div>
+        </div>
+
+        <!-- Framework Notice Banner -->
+        <div class="framework-notice-banner">
+          <div class="framework-notice-text">
+            <h4>Arsitektur CMS Framework Dinamis Aktif</h4>
+            <p>Data & foto destinasi Banggai Laut siap disesuaikan saat survei lapangan selesai. Anda dapat menambah slot template kosong, mengisi foto & koordinat kapan saja, atau mengekspor/mengimpor JSON.</p>
+          </div>
+        </div>
+
+        <!-- Framework Action Toolbar -->
+        <div class="framework-toolbar">
+          <button type="button" class="btn-framework-tool" onclick="tambahSlotKosong()">
+            + Tambah Slot Kosong (Template)
+          </button>
+          <button type="button" class="btn-framework-tool" onclick="eksporDataJSON()">
+            Ekspor Data (JSON)
+          </button>
+          <button type="button" class="btn-framework-tool" onclick="triggerImporJSON()">
+            Impor Data (JSON)
+          </button>
+          <button type="button" class="btn-framework-tool" onclick="muatContohData()">
+            Muat Data Contoh Lengkap
+          </button>
+          <button type="button" class="btn-framework-tool danger" onclick="kosongkanData()">
+            Bersihkan / Reset Semua Data
+          </button>
+          <input type="file" id="jsonFileInput" accept=".json" style="display: none;" onchange="prosesImporJSON(event)">
+        </div>
+
+        <div class="table-filter-bar">
+          <input type="text" id="wisataSearchInput" class="table-search-input" placeholder="Cari nama destinasi atau kategori..." oninput="filterAdminWisataTable()">
+          <select id="wisataCategoryFilter" class="table-category-filter" onchange="filterAdminWisataTable()">
+            <option value="all">Semua Kategori</option>
+            <option value="Bahari">Wisata Bahari</option>
+            <option value="Sejarah">Sejarah & Budaya</option>
+            <option value="Danau">Danau & Geowisata</option>
+            <option value="Kuliner">Kuliner Tradisional</option>
+          </select>
+        </div>
+
+        <div class="admin-table-wrap">
+          <table class="admin-table" id="adminWisataTable">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Foto</th>
+                <th>Nama Destinasi</th>
+                <th>Kategori</th>
+                <th>Kecamatan</th>
+                <th>HTM / Tarif</th>
+                <th>Status</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="adminWisataTableBody">
+              <!-- Render otomatis via admin.js -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ===================================================
+           TAB 4: KELOLA JADWAL KAPAL & RUTE
+           =================================================== -->
+      <section class="admin-tab-pane" id="tabKapal">
+        <div class="pane-header">
+          <div class="pane-title-group">
+            <h2>Jadwal Penyeberangan & Armada Kapal</h2>
+            <p>Kelola daftar keberangkatan kapal cepat express, feri Ro-Ro ASDP, dan kapal reguler antar-pulau.</p>
+          </div>
+          <div class="pane-header-actions">
+            <button type="button" class="btn-admin-action" onclick="openKapalModal()">
+              + Tambah Armada / Jadwal
+            </button>
+          </div>
+        </div>
+
+        <div class="admin-table-wrap">
+          <table class="admin-table" id="adminKapalTable">
+            <thead>
+              <tr>
+                <th>Nama Armada</th>
+                <th>Jenis Kapal</th>
+                <th>Rute Pelayaran</th>
+                <th>Hari Berangkat</th>
+                <th>Jam Berangkat</th>
+                <th>Estimasi Tiba</th>
+                <th>Tarif Tiket</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="adminKapalTableBody">
+              <!-- Render otomatis via admin.js -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ===================================================
+           TAB 5: STATUS DATABASE & API SISTEM
+           =================================================== -->
+      <section class="admin-tab-pane" id="tabSystem">
+        <div class="pane-header">
+          <div class="pane-title-group">
+            <h2>Status Database PostgreSQL & Server API</h2>
+            <p>Pemantauan koneksi data backend Express.js, pool PostgreSQL, dan endpoint AI.</p>
+          </div>
+        </div>
+
+        <div class="admin-card-section" style="margin-bottom: 24px;">
+          <h3 class="section-box-title">Pemantauan Status Live Server Backend</h3>
+          <div id="liveServerDetailCard" style="padding: 20px; background: rgba(0,0,0,0.25); border-radius: 14px; border: 1px solid var(--admin-border);">
+            <div id="tabSystemStatusDisplay" style="font-size: 0.92rem; color: #cbd5e1;">
+              Memeriksa konektivitas backend Express & database PostgreSQL...
+            </div>
+          </div>
+        </div>
+
+        <div class="admin-card-section">
+          <h3 class="section-box-title">Spesifikasi Arsitektur Sistem</h3>
+          <div class="quick-actions-row">
+            <div class="quick-action-item">
+              <h4>Database PostgreSQL</h4>
+              <p>Database: <code>sipandu</code> (Port 5433 / localhost)</p>
+              <p>Tabel: <code>direktori</code>, <code>tipe_kategori</code>, <code>jadwal_transportasi</code>, <code>admin</code></p>
+            </div>
+            <div class="quick-action-item">
+              <h4>Backend Express.js</h4>
+              <p>Server Port: <code>3000</code></p>
+              <p>CORS & JSON Body Parser: Aktif</p>
+            </div>
+            <div class="quick-action-item">
+              <h4>Dual-Mode AI Engine</h4>
+              <p>Tab 1: <code>POST /api/ai/rancang-rute</code></p>
+              <p>Tab 2: <code>POST /api/ai/tanya-bebas</code></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- =====================================================
+       MODAL: FORM TAMBAH / EDIT DESTINASI WISATA (TEMPLATE FRAMEWORK)
+       ===================================================== -->
+  <div class="admin-modal-backdrop" id="wisataModalBackdrop">
+    <div class="admin-modal-dialog" style="max-width: 860px; max-height: 90vh; overflow-y: auto;">
+      <div class="admin-modal-header">
+        <div>
+          <h3 id="wisataModalTitle">Tambah Destinasi Baru (Framework Slot)</h3>
+          <p style="color: var(--text-dim); font-size: 0.82rem; margin-top: 2px;">Input slot informasi tempat wisata, foto, koordinat, dan fasilitas saat data lapangan siap.</p>
+        </div>
+        <button type="button" class="admin-modal-close" onclick="closeWisataModal()">✕</button>
+      </div>
+      <div class="admin-modal-body">
+        <form id="formWisataModal" onsubmit="submitWisataModal(event)">
+          <input type="hidden" id="modalWisataId">
+
+          <!-- SEKSI 1: IDENTITAS & KLASIFIKASI WILAYAH -->
+          <div class="modal-form-section">
+            <div class="modal-section-title">01. Identitas & Klasifikasi Wilayah</div>
+            <div class="admin-form-row">
+              <div class="admin-form-group">
+                <label>Nama Destinasi / Tempat</label>
+                <input type="text" id="modalNamaTempat" class="admin-form-control" required placeholder="Contoh: Pantai Oyama / Danau Mbuang-Mbuang">
+              </div>
+              <div class="admin-form-group">
+                <label>Kategori Wisata</label>
+                <select id="modalKategori" class="admin-form-control">
+                  <option value="Wisata Bahari">Wisata Bahari</option>
+                  <option value="Sejarah & Budaya">Sejarah & Budaya</option>
+                  <option value="Danau & Geowisata">Danau & Geowisata</option>
+                  <option value="Geowisata Alam">Geowisata Alam</option>
+                  <option value="Kuliner Tradisional">Kuliner Tradisional</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="admin-form-row">
+              <div class="admin-form-group">
+                <label>Kecamatan di Banggai Laut</label>
+                <select id="modalKecamatan" class="admin-form-control">
+                  <option value="Kecamatan Banggai">Kecamatan Banggai (Pusat Kota)</option>
+                  <option value="Kecamatan Banggai Utara">Kecamatan Banggai Utara</option>
+                  <option value="Kecamatan Banggai Selatan">Kecamatan Banggai Selatan</option>
+                  <option value="Kecamatan Bangkurung">Kecamatan Bangkurung</option>
+                  <option value="Kecamatan Bokan Kepulauan">Kecamatan Bokan Kepulauan</option>
+                  <option value="Kecamatan Labobo">Kecamatan Labobo</option>
+                  <option value="Kecamatan Bualemo">Kecamatan Bualemo</option>
+                </select>
+              </div>
+              <div class="admin-form-group">
+                <label>Status Publikasi</label>
+                <select id="modalStatusPublikasi" class="admin-form-control">
+                  <option value="Terbit">Terbit (Tampil di Website Publik)</option>
+                  <option value="Draf">Draf (Menunggu Verifikasi Data/Foto Lapangan)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- SEKSI 2: INFORMASI & DESKRIPSI -->
+          <div class="modal-form-section">
+            <div class="modal-section-title">02. Narasi & Deskripsi Wisata</div>
+            <div class="admin-form-group">
+              <label>Deskripsi Lengkap (Bahasa Indonesia)</label>
+              <textarea id="modalDeskripsiId" class="admin-form-control" rows="3" required placeholder="Tuliskan daya tarik, sejarah singkat, atau keunikan objek wisata ini..."></textarea>
+            </div>
+            <div class="admin-form-group">
+              <label>Deskripsi Bahasa Inggris (English Translation)</label>
+              <textarea id="modalDeskripsiEn" class="admin-form-control" rows="2" placeholder="Destination highlights, history, or unique appeals in English..."></textarea>
+            </div>
+          </div>
+
+          <!-- SEKSI 3: KOORDINAT GPS & PRESET LOKASI -->
+          <div class="modal-form-section">
+            <div class="modal-section-title">03. Titik Koordinat GPS & Lokasi Peta</div>
+            <div class="admin-form-row">
+              <div class="admin-form-group">
+                <label>Latitude (Garis Lintang)</label>
+                <input type="number" step="any" id="modalLat" class="admin-form-control" required placeholder="-1.5932">
+              </div>
+              <div class="admin-form-group">
+                <label>Longitude (Garis Bujur)</label>
+                <input type="number" step="any" id="modalLng" class="admin-form-control" required placeholder="123.5015">
+              </div>
+            </div>
+            <div class="admin-form-group">
+              <label style="font-size: 0.76rem; color: var(--text-dim);">Pilih Titik Preset Lokasi Cepat Banggai Laut:</label>
+              <div class="preset-pills-row">
+                <button type="button" class="btn-preset-pill" onclick="setGpsPreset(-1.5932, 123.5015, 'Kecamatan Banggai')">Pusat Kota Banggai (-1.5932, 123.5015)</button>
+                <button type="button" class="btn-preset-pill" onclick="setGpsPreset(-1.7850, 123.5950, 'Kecamatan Bokan Kepulauan')">Mbuang-Mbuang Bokan (-1.7850, 123.5950)</button>
+                <button type="button" class="btn-preset-pill" onclick="setGpsPreset(-1.6150, 123.5350, 'Kecamatan Banggai')">Tanjung Gundul (-1.6150, 123.5350)</button>
+                <button type="button" class="btn-preset-pill" onclick="setGpsPreset(-1.5600, 123.5100, 'Kecamatan Banggai Utara')">Bone Baru Banggai Utara (-1.5600, 123.5100)</button>
+                <button type="button" class="btn-preset-pill" onclick="setGpsPreset(-1.7000, 123.2500, 'Kecamatan Bangkurung')">Kepulauan Bangkurung (-1.7000, 123.2500)</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- SEKSI 4: OPERASIONAL, HTM & KONTAK PENGURUS -->
+          <div class="modal-form-section">
+            <div class="modal-section-title">04. Tarif Masuk, Jam Operasional & Kontak</div>
+            <div class="admin-form-row">
+              <div class="admin-form-group">
+                <label>Tarif Retribusi / HTM</label>
+                <input type="text" id="modalHtm" class="admin-form-control" placeholder="Contoh: Rp 10.000 / Orang atau Gratis">
+              </div>
+              <div class="admin-form-group">
+                <label>Jam Operasional</label>
+                <input type="text" id="modalJamBuka" class="admin-form-control" placeholder="Contoh: 07:00 - 18:00 WITA (Setiap Hari)">
+              </div>
+            </div>
+            <div class="admin-form-row">
+              <div class="admin-form-group">
+                <label>Nomor WhatsApp Pengurus / Pokdarwis</label>
+                <input type="text" id="modalWa" class="admin-form-control" placeholder="Contoh: 6282292928800 (tanpa spasi/+)">
+              </div>
+              <div class="admin-form-group">
+                <label>Nama Pengelola / Pokdarwis</label>
+                <input type="text" id="modalPengelola" class="admin-form-control" placeholder="Contoh: Pokdarwis Pesona Mbuang-Mbuang">
+              </div>
+            </div>
+          </div>
+
+          <!-- SEKSI 5: FOTO & MEDIA GALLERY -->
+          <div class="modal-form-section">
+            <div class="modal-section-title">05. Foto Utama & Galeri Media</div>
+            <div class="admin-form-group">
+              <label>URL / File Path Foto Utama (16:9)</label>
+              <input type="text" id="modalGambar" class="admin-form-control" placeholder="Contoh: assets/img/hero-card.jpg atau URL online">
+            </div>
+            <div class="admin-form-group">
+              <label style="font-size: 0.76rem; color: var(--text-dim);">Pilih Template Foto Sementara (Placeholder):</label>
+              <div class="preset-pills-row">
+                <button type="button" class="btn-preset-pill" onclick="setFotoPreset('bahari')">Preset Bahari & Pantai</button>
+                <button type="button" class="btn-preset-pill" onclick="setFotoPreset('ubur')">Preset Danau Ubur-Ubur</button>
+                <button type="button" class="btn-preset-pill" onclick="setFotoPreset('keraton')">Preset Keraton & Sejarah</button>
+                <button type="button" class="btn-preset-pill" onclick="setFotoPreset('sunset')">Preset Tebing & Sunset</button>
+                <button type="button" class="btn-preset-pill" onclick="setFotoPreset('kuliner')">Preset Kuliner Sinole</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- SEKSI 6: FASILITAS TERSEDIA (CHECKLIST) -->
+          <div class="modal-form-section">
+            <div class="modal-section-title">06. Fasilitas yang Tersedia di Lokasi</div>
+            <div class="facilities-checkbox-grid" id="modalFasilitasGrid">
+              <label class="facility-check-item">
+                <input type="checkbox" name="fasilitas" value="Spot Foto Estetik" checked>
+                <span>Spot Foto Estetik</span>
+              </label>
+              <label class="facility-check-item">
+                <input type="checkbox" name="fasilitas" value="Gazebo Santai" checked>
+                <span>Gazebo Santai</span>
+              </label>
+              <label class="facility-check-item">
+                <input type="checkbox" name="fasilitas" value="Toilet & Kamar Bilas" checked>
+                <span>Toilet & Kamar Bilas</span>
+              </label>
+              <label class="facility-check-item">
+                <input type="checkbox" name="fasilitas" value="Mushola">
+                <span>Mushola</span>
+              </label>
+              <label class="facility-check-item">
+                <input type="checkbox" name="fasilitas" value="Sewa Alat Snorkeling">
+                <span>Sewa Alat Snorkeling</span>
+              </label>
+              <label class="facility-check-item">
+                <input type="checkbox" name="fasilitas" value="Warung Makan / Kelapa Muda">
+                <span>Warung Makan / Seafood</span>
+              </label>
+              <label class="facility-check-item">
+                <input type="checkbox" name="fasilitas" value="Area Parkir Kendaraan">
+                <span>Area Parkir Kendaraan</span>
+              </label>
+              <label class="facility-check-item">
+                <input type="checkbox" name="fasilitas" value="Homestay Tepi Pantai">
+                <span>Homestay Warga</span>
+              </label>
+              <label class="facility-check-item">
+                <input type="checkbox" name="fasilitas" value="Pemandu Wisata Lokal">
+                <span>Pemandu Wisata Lokal</span>
+              </label>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-admin-submit" style="margin-top: 10px;">
+            Simpan Destinasi ke Database Framework ➔
+          </button>
+        </form>
+      </div>
     </div>
-  </main>
+  </div>
 
-  <script>
-    function simpanWisata(e) {
-      e.preventDefault();
-      alert("Data berhasil divalidasi! (Nantinya tombol ini akan mengirim data POST ke API Backend Express.js)");
-      e.target.reset();
-    }
-  </script>
+  <!-- Toast Notification -->
+  <div class="admin-toast" id="adminToast">Pemberitahuan berhasil disimpan.</div>
+
+  <!-- Script Admin Engine -->
+  <script src="../assets/js/admin.js"></script>
 </body>
 </html>
