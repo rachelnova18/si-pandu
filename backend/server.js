@@ -196,7 +196,8 @@ app.get('/api/wisata', async (req, res) => {
   try {
     const query = `
       SELECT d.id, t.nama_kategori, d.nama_tempat, d.deskripsi_id, 
-             d.latitude AS lat, d.longitude AS lng
+             d.latitude AS lat, d.longitude AS lng,
+             d.lokasi, d.htm, d.jam_buka, d.kontak_wa, d.pengelola, d.gambar, d.status, d.fasilitas
       FROM direktori d
       LEFT JOIN tipe_kategori t ON d.id_kategori = t.id
       ORDER BY d.id DESC;
